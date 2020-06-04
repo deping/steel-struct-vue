@@ -10,6 +10,9 @@
     </el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope">
+        <el-button size="mini" type="danger" @click="openProject(scope.row)"
+          >打开</el-button
+        >
         <el-button
           size="mini"
           type="danger"
@@ -24,6 +27,9 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import {
+  /* State, Getter, Action, */ Mutation /* namespace */
+} from "vuex-class";
 import { getAjaxUrl } from "@/utils/path";
 import axios from "axios";
 
@@ -41,6 +47,8 @@ export default class HomePageRecentProject extends Vue {
   name = "home-page";
 
   projects: ProjectInfo[] = [];
+
+  @Mutation setProjectId!: (projectId: number) => void;
 
   headerCellStyle(indicator: any) {
     if (indicator.rowIndex === 0) {
@@ -65,6 +73,10 @@ export default class HomePageRecentProject extends Vue {
       });
       console.error(err);
     }
+  }
+
+  async openProject(project: ProjectInfo) {
+    this.setProjectId(project.id);
   }
 
   async deleteProject(index: number, project: ProjectInfo) {
