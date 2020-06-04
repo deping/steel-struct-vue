@@ -1,11 +1,10 @@
 <template>
   <div id="app">
     <login-page v-if="!user.access_token"> </login-page>
-    <home-page v-else> </home-page>
-    <!-- <template v-else>
+    <template v-else>
       <home-page v-if="!project_id"> </home-page>
       <project-page v-else> </project-page>
-    </template> -->
+    </template>
   </div>
 </template>
 

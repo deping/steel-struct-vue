@@ -13,6 +13,9 @@ export default new Vuex.Store({
   mutations: {
     setUser(state, payload) {
       state.user.access_token = payload.access_token;
+    },
+    setProjectId(state, projectId) {
+      state.project_id = projectId;
     }
   },
   actions: {

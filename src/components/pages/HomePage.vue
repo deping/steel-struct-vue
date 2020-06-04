@@ -51,10 +51,11 @@ import {
 } from "vuex-class";
 // import { getAjaxUrl } from "@/utils/path";
 // import axios from "axios";
+import HomePageNewProject from "@/components/pages/HomePageNewProject.vue";
 import HomePageRecentProject from "@/components/pages/HomePageRecentProject.vue";
-
 @Component({
   components: {
+    "new-project": HomePageNewProject,
     "recent-project": HomePageRecentProject
   }
 })
