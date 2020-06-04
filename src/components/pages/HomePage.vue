@@ -69,6 +69,7 @@ export default class HomePage extends Vue {
   @Mutation setUser!: (payload: any) => void;
 
   handleSelect(key: string /*, keyPath */) {
+    if (key === "useless") return;
     this.subpage = key;
   }
 
