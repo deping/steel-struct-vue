@@ -1,29 +1,42 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <login-page v-if="!user.access_token"> </login-page>
+    <home-page v-else> </home-page>
+    <!-- <template v-else>
+      <home-page v-if="!project_id"> </home-page>
+      <project-page v-else> </project-page>
+    </template> -->
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import HelloWorld from './components/HelloWorld.vue'
+import { Component, Vue } from "vue-property-decorator";
+import { State /*, Getter, Action, Mutation, namespace */ } from "vuex-class";
+
+import LoginPage from "@/components/pages/LoginPage.vue";
+import HomePage from "@/components/pages/HomePage.vue";
+import ProjectPage from "@/components/pages/ProjectPage.vue";
 
 @Component({
   components: {
-    HelloWorld
+    "login-page": LoginPage,
+    "home-page": HomePage,
+    "project-page": ProjectPage
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  page = "login-page";
+  @State user!: any;
+  @State project_id!: string;
+}
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  height: 100%;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 0px;
 }
 </style>
