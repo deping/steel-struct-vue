@@ -12,6 +12,7 @@ axios.interceptors.request.use(function(config) {
   if (store.state.user.access_token) {
     config.headers.Authorization = "Bearer" + store.state.user.access_token;
   }
+  config.withCredentials = true;
   return config;
 }, function(error) {
   return Promise.reject(error);
