@@ -1,0 +1,21 @@
+{
+  "vetur.format.defaultFormatterOptions": {
+    "prettier": {
+      "semi": true,
+      "singleQuote": false
+    }
+  },
+  "javascript.preferences.quoteStyle": "double",
+  "typescript.preferences.quoteStyle": "double",
+  "editor.formatOnSave": true,
+  "editor.codeActionOnSave": {
+    "source.fixAll.tslint": true
+  },
+  "eslint.validate": [
+    "typescript",
+    "javascript",
+    "typescriptreact"
+  ],
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false
+}
