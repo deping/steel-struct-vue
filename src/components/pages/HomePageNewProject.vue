@@ -34,6 +34,7 @@ import { Component, Vue } from "vue-property-decorator";
 import {
   /* State, Getter, Action, */ Mutation /* namespace */
 } from "vuex-class";
+import { Form } from "element-ui";
 import { getAjaxUrl } from "@/utils/path";
 import axios from "axios";
 
@@ -46,9 +47,22 @@ export default class HomePageNewProject extends Vue {
     desc: ""
   };
 
+  rules = {
+    name: [{ required: true, message: "请输入工程名", trigger: "blur" }]
+  };
+
+  $refs!: {
+    form: Form;
+  };
+
   @Mutation setProjectId!: (projectId: number) => void;
 
   async createProject() {
+    const valid = await this.$refs.form.validate();
+    if (!valid) {
+      return;
+    }
+
     try {
       const formData: FormData = new FormData();
       formData.append("projectName", this.project.name);
