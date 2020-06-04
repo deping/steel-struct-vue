@@ -22,5 +22,12 @@ module.exports = {
     "indent": ["error", 2, {
       "SwitchCase": 1
     }],
+    "comma-dangle": ["error", {
+      "arrays": "only-multiline",
+      "objects": "only-multiline",
+      "imports": "only-multiline",
+      "exports": "only-multiline",
+      "functions": "never"
+    }]
   }
 }
