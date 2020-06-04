@@ -53,16 +53,18 @@ import {
 // import axios from "axios";
 import HomePageNewProject from "@/components/pages/HomePageNewProject.vue";
 import HomePageRecentProject from "@/components/pages/HomePageRecentProject.vue";
+import HomePageLocalSettings from "@/components/pages/HomePageLocalSettings.vue";
 @Component({
   components: {
     "new-project": HomePageNewProject,
-    "recent-project": HomePageRecentProject
+    "recent-project": HomePageRecentProject,
+    "local-setting": HomePageLocalSettings
   }
 })
 export default class HomePage extends Vue {
   name = "home-page";
 
-  subpage = "order";
+  subpage = "new-project";
 
   @Mutation setUser!: (payload: any) => void;
 
