@@ -153,13 +153,7 @@ export default class LoginPage extends Vue {
         //   password: this.user.password,
         //   verifyCode: this.user.captcha
         // },
-        formData,
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "multipart/form-data" // "application/x-www-form-urlencoded"
-          }
-        }
+        formData
       );
       if (res.data.code === "00100") {
         this.setUser({

@@ -58,9 +58,7 @@ export default class HomePageRecentProject extends Vue {
 
   async created() {
     try {
-      const res = await axios.get(getAjaxUrl("/calc/queryProjectInfo"), {
-        withCredentials: true
-      });
+      const res = await axios.get(getAjaxUrl("/calc/queryProjectInfo"));
       if (res.data.success) {
         this.projects = res.data.data;
       } else {
@@ -101,9 +99,7 @@ export default class HomePageRecentProject extends Vue {
         formData.append("projectId", project.id.toString());
 
         // backend doesn't support json and "application/x-www-form-urlencoded"
-        const res = await axios.post(getAjaxUrl("/calc/delProject"), formData, {
-          withCredentials: true
-        });
+        const res = await axios.post(getAjaxUrl("/calc/delProject"), formData);
         if (res.data.code === "00100") {
           this.projects.splice(index, 1);
         }
