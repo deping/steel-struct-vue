@@ -55,12 +55,14 @@ import HomePageNewProject from "@/components/pages/HomePageNewProject.vue";
 import HomePageRecentProject from "@/components/pages/HomePageRecentProject.vue";
 import HomePageLocalSettings from "@/components/pages/HomePageLocalSettings.vue";
 import HomePageDownloadDrawing from "@/components/pages/HomePageDownloadDrawing.vue";
+import HomePageHelp from "@/components/pages/HomePageHelp.vue";
 @Component({
   components: {
     "new-project": HomePageNewProject,
     "recent-project": HomePageRecentProject,
     "download-drawing": HomePageDownloadDrawing,
-    "local-setting": HomePageLocalSettings
+    "local-setting": HomePageLocalSettings,
+    help: HomePageHelp
   }
 })
 export default class HomePage extends Vue {

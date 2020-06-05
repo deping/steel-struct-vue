@@ -15,3 +15,32 @@ export function getAjaxUrl(url: string): string {
   }
   return baseUrl + url;
 }
+
+// "file.name.with.dots.txt"   // "txt"
+// "file.txt"                  // "txt"
+// "file"                      // undefined
+// ""                          // undefined
+// null                        // undefined
+// undefined                   // undefined
+export function getFileExt(str: string) {
+  const re = /(?:\.([^.]+))?$/;
+  const res = re.exec(str);
+  if (res != null) {
+    return res[1];
+  }
+  return "";
+}
+
+export function getFilePath(str: string) {
+  const pos = str.lastIndexOf("/");
+  return str.substring(0, pos);
+}
+
+export function getRelativePath(str: string) {
+  let pos = str.indexOf("//");
+  if (pos !== -1) {
+    pos = str.indexOf("/", pos + 2);
+    return str.substring(pos);
+  }
+  return str;
+}
