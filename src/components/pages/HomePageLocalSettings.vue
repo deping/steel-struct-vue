@@ -6,7 +6,7 @@
       >
     </div>
     <div>
-      <el-checkbox v-model="confirmDelCons" @change="change('confirmDelProj')"
+      <el-checkbox v-model="confirmDelCons" @change="change('confirmDelCons')"
         >需要确认删除构件</el-checkbox
       >
     </div>
