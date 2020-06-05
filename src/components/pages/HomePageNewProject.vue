@@ -22,8 +22,8 @@
           @keyup.enter.native="createProject"
         ></el-input>
       </el-form-item>
-      <el-form-item prop="create">
-        <el-button type="primary" @click="createProject()">创建工程</el-button>
+      <el-form-item>
+        <el-button type="primary" @click="createProject">创建工程</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -94,6 +94,15 @@ export default class HomePageNewProject extends Vue {
 #container {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.el-input {
+  width: 400px;
+  margin: 5px;
 }
 </style>
 
