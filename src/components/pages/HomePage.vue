@@ -54,10 +54,12 @@ import {
 import HomePageNewProject from "@/components/pages/HomePageNewProject.vue";
 import HomePageRecentProject from "@/components/pages/HomePageRecentProject.vue";
 import HomePageLocalSettings from "@/components/pages/HomePageLocalSettings.vue";
+import HomePageDownloadDrawing from "@/components/pages/HomePageDownloadDrawing.vue";
 @Component({
   components: {
     "new-project": HomePageNewProject,
     "recent-project": HomePageRecentProject,
+    "download-drawing": HomePageDownloadDrawing,
     "local-setting": HomePageLocalSettings
   }
 })
