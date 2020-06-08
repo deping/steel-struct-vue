@@ -10,7 +10,7 @@
     </el-table-column>
     <el-table-column label="操作">
       <template slot-scope="scope">
-        <el-button size="mini" type="danger" @click="openProject(scope.row)"
+        <el-button size="mini" type="primary" @click="openProject(scope.row)"
           >打开</el-button
         >
         <el-button
