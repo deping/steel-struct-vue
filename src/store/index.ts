@@ -8,7 +8,8 @@ export default new Vuex.Store({
     user: {
       access_token: ""
     },
-    project_id: ""
+    project_id: "",
+    construct_id: 0
   },
   mutations: {
     setUser(state, payload) {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
     },
     setProjectId(state, projectId) {
       state.project_id = projectId;
+    },
+    setConstructId(state, constructId) {
+      state.construct_id = constructId;
     }
   },
   actions: {

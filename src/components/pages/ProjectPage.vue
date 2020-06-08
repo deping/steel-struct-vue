@@ -118,7 +118,7 @@ import { getAjaxUrl } from "@/utils/path";
 import axios from "axios";
 import VueSplitter from "vue-splitpane";
 import { Table } from "element-ui";
-import CaoxingZuheliang from "@/components/CaoXingZuHeLiang/main";
+import CaoxingZuheliang from "@/components/CaoXingZuHeLiang/main.vue";
 
 interface ConstructNode {
   id: number;
@@ -162,7 +162,8 @@ export default class ProjectPage extends Vue {
 
   @State user!: any;
   @State project_id!: string;
-  @Mutation setProjectId!: (payload: any) => void;
+  @Mutation setProjectId!: (payload: string) => void;
+  @Mutation setConstructId!: (payload: number) => void;
 
   $refs!: {
     table: Table;
@@ -306,6 +307,7 @@ export default class ProjectPage extends Vue {
     }
     this.currentConstruct = node;
     this.constructName = node.type;
+    this.setConstructId(node.id);
     setTimeout(() => {
       this.setCurrentRow(index);
     }, 0);
