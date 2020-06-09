@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Prop } from "vue-property-decorator";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { ResizeSensor } = require("css-element-queries");
 declare let fabric: any;
@@ -19,20 +19,25 @@ export default class FabricCanvas extends Vue {
   canvas: any;
   resizeSensor: any = undefined;
 
+  @Prop({ default: false })
+  showCoord!: boolean;
+
+  @Prop({ default: true })
+  rightHand!: boolean;
+
   onDivResize(size: { width: number; height: number }) {
-    console.log(size);
-    this.canvas.setWidth(this.$el.clientWidth);
-    this.canvas.setHeight(this.$el.clientHeight);
+    this.canvas.setWidth(size.width - 2);
+    this.canvas.setHeight(size.height - 2);
   }
 
   mounted() {
     const canvas = this.$el.querySelector("canvas");
-    this.canvas = new fabric.Canvas2(canvas);
-    setTimeout(() => {
-      const div = this.$el as HTMLDivElement;
-      console.log(div.id);
-      this.resizeSensor = new ResizeSensor(div, this.onDivResize.bind(this));
-    }, 0);
+    this.canvas = new fabric.Canvas2(canvas, {
+      showCoord: this.showCoord,
+      rightHand: this.rightHand
+    });
+    const div = this.$el as HTMLDivElement;
+    this.resizeSensor = new ResizeSensor(div, this.onDivResize.bind(this));
   }
 }
 </script>
