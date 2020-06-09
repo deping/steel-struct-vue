@@ -27,7 +27,7 @@
       </el-form-item>
     </el-form>
     <!-- <div style="width=350px;height=200px"> -->
-    <fabric-canvas />
+    <fabric-canvas :showCoord="true" ref="canvas" />
     <!-- </div> -->
   </div>
 </template>
@@ -41,6 +41,23 @@ import { Form } from "element-ui";
 import { getAjaxUrl } from "@/utils/path";
 import axios from "axios";
 import FabricCanvas from "@/components/FabricCanvas.vue";
+
+// eslint-disable-next-line @typescript-eslint/no-namespace
+declare namespace rightHand {
+  interface Point {
+    x: number;
+    y: number;
+  }
+  function loadObjects(ar: any[]): any[]; // fabric.Object[]
+  function makeLine(points: number[], options: object): any; // fabric.Line2
+  function makePolyline(points: Point[], options: object): any; // fabric.Polyline2
+  function makePolygon(points: Point[], options: object): any; // fabric.Polygon2
+  function makeText(text: string, options: object): any; // fabric.Text2
+  function makeDimAln(options: object): any; // fabric.DimAln2
+  function makeDimAng(options: object): any; // fabric.DimAng2
+  function makeRect(options: object): any; // fabric.Rect2
+  function makeCircle(options: object): any; // fabric.Circle2
+}
 
 @Component({
   components: {
@@ -61,6 +78,7 @@ export default class HomePageNewProject extends Vue {
 
   $refs!: {
     form: Form;
+    canvas: FabricCanvas;
   };
 
   @Mutation setProjectId!: (projectId: number) => void;
@@ -93,6 +111,65 @@ export default class HomePageNewProject extends Vue {
       });
       console.error(err);
     }
+  }
+
+  mounted() {
+    // create a rectangle object
+    const rect = rightHand.makeRect({
+      left: 10,
+      top: 50,
+      fill: "#D81B60",
+      width: 40,
+      height: 40,
+      strokeWidth: 2,
+      stroke: "#880E4F",
+      rx: 5,
+      ry: 5,
+      // angle: 45,
+      // scaleX: 3,
+      // scaleY: 3,
+      strokeUniform: true
+    });
+    this.$refs.canvas.add(rect);
+
+    const line = rightHand.makeLine([10, 50, 50, 10], {
+      stroke: "red",
+      strokeUniform: true
+      // angle: 45,
+      // scaleX: 3,
+      // scaleY: 3,
+    });
+    this.$refs.canvas.add(line);
+
+    const circle = rightHand.makeCircle({
+      radius: 20,
+      fill: "green",
+      left: 10,
+      top: 50,
+      stroke: "blue",
+      strokeWidth: 2,
+      strokeUniform: true
+      // angle: 45,
+      // scaleX: 3,
+      // scaleY: 3,
+    });
+    this.$refs.canvas.add(circle);
+
+    const text = rightHand.makeText(
+      "白日依山尽，\n黄河入海流，\n欲穷千里目，\n更上一层楼。",
+      {
+        left: 60,
+        top: 50,
+        fill: "#039BE5",
+        fontSize: 12
+        // angle: 45,
+      }
+    );
+    this.$refs.canvas.add(text);
+
+    setTimeout(() => {
+      this.$refs.canvas.zoomToFit();
+    }, 500);
   }
 }
 </script>
