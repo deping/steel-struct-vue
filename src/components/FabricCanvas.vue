@@ -25,6 +25,20 @@ export default class FabricCanvas extends Vue {
   @Prop({ default: true })
   rightHand!: boolean;
 
+  add(obj: any) {
+    this.canvas.add(obj);
+  }
+
+  loadObjects(objs: any[]) {
+    for (const obj of objs) {
+      this.canvas.add(obj);
+    }
+  }
+
+  zoomToFit() {
+    this.canvas.zoomToFit();
+  }
+
   onDivResize(size: { width: number; height: number }) {
     this.canvas.setWidth(size.width - 2);
     this.canvas.setHeight(size.height - 2);
