@@ -26,6 +26,9 @@
         <el-button type="primary" @click="createProject">创建工程</el-button>
       </el-form-item>
     </el-form>
+    <!-- <div style="width=350px;height=200px"> -->
+    <fabric-canvas />
+    <!-- </div> -->
   </div>
 </template>
 
@@ -37,8 +40,13 @@ import {
 import { Form } from "element-ui";
 import { getAjaxUrl } from "@/utils/path";
 import axios from "axios";
+import FabricCanvas from "@/components/FabricCanvas.vue";
 
-@Component
+@Component({
+  components: {
+    "fabric-canvas": FabricCanvas
+  }
+})
 export default class HomePageNewProject extends Vue {
   name = "new-project";
 
