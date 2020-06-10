@@ -10,13 +10,16 @@
     <el-tab-pane label="附属">替换为对应的标签页组件</el-tab-pane>
     <el-tab-pane label="绘图设置">替换为对应的标签页组件</el-tab-pane>
     <el-tab-pane label="图纸查看">替换为对应的标签页组件</el-tab-pane>
-    <el-tab-pane label="三维模型">替换为对应的标签页组件</el-tab-pane>
+    <el-tab-pane label="三维模型">
+      <three-js :file="'model/sample.fbx'"></three-js>
+    </el-tab-pane>
   </el-tabs>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { Persist } from "@/components/ConstructBase";
+import ThreeJs from "@/components/ThreeJs.vue";
 // import {
 //   /* State, Getter, Action, */ Mutation /* namespace */
 // } from "vuex-class";
@@ -24,7 +27,9 @@ import { Persist } from "@/components/ConstructBase";
 // import axios from "axios";
 
 @Component({
-  components: {}
+  components: {
+    "three-js": ThreeJs
+  }
 })
 export default class CaoxingZuheliang extends Vue implements Persist {
   name = "cao-xing-zu-he-liang";
