@@ -56,10 +56,11 @@
                   class="flex-item"
                 >
                   <el-option
-                    v-for="(meta, index) of constructMetas"
+                    v-for="(meta, index) of constructMetas.slice(1)"
                     :label="meta.label"
-                    :value="index"
+                    :value="index + 1"
                     :key="index"
+                    :disabled="meta.disabled"
                   >
                   </el-option>
                 </el-select>
@@ -150,10 +151,10 @@ export default class ProjectPage extends Vue {
 
   constructMetas = [
     { label: "", value: "" },
-    { label: "槽型组合梁", value: "cao-xing-zu-he-liang" },
-    { label: "钢板梁", value: "gang-ban-liang" },
-    { label: "窄箱梁", value: "zhai-xiang-liang" },
-    { label: "钢箱梁", value: "gang-xiang-liang" }
+    { label: "槽型组合梁", value: "cao-xing-zu-he-liang", disabled: false },
+    { label: "钢板梁", value: "gang-ban-liang", disabled: true },
+    { label: "窄箱梁", value: "zhai-xiang-liang", disabled: true },
+    { label: "钢箱梁", value: "gang-xiang-liang", disabled: true }
   ];
 
   constructName = "";
