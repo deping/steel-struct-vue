@@ -22,10 +22,10 @@ export function getAjaxUrl(url: string): string {
 // ""                          // undefined
 // null                        // undefined
 // undefined                   // undefined
-export function getFileExt(str: string) {
+export function getFileExt(str: string): string {
   const re = /(?:\.([^.]+))?$/;
   const res = re.exec(str);
-  if (res != null) {
+  if (res && res[1]) {
     return res[1];
   }
   return "";
