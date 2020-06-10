@@ -189,10 +189,10 @@ export default class ThreeJs extends Vue {
     const light = new THREE.PointLight(0xffffff, 0.8);
     this.camera.add(light);
 
-    const geometry = new THREE.BoxGeometry(1, 1, 1);
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    this.replaceModel(cube);
+    // const geometry = new THREE.BoxGeometry(1, 1, 1);
+    // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    // const cube = new THREE.Mesh(geometry, material);
+    // this.replaceModel(cube);
 
     this.animate();
   }
