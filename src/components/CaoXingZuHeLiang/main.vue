@@ -17,9 +17,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, ProvideReactive } from "vue-property-decorator";
 import { Persist } from "@/components/ConstructBase";
 import ThreeJs from "@/components/ThreeJs.vue";
+import { JsonDataService } from "./models/JsonDataService";
 // import {
 //   /* State, Getter, Action, */ Mutation /* namespace */
 // } from "vuex-class";
@@ -33,6 +34,11 @@ import ThreeJs from "@/components/ThreeJs.vue";
 })
 export default class CaoxingZuheliang extends Vue implements Persist {
   name = "cao-xing-zu-he-liang";
+
+  // 在子组件，使用
+  // @InjectReactive() jsonDataService!: JsonDataService;
+  // 来导入这个对象
+  @ProvideReactive() jsonDataService = new JsonDataService();
 
   async save() {
     console.log("请实现 save");
