@@ -401,4 +401,7 @@ div.content {
 </style>
 
 <style lang="scss">
+table.el-table__body tr.current-row > td {
+  background-color: #ffff50;
+}
 </style>
