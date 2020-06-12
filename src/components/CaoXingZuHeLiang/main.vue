@@ -1,6 +1,8 @@
 <template>
   <el-tabs type="border-card" style="width:100%;height:100%;border:0px">
-    <el-tab-pane label="路线">替换为对应的标签页组件</el-tab-pane>
+    <el-tab-pane label="路线">
+      <GJ-luxian></GJ-luxian>
+    </el-tab-pane>
     <el-tab-pane label="总体设计">替换为对应的标签页组件</el-tab-pane>
     <el-tab-pane label="标准横断面">替换为对应的标签页组件</el-tab-pane>
     <el-tab-pane label="立面">替换为对应的标签页组件</el-tab-pane>
@@ -21,6 +23,7 @@ import { Component, Vue, ProvideReactive } from "vue-property-decorator";
 import { Persist } from "@/components/ConstructBase";
 import ThreeJs from "@/components/ThreeJs.vue";
 import { JsonDataService } from "./models/JsonDataService";
+import LuXian from "@/components/CaoXingZuHeLiang/tabs/LuXian.vue";
 // import {
 //   /* State, Getter, Action, */ Mutation /* namespace */
 // } from "vuex-class";
@@ -29,7 +32,8 @@ import { JsonDataService } from "./models/JsonDataService";
 
 @Component({
   components: {
-    "three-js": ThreeJs
+    "three-js": ThreeJs,
+    "GJ-luxian": LuXian
   }
 })
 export default class CaoxingZuheliang extends Vue implements Persist {

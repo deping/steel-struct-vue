@@ -18,6 +18,9 @@ module.exports = {
       };
     } else {
       // 为开发环境修改配置...
+      config.devServer = {
+        port: 4200
+      };
     }
   },
   css: {
