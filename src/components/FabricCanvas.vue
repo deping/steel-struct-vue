@@ -35,6 +35,10 @@ export default class FabricCanvas extends Vue {
     }
   }
 
+  clear() {
+    this.canvas.clear();
+  }
+
   zoomToFit() {
     this.canvas.zoomToFit();
   }
