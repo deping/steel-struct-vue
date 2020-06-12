@@ -99,11 +99,12 @@ export default class HomePageNewProject extends Vue {
       if (res.data.code === "00100") {
         // this will open project page
         this.setProjectId(res.data.data);
+      } else {
+        this.$message({
+          type: "error",
+          message: res.data.msg
+        });
       }
-      this.$message({
-        type: "info",
-        message: res.data.msg
-      });
     } catch (err) {
       this.$message({
         type: "error",

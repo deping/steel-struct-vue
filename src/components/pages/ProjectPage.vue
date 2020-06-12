@@ -200,11 +200,12 @@ export default class ProjectPage extends Vue {
         if (this.constructs.length > 0) {
           this.openConstruct(0, this.constructs[0]);
         }
+      } else {
+        this.$message({
+          type: "error",
+          message: res.data.msg
+        });
       }
-      this.$message({
-        type: "info",
-        message: res.data.msg
-      });
     } catch (err) {
       this.$message({
         type: "error",
