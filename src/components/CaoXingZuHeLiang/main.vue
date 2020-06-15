@@ -78,5 +78,6 @@ div.el-tabs > div.el-tabs__content > div.el-tab-pane {
   margin: 0px;
   border: 0px;
   padding: 0px;
+  overflow-y: auto;
 }
 </style>
