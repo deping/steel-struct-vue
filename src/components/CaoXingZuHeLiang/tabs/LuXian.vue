@@ -1,102 +1,88 @@
 /* eslint-disable no-constant-condition */
 <template>
-  <div class="Luxian">
-    <div style="margin:20px 0 0 20px ;width:48%">
-      <el-card>
-        <el-card class="box-card">
-          <el-form ref="form" :model="form" label-width="100px">
-            <el-form-item label="DXF文件：">
-              <el-upload
-                class="upload"
-                ref="upload"
-                action
-                :auto-upload="false"
-              >
-                <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-                <el-button
-                  style="margin-left: 10px;"
-                  size="small"
-                  type="success"
-                  @click="UploadFiles"
-                >上传文件</el-button>
-                <el-button
-                  size="small"
-                  type="success"
-                  plain
-                  @click="downloadDxfFile()"
-                >平曲线丶竖曲线.DXF文件格式样例下载</el-button>
-              </el-upload>
-            </el-form-item>
-
-            <el-form-item label="起始桩号：">
-              <el-input v-model="form.qishizhuanghao"></el-input>
-            </el-form-item>
-          </el-form>
-        </el-card>
-        <el-card class="box-card">
-          <el-table :data="tableData" stripe style="width: 100%" border>
-            <el-table-column label="桩号" width="190px">
-              <template v-slot="scope">
-                <el-select v-model="scope.row.bk" placeholder="请选择">
-                  <el-option
-                    v-for="item in options"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  ></el-option>
-                </el-select>
-                <el-input v-model="scope.row.zh" clearable></el-input>
-              </template>
-            </el-table-column>
-            <el-table-column label="左横坡%">
-              <template v-slot="scope">
-                <el-input v-model="scope.row.zhp" clearable></el-input>
-              </template>
-            </el-table-column>
-            <el-table-column label="右横坡%">
-              <template v-slot="scope">
-                <el-input v-model="scope.row.yhp" clearable></el-input>
-              </template>
-            </el-table-column>
-            <el-table-column label="操作">
-              <template v-slot="scope">
-                <el-button
-                  size="mini"
-                  type="primary"
-                  @click="inserttableData(scope.$index, tableData)"
-                >插入</el-button>
-                <el-button
-                  size="mini"
-                  type="danger"
-                  @click="handleDelete(scope.$index, tableData)"
-                >删除</el-button>
-              </template>
-            </el-table-column>
-          </el-table>
-          <div style="width: 100%;text-align:center; margin:10px 0 0 0">
+  <div style="margin:10px 0 0 10px ">
+    <div>
+      <el-form ref="form" :model="form" label-width="100px">
+        <el-form-item label="DXF文件：">
+          <el-upload ref="upload" action :auto-upload="false">
+            <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
             <el-button
+              style="margin-left: 10px;"
+              size="small"
+              type="success"
+              @click="UploadFiles"
+            >上传文件</el-button>
+            <el-button
+              size="small"
+              type="success"
+              plain
+              @click="downloadDxfFile()"
+            >平曲线丶竖曲线.DXF文件格式样例下载</el-button>
+          </el-upload>
+        </el-form-item>
+        <el-form-item label="起始桩号：">
+          <el-input v-model="form.qishizhuanghao"></el-input>
+        </el-form-item>
+      </el-form>
+      <el-table :data="tableData" stripe border>
+        <el-table-column label="桩号">
+          <template v-slot="scope">
+            <el-select v-model="scope.row.bk" placeholder="请选择">
+              <el-option
+                v-for="item in options"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
+            </el-select>
+            <el-input v-model="scope.row.zh" clearable></el-input>
+          </template>
+        </el-table-column>
+        <el-table-column label="左横坡%">
+          <template v-slot="scope">
+            <el-input v-model="scope.row.zhp" clearable></el-input>
+          </template>
+        </el-table-column>
+        <el-table-column label="右横坡%">
+          <template v-slot="scope">
+            <el-input v-model="scope.row.yhp" clearable></el-input>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作">
+          <template v-slot="scope">
+            <el-button
+              size="mini"
               type="primary"
-              @click="addtableData(tableData)"
-              style="float:left"
-            >顺序增加</el-button>
-          </div>
-        </el-card>
-        <el-button type="success" style="margin-top:15px" @click="submit()">立即提交</el-button>
-      </el-card>
+              @click="inserttableData(scope.$index, tableData)"
+            >插入</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.$index, tableData)"
+            >删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div style="width: 100%;text-align:center;">
+        <el-button
+          type="primary"
+          @click="addtableData(tableData)"
+          style="float:left; margin:10px 0 10px 0"
+        >增加行</el-button>
+        <el-button
+          type="success"
+          style="margin-top:15px ;float:right; margin:10px 10px 0 0"
+          @click="submit()"
+        >提交</el-button>
+      </div>
     </div>
-    <div style="margin:20px 0 0 20px ;width:48%">
-      <el-card>
-        <fabric-canvas
-          :showCoord="true"
-          ref="canvas1"
-          style="width: 100%;height: 250px;margin-top: 10px;"
-        />
-        <fabric-canvas
-          :showCoord="true"
-          ref="canvas2"
-          style="width: 100%;height: 250px;margin-top: 10px;"
-        />
-      </el-card>
+    <div style="margin:80px 0 0 0px ;width:calc(100% - 20px)">
+      <div style="width: 100%;height: 400px;margin-top: 10px;">
+        <fabric-canvas :showCoord="true" ref="canvas1" />
+      </div>
+      <div style="width: 100%;height: 400px;margin-top: 10px;">
+        <fabric-canvas :showCoord="true" ref="canvas2" />
+      </div>
     </div>
   </div>
 </template>
@@ -282,23 +268,6 @@ export default class LuXian extends Vue {
 }
 </script>
 <style scoped lang="scss">
-.upload {
-  width: 500px;
-}
-.box-card {
-  margin: 10px 0 0 0;
-  width: 99%;
-}
-.has-gutter {
-  background-color: aqua;
-}
-.el-select {
-  width: 150px;
-}
-.Luxian {
-  display: flex;
-  width: 100%;
-}
 </style>
 <style lang="scss">
 .el-table .cell {
