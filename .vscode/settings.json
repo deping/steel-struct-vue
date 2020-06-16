@@ -22,5 +22,7 @@
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
   "javascript.format.insertSpaceBeforeFunctionParenthesis": false,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": false,
+  "javascript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false,
   "typescript.format.insertSpaceAfterFunctionKeywordForAnonymousFunctions": false
 }

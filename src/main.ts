@@ -34,6 +34,8 @@ axios.interceptors.response.use(function(response) {
   return Promise.reject(error);
 });
 
+(Vue as any).eventHub = new Vue();
+
 new Vue({
   store,
   render: h => h(App)

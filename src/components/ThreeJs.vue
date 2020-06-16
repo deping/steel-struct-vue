@@ -24,7 +24,7 @@ import PerspectiveCamera = THREE.PerspectiveCamera;
 import WebGLRenderer = THREE.WebGLRenderer;
 
 export interface ThreeModelFile {
-  modelUrl: string; // *.obj or *.fbx
+  modelUrl?: string; // *.obj or *.fbx
   mtlUrl?: string; // *.mtl(used by *.obj)
   picUrls?: string[];
 }
@@ -117,7 +117,7 @@ export default class ThreeJs extends Vue {
   }
 
   loadFBX() {
-    if (!this.modelFile) {
+    if (!this.modelFile || !this.modelFile.modelUrl) {
       return;
     }
     const loader = new FBXLoader();
@@ -127,7 +127,7 @@ export default class ThreeJs extends Vue {
   }
 
   loadOBJ() {
-    if (!this.modelFile) {
+    if (!this.modelFile || !this.modelFile.modelUrl) {
       return;
     }
     if (this.modelFile.mtlUrl) {
@@ -140,12 +140,9 @@ export default class ThreeJs extends Vue {
         materials.preload();
         const objLoader = new OBJLoader();
         // objLoader.setMaterials(materials);
-        objLoader.load(
-          (this.modelFile as ThreeModelFile).modelUrl,
-          (object3d: any) => {
-            this.replaceModel(object3d);
-          }
-        );
+        objLoader.load(this.modelFile?.modelUrl as string, (object3d: any) => {
+          this.replaceModel(object3d);
+        });
       });
     } else {
       const objLoader = new OBJLoader();
