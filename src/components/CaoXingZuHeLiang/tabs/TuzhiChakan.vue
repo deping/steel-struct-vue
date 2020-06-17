@@ -40,7 +40,11 @@
         <iframe scrolling="no" ref="pdfViewer"></iframe>
       </div>
     </div>
-    <qrcode-dlg ref="qrcodeDlg" @paid="onPaid"></qrcode-dlg>
+    <qrcode-dlg
+      @paid="onPaid"
+      :buyUrl="buyUrl"
+      :visible.sync="visible"
+    ></qrcode-dlg>
   </div>
 </template>
 
@@ -77,7 +81,8 @@ export default class TuzhiChakan extends Vue {
 
   drawings: DrawingItem[] = [];
   threeModel: ThreeModelFile = { modelUrl: "" };
-  buyUrl?: string;
+  buyUrl = "";
+  visible = false;
   generateDisabled = false;
   webSocket?: WebSocket;
   resizeSensor: any = undefined;
@@ -89,7 +94,6 @@ export default class TuzhiChakan extends Vue {
     feedback: HTMLSpanElement;
     pdfViewer: HTMLIFrameElement;
     drawingTable: ElTable2;
-    qrcodeDlg: QRCodeDlg;
     pdfViewerContainer: HTMLDivElement;
   };
 
@@ -181,6 +185,9 @@ export default class TuzhiChakan extends Vue {
   }
 
   buy() {
+    if (this.$refs.drawingTable.selection.length === 0) {
+      return;
+    }
     let buyUrl = "/pay/goods/batchQrPay.html";
     let queryString = "?goodsInfo=";
     for (const drawing of this.$refs.drawingTable.selection) {
@@ -188,9 +195,8 @@ export default class TuzhiChakan extends Vue {
     }
     buyUrl = getAjaxUrl(buyUrl + queryString); // 只能是http://bim.doctorbridge.com/pay/goods/batchQrPay.html
 
-    const qrcodeDlg = this.$refs.qrcodeDlg;
-    qrcodeDlg.buyUrl = buyUrl;
-    qrcodeDlg.visible = true;
+    this.buyUrl = buyUrl;
+    this.visible = true;
 
     // // 支付暂时不可用，先直接保存
     // let url = "/calc/paid/savePaidDrawing";
@@ -217,7 +223,7 @@ export default class TuzhiChakan extends Vue {
       return;
     }
     this.generateDisabled = true;
-    this.$refs.feedback.textContent = "正在生成图形...";
+    this.$refs.feedback.textContent = "请稍候...";
     try {
       const formData: FormData = new FormData();
       const uuid: string = generateUUID();
@@ -225,10 +231,7 @@ export default class TuzhiChakan extends Vue {
       formData.append("random", uuid);
       const res = await axios.post(getAjaxUrl("/calc/onlyDraw"), formData);
       if (res.data.code === "00100") {
-        this.$message({
-          type: "success",
-          message: res.data.msg
-        });
+        this.$refs.feedback.textContent = "正在生成图形...";
         this.updateMessage(uuid);
         for (let i = 0; i < 120; ++i) {
           try {
@@ -355,6 +358,7 @@ $leftWidth: 300px;
     border: 1px solid black;
     width: calc(100% - 2px);
     height: $messageHeight;
+    text-align: left;
   }
 
   #lower-pane {
@@ -397,5 +401,9 @@ $leftWidth: 300px;
 <style lang="scss">
 #container #lower-pane #lower-left button.el-button {
   margin: 5px;
+}
+
+#message > p {
+  margin: 2px 0px;
 }
 </style>

@@ -1,12 +1,12 @@
 <template>
-  <el-dialog :visible.sync="visible" width="400px">
+  <el-dialog :visible="visible" width="400px">
     <canvas ref="canvas"></canvas>
     <br />
     <h4>请使用支付宝扫码支付</h4>
     <br />
     <div id="button-container">
       <el-button type="primary" @click="afterPaid">已经支付</el-button>
-      <el-button @click="visible = false">取消</el-button>
+      <el-button @click="close">取消</el-button>
     </div>
     <div id="explanation">
       <ul>
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue, Watch, Prop } from "vue-property-decorator";
 import QRCode from "qrcode";
 
 @Component({
@@ -28,11 +28,11 @@ import QRCode from "qrcode";
 export default class QRCodeDlg extends Vue {
   name = "qr-code-dlg";
 
-  visible = false;
+  @Prop({ default: false }) visible!: boolean;
 
-  buyUrl = "";
+  @Prop({ default: "" }) buyUrl!: string;
 
-  version = 10;
+  @Prop({ default: 10 }) version!: number;
 
   $refs!: {
     canvas: HTMLCanvasElement;
@@ -59,13 +59,16 @@ export default class QRCodeDlg extends Vue {
 
   @Watch("buyUrl")
   onChildChanged() {
-    console.log("change");
     this.draw();
   }
 
   afterPaid() {
     this.$emit("paid", this.buyUrl);
-    this.visible = false;
+    this.$emit("update:visible", false);
+  }
+
+  close() {
+    this.$emit("update:visible", false);
   }
 }
 </script>
