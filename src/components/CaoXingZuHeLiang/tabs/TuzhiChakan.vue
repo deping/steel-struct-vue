@@ -50,6 +50,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import { Persist } from "@/components/ConstructBase";
 import { State /* , Getter, Action, Mutation, namespace */ } from "vuex-class";
 import { getAjaxUrl } from "@/utils/path";
 import { generateUUID, getWsUrl } from "@/utils/misc";
@@ -88,6 +89,7 @@ export default class TuzhiChakan extends Vue {
   resizeSensor: any = undefined;
 
   @State construct_id!: string;
+  @State currentConstruct!: Vue & Persist;
 
   $refs!: {
     messagePane: HTMLDivElement;
@@ -115,8 +117,10 @@ export default class TuzhiChakan extends Vue {
   }
 
   openPDF(row: DrawingItem) {
-    this.$refs.pdfViewer.src = row.pdfFileUrl;
-    setTimeout(() => this.disablePDFContextMenu(), 0);
+    if (row) {
+      this.$refs.pdfViewer.src = row.pdfFileUrl;
+      setTimeout(() => this.disablePDFContextMenu(), 0);
+    }
   }
 
   private disablePDFContextMenu() {
@@ -218,7 +222,7 @@ export default class TuzhiChakan extends Vue {
   }
 
   async generateDrawings() {
-    await ((Vue as any).eventHub as Vue).$emit("save");
+    await this.currentConstruct.save();
     await this.generateDrawingsWoSave();
   }
 
@@ -245,8 +249,12 @@ export default class TuzhiChakan extends Vue {
             });
             switch (res2.data.code) {
               case "00100":
-                this.fillDrawings(res.data.data);
-                this.openPDF(this.drawings[0]);
+                try {
+                  this.fillDrawings(res2.data.data);
+                  this.openPDF(this.drawings[0]);
+                } catch (err) {
+                  console.log(err.message);
+                }
                 break;
               case "00102":
                 break;
@@ -258,11 +266,11 @@ export default class TuzhiChakan extends Vue {
               default:
                 break;
             }
+            if (res2.data.code === "00100") {
+              break;
+            }
           } catch (err) {
-            this.$message({
-              type: "error",
-              message: err.message
-            });
+            console.log(err.message);
           }
         }
       } else {
@@ -273,13 +281,15 @@ export default class TuzhiChakan extends Vue {
       }
     } catch (err) {}
     this.generateDisabled = false;
+    this.$refs.feedback.textContent = "";
+    if (this.webSocket) {
+      this.webSocket.close();
+      this.webSocket = undefined;
+    }
   }
 
   updateMessage(uuid: string) {
     this.$refs.messagePane.innerHTML = "";
-    if (this.webSocket) {
-      this.webSocket.close();
-    }
     this.webSocket = new WebSocket(getWsUrl(this.construct_id + "/" + uuid));
     this.webSocket.onmessage = (event: MessageEvent) => {
       // 自动滚动到最下方

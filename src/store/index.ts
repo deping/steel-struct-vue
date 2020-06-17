@@ -9,7 +9,8 @@ export default new Vuex.Store({
       access_token: ""
     },
     project_id: "",
-    construct_id: 0
+    construct_id: 0,
+    currentConstruct: undefined
   },
   mutations: {
     setUser(state, payload) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     setConstructId(state, constructId) {
       state.construct_id = constructId;
+    },
+    setCurrentConstruct(state, currentConstruct) {
+      state.currentConstruct = currentConstruct;
     }
   },
   actions: {

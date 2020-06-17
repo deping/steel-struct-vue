@@ -165,7 +165,7 @@ export default class ProjectPage extends Vue {
   @State project_id!: string;
   @Mutation setProjectId!: (payload: string) => void;
   @Mutation setConstructId!: (payload: number) => void;
-
+  @Mutation setCurrentConstruct!: (payload: Vue) => void;
   $refs!: {
     table: Table;
     currentComponent: Vue & Persist;
@@ -316,6 +316,7 @@ export default class ProjectPage extends Vue {
     await this.$nextTick();
     // DOM 更新了
     if (this.$refs.currentComponent) {
+      this.setCurrentConstruct(this.$refs.currentComponent);
       await this.$refs.currentComponent.load();
     }
   }

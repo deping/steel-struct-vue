@@ -61,13 +61,6 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     three: ThreeJs;
   };
 
-  created() {
-    // eslint-disable-next-line space-before-function-paren
-    ((Vue as any).eventHub as Vue).$on("save", async () => {
-      await this.save();
-    });
-  }
-
   async save() {
     try {
       await this.serialize();
