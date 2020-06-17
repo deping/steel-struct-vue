@@ -153,21 +153,25 @@ export default class TuzhiChakan extends Vue {
     for (let i = 0; i < 3; ++i) {
       try {
         const res = await axios.get(checkUrl);
-        if (res.data.code === "00101") {
-          console.log("尚未支付!");
-          // 未完成支付，等待1秒后继续查询
-          if (i !== 2) {
-            await new Promise(resolve => setTimeout(resolve, 1000));
-          }
+        switch (res.data.code) {
+          case "00100":
+            for (const drawing of this.$refs.drawingTable.selection) {
+              (drawing as DrawingItem).buyed = true;
+            }
+            this.$message({
+              message: "购买成功！",
+              type: "success"
+            });
+            return;
+          case "00101":
+          default:
+            console.log("尚未支付!");
+            // 未完成支付，等待1秒后继续查询
+            if (i !== 2) {
+              await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+            break;
         }
-        for (const drawing of this.$refs.drawingTable.selection) {
-          (drawing as DrawingItem).buyed = true;
-        }
-        this.$message({
-          message: "购买成功！",
-          type: "success"
-        });
-        break;
       } catch (err) {
         // 查询出错，等待1秒后继续查询
         if (i !== 2) {
@@ -181,13 +185,18 @@ export default class TuzhiChakan extends Vue {
   }
 
   buy() {
-    if (this.$refs.drawingTable.selection.length === 0) {
-      return;
-    }
     let buyUrl = "/pay/goods/batchQrPay.html";
     let queryString = "?goodsInfo=";
+    let count = 0;
     for (const drawing of this.$refs.drawingTable.selection) {
-      queryString += drawing.id + ",dxf;";
+      const d = drawing as DrawingItem;
+      if (!d.buyed) {
+        ++count;
+        queryString += drawing.id + ",dxf;";
+      }
+    }
+    if (count === 0) {
+      return;
     }
     buyUrl = getAjaxUrl(buyUrl + queryString); // 只能是http://bim.doctorbridge.com/pay/goods/batchQrPay.html
 
