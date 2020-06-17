@@ -20,13 +20,13 @@
           :data="drawings"
           stripe
           :header-cell-style="headerCellStyle"
-          :cell-click="openPDF"
-          max-height="calc(100% - 100px)"
+          @cell-click="openPDF"
+          height="calc(100% - 100px)"
         >
           <el-table-column type="selection" width="40" :selectable="selectable">
           </el-table-column>
-          <el-table-column prop="name" label="文件"> </el-table-column>
-          <el-table-column prop="price" label="价格" width="60">
+          <el-table-column prop="fileName" label="文件"> </el-table-column>
+          <el-table-column prop="dxfPrice" label="价格" width="60">
           </el-table-column>
         </el-table>
         <div id="buy">
@@ -110,16 +110,12 @@ export default class TuzhiChakan extends Vue {
     this.$refs.pdfViewer.height = size.height - 0 + "px";
   }
 
-  selectable(row: number) {
-    return !this.drawings[row].buyed;
+  selectable(row: DrawingItem) {
+    return !row.buyed;
   }
 
-  openPDF(row: number, column: number) {
-    if (column !== 0) return;
-    if (row >= this.drawings.length) return;
-    // this.cadViewer.file = vsf;
-    const pdfViewer = this.$refs.pdfViewer;
-    pdfViewer.src = this.drawings[row].pdfFileUrl;
+  openPDF(row: DrawingItem) {
+    this.$refs.pdfViewer.src = row.pdfFileUrl;
     setTimeout(() => this.disablePDFContextMenu(), 0);
   }
 
@@ -241,7 +237,7 @@ export default class TuzhiChakan extends Vue {
             switch (res2.data.code) {
               case "00100":
                 this.fillDrawings(res.data.data);
-                this.openPDF(0, 0);
+                this.openPDF(this.drawings[0]);
                 break;
               case "00102":
                 break;
