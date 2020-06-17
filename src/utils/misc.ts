@@ -62,7 +62,7 @@ export function getWsUrl(url: string) {
   if (isDevMode()) {
     host = "192.168.6.54:9994";
   } else {
-    host = document.location.origin.replace(/http(s)?:\/\//, "");
+    host = document.location.origin.replace(/http|https:\/\//, "");
   }
   return "ws://" + host + "/ws/" + url;
 }
