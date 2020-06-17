@@ -22,10 +22,17 @@
           :header-cell-style="headerCellStyle"
           @cell-click="openPDF"
           height="calc(100% - 100px)"
+          row-class-name="drawing-row"
         >
           <el-table-column type="selection" width="40" :selectable="selectable">
           </el-table-column>
-          <el-table-column prop="fileName" label="文件"> </el-table-column>
+          <el-table-column
+            class-name="file"
+            show-overflow-tooltip
+            prop="fileName"
+            label="文件"
+          >
+          </el-table-column>
           <el-table-column prop="dxfPrice" label="价格" width="60">
           </el-table-column>
         </el-table>
@@ -116,8 +123,23 @@ export default class TuzhiChakan extends Vue {
     return !row.buyed;
   }
 
-  openPDF(row: DrawingItem) {
-    if (row) {
+  findIndex(row: DrawingItem) {
+    for (let i = 0; i < this.drawings.length; ++i) {
+      if (row.id === this.drawings[i].id) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  openPDF(row: DrawingItem, column: { label: string }) {
+    if (row && column.label === "文件") {
+      const index = this.findIndex(row);
+      if (index !== -1) {
+        setTimeout(() => {
+          this.setCurrentRow(index);
+        }, 0);
+      }
       this.$refs.pdfViewer.src = row.pdfFileUrl;
       setTimeout(() => this.disablePDFContextMenu(), 0);
     }
@@ -251,12 +273,10 @@ export default class TuzhiChakan extends Vue {
               case "00100":
                 try {
                   this.fillDrawings(res2.data.data);
-                  this.openPDF(this.drawings[0]);
+                  this.openPDF(this.drawings[0], { label: "文件" });
                 } catch (err) {
                   console.log(err.message);
                 }
-                break;
-              case "00102":
                 break;
               case "00103":
                 // 出图中，等待10秒后继续查询
@@ -266,7 +286,10 @@ export default class TuzhiChakan extends Vue {
               default:
                 break;
             }
-            if (res2.data.code === "00100") {
+            if (
+              res2.data.code === "00100" /* 出图成功 */ ||
+              res2.data.code === "00102" /* 出图失败 */
+            ) {
               break;
             }
           } catch (err) {
@@ -355,6 +378,20 @@ export default class TuzhiChakan extends Vue {
     }
   }
 
+  setCurrentRow(index: number) {
+    // Table.setCurrentRow(node) doesn't work
+    if (!this.$refs.drawingTable.$el) return;
+    const trs = this.$refs.drawingTable.$el.querySelectorAll("tr.drawing-row");
+    for (let i = 0; i < trs.length; ++i) {
+      const tr = trs[i];
+      if (i === index) {
+        tr.classList.add("current-row");
+      } else {
+        tr.classList.remove("current-row");
+      }
+    }
+  }
+
   headerCellStyle(indicator: any) {
     if (indicator.rowIndex === 0) {
       return "background-color: rgb(84, 92, 100);color: white;font-weight: 700;";
@@ -428,5 +465,13 @@ $leftWidth: 300px;
 
 #message > p {
   margin: 2px 0px;
+}
+
+table.el-table__body tr.current-row > td {
+  background-color: #ffff50;
+}
+
+table.el-table__body tr > td.file {
+  cursor: zoom-in;
 }
 </style>
