@@ -249,7 +249,12 @@ export default class TuzhiChakan extends Vue {
               default:
                 break;
             }
-          } catch (err) {}
+          } catch (err) {
+            this.$message({
+              type: "error",
+              message: err.message
+            });
+          }
         }
       } else {
         this.$message({
@@ -258,6 +263,7 @@ export default class TuzhiChakan extends Vue {
         });
       }
     } catch (err) {}
+    this.generateDisabled = false;
   }
 
   updateMessage(uuid: string) {
@@ -301,16 +307,18 @@ export default class TuzhiChakan extends Vue {
       this.threeModel.modelUrl = undefined;
       this.threeModel.mtlUrl = undefined;
       this.threeModel.picUrls = [];
-      for (const element of data.FileList) {
-        const item = new DrawingItem();
-        item.dxfFileUrl = getAjaxUrl(element.dxfFileUrl);
-        item.vsfFileUrl = getAjaxUrl(element.vsfFileUrl);
-        item.pdfFileUrl = getAjaxUrl(element.pdfFileUrl);
-        item.fileName = element.fileName;
-        item.id = element.id;
-        item.pdfPrice = element.pdfPrice;
-        item.dxfPrice = element.dxfPrice;
-        this.drawings.push(item);
+      if (data.FileList) {
+        for (const element of data.FileList) {
+          const item = new DrawingItem();
+          item.dxfFileUrl = getAjaxUrl(element.dxfFileUrl);
+          item.vsfFileUrl = getAjaxUrl(element.vsfFileUrl);
+          item.pdfFileUrl = getAjaxUrl(element.pdfFileUrl);
+          item.fileName = element.fileName;
+          item.id = element.id;
+          item.pdfPrice = element.pdfPrice;
+          item.dxfPrice = element.dxfPrice;
+          this.drawings.push(item);
+        }
       }
       const modelList = data.modelList;
       if (modelList) {
