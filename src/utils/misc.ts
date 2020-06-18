@@ -16,22 +16,6 @@ export function isPoint(txt: string): boolean {
   return _.isFinite(a[0]) && _.isFinite(a[0]);
 }
 
-interface EnumType {
-  [index: string]: number | string;
-}
-
-export function makeEnum(arr: string[]): EnumType {
-  const retVal: EnumType = {};
-  arr.forEach((val, index) => {
-    // retVal[index] = val;
-    // retVal[val] = index;
-    Object.defineProperty(retVal, index, { value: val, enumerable: true });
-    Object.defineProperty(retVal, val, { value: index, enumerable: false });
-  });
-  Object.freeze(retVal);
-  return retVal;
-}
-
 // 创建一个序列 如 腹板0、腹板1、腹板2、腹板3
 export function makeSequenceStringArray(
   s: string,
@@ -65,12 +49,6 @@ export function getWsUrl(url: string) {
     host = document.location.origin.replace(/http|https:\/\//, "");
   }
   return "ws://" + host + "/ws/" + url;
-}
-
-export function findEnumIndex(s: string, e: EnumType) {
-  const index = e[s];
-  if (typeof index === "number") return index;
-  return isNumber(index) ? parseInt(index) : 0;
 }
 
 export function generateUUID() {
