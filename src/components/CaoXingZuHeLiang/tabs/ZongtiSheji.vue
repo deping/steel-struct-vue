@@ -159,6 +159,7 @@ import axios from "axios";
 import FabricCanvas from "@/components/FabricCanvas.vue";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
 import { PreviewData } from "../models/preview-data";
+import { Persist } from "@/components/ConstructBase";
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace rightHand {
   function loadObjects(ar: any[]): any[]; // fabric.Object[]
@@ -217,6 +218,7 @@ export default class ZongtiSheji extends Vue {
   dataCanvas2: [] = [];
 
   @State construct_id!: string;
+  @State currentConstruct!: Vue & Persist;
   @InjectReactive() jsonDataService!: JsonDataService;
 
   $refs!: {
@@ -270,7 +272,7 @@ export default class ZongtiSheji extends Vue {
 
   async submit() {
     try {
-      this.serialize();
+      this.currentConstruct.serialize();
       const ZTJSON: string = await JSON.stringify(this.getZTJSON());
       const formdata = new FormData();
       formdata.append("componentId", this.construct_id);

@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 /* eslint-disable no-constant-condition */
 <template>
   <div style="margin:20px 0 0 10px ">
@@ -31,7 +32,7 @@
       <el-table :data="tableData" stripe border>
         <el-table-column label="桩号">
           <template v-slot="scope">
-            <el-select v-model="scope.row.bk" placeholder="请选择">
+            <el-select v-model="scope.row.bkl" placeholder="请选择">
               <el-option
                 v-for="item in options"
                 :key="item.value"
@@ -122,6 +123,8 @@ export default class LuXian extends Vue {
     FileDXF: "4"
   };
 
+  valueL = 40000;
+
   @State construct_id!: string;
 
   @InjectReactive() jsonDataService!: JsonDataService;
@@ -139,8 +142,8 @@ export default class LuXian extends Vue {
 
   // 表格数据集 右横坡，桩号值，左横坡，桩号
   tableData = [
-    { yhp: -2, zh: -40, zhp: 2, bk: "BK0" },
-    { yhp: -2, zh: -40, zhp: 2, bk: "BK1" }
+    { yhp: "-2", zh: "-40", zhp: "2", bkl: "BK0", bk: 0 },
+    { yhp: "-2", zh: "40", zhp: "2", bkl: "BK1", bk: 1 }
   ];
 
   // select 数据集
@@ -236,6 +239,44 @@ export default class LuXian extends Vue {
     return LXJSON;
   }
 
+  getStringDLHP() {
+    let res = "";
+    const BK_0: number = parseFloat(this.form.qishizhuanghao);
+    this.tableData.forEach(value => {
+      res += `${BK_0 +
+        (value.bk === 1 ? this.valueL / 1000 : 0) +
+        parseFloat(value.zh)},${value.zhp},${value.yhp};`;
+    });
+    return res.substring(0, res.length - 1);
+  }
+
+  // 路线序列化
+  serialize() {
+    console.log("序列化 路线 开始");
+    const qmCs = this.jsonDataService.exportJSON.MAIN.find(
+      e => e.aaak === "qmCS"
+    );
+    if (qmCs) {
+      qmCs.v = this.getStringDLHP();
+    }
+
+    const importFiles = this.jsonDataService.exportJSON.MAIN.find(
+      e => e.aaak === "importFiles"
+    );
+    if (importFiles) {
+      importFiles.v = "A.pm,A道路边线.dxf,A.ZDM,A.sup";
+    }
+    const bk = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "bk");
+    if (bk) {
+      bk.v = this.form.qishizhuanghao;
+    }
+    this.jsonDataService.uiJSON.valueL = String(this.valueL);
+    console.log("序列化 路线 完成");
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  deserialize() {}
+
   // 立即提交
   async submit() {
     try {
@@ -265,7 +306,7 @@ export default class LuXian extends Vue {
     } catch (error) {
       this.$message({
         type: "error",
-        message: "立即上传出错啦"
+        message: "提交出错啦"
       });
     }
   }

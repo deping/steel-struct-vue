@@ -1,10 +1,10 @@
 <template>
   <el-tabs type="border-card" style="width:100%;height:100%;border:0px">
     <el-tab-pane label="路线">
-      <GJ-luxian></GJ-luxian>
+      <GJ-luxian ref="luxian"></GJ-luxian>
     </el-tab-pane>
     <el-tab-pane label="总体设计">
-      <zongti-sheji></zongti-sheji>
+      <zongti-sheji ref="zongtisheji"></zongti-sheji>
     </el-tab-pane>
     <el-tab-pane label="标准横断面">替换为对应的标签页组件</el-tab-pane>
     <el-tab-pane label="立面">替换为对应的标签页组件</el-tab-pane>
@@ -59,6 +59,8 @@ export default class CaoxingZuheliang extends Vue implements Persist {
 
   $refs!: {
     three: ThreeJs;
+    luxian: LuXian;
+    zongtisheji: ZongtiSheji;
   };
 
   async save() {
@@ -158,14 +160,16 @@ export default class CaoxingZuheliang extends Vue implements Persist {
 
   serialize() {
     console.log("开始序列化");
-    console.log("TODO 序列化");
+    this.$refs.luxian.serialize();
+    this.$refs.zongtisheji.serialize();
     this.jsonDataService.uiJSON.isEmpty = "false";
     console.log("结束序列化");
   }
 
   deserialize() {
     console.log("开始反序列化");
-    console.log("TODO 反序列化");
+    this.$refs.luxian.deserialize();
+    this.$refs.zongtisheji.deserialize();
     this.jsonDataService.uiJSON.isEmpty = "false";
     console.log("结束反序列化");
   }
