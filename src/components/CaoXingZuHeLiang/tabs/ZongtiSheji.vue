@@ -103,42 +103,40 @@
       <div class="header">
         <h3>三、总体设计</h3>
       </div>
-      <div class="flex-container-col">
+      <div>
         <div class="flex-container-row">
-          <table cellspacing="10">
-            <tr>
-              <th class="text-center">伸缩缝宽</th>
-              <td>
-                <div
-                  @blur="updateList('ssfk', $event)"
-                  contenteditable="true"
-                  v-html="entriesZTSJ.ssfk"
-                ></div>
-              </td>
-            </tr>
-            <br />
-            <tr>
-              <th class="text-center">梁端距</th>
-              <td>
-                <div
-                  @blur="updateList('ldj', $event)"
-                  contenteditable="true"
-                  v-html="entriesZTSJ.ldj"
-                ></div>
-              </td>
-            </tr>
-          </table>
+          <div class="flex-container-col-between">
+            <table cellspacing="10">
+              <tr>
+                <td class="title">伸缩缝宽</td>
+                <td>
+                  <el-input v-model="entriesZTSJ.ssfk" clearable></el-input>
+                </td>
+              </tr>
+              <br />
+              <tr>
+                <td class="title">梁端距</td>
+                <td>
+                  <el-input v-model="entriesZTSJ.ldj" clearable></el-input>
+                </td>
+              </tr>
+            </table>
 
-          <img src="../imgs/papers/widget-qltz-1.png" width="400" />
+            <el-button
+              @click="submit"
+              type="success"
+              style="margin-top:15px;margin-left:50px"
+              >提交</el-button
+            >
+          </div>
+          <img
+            id="widget-qltz-1"
+            src="../imgs/papers/widget-qltz-1.png"
+            width="400"
+          />
         </div>
       </div>
     </div>
-    <el-button
-      @click="submit"
-      type="success"
-      style="margin-top:15px;margin-left:50px"
-      >立即提交</el-button
-    >
     <div id="graph">
       <div class="canvas">
         <fabric-canvas :showCoord="true" ref="canvas1" />
@@ -242,23 +240,18 @@ export default class ZongtiSheji extends Vue {
     return ZTJSON;
   }
 
-  updateList(property: string, event: any) {
-    const txt = event.target.textContent;
-    const tmp = this.entriesZTSJ[property];
-    this.entriesZTSJ[property] = txt;
-    if (isPoint(txt)) {
-      this.entriesZTSJ[property] = tmp;
-    }
-  }
-
   serialize() {
     const es = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "es");
     if (es) {
-      es.v = this.entriesZTSJ.ssfk;
+      if (isPoint(this.entriesZTSJ.ssfk)) {
+        es.v = this.entriesZTSJ.ssfk;
+      }
     }
     const zs = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "zs");
     if (zs) {
-      zs.v = this.entriesZTSJ.ldj;
+      if (isPoint(this.entriesZTSJ.ldj)) {
+        zs.v = this.entriesZTSJ.ldj;
+      }
     }
   }
 
@@ -325,62 +318,78 @@ div.ZtSheJi {
     flex-grow: 0;
     width: calc(100% - 20px);
     height: auto;
+
+    .flex-container-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      table {
+        border: 1px solid #dee2e6;
+        td.title {
+          padding: 0.75rem;
+          background: #8b8b8b;
+          color: #fff;
+        }
+        td {
+          text-align: center;
+          background-color: rgba(0, 0, 0, 0);
+          display: table-cell;
+        }
+      }
+
+      img#widget-qltz-1 {
+        margin-left: 10px;
+      }
+    }
+
+    .flex-container-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+
+    .flex-container-col-between {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .border {
+      margin-right: 30px;
+      padding: 10px;
+      border: solid 1px;
+      text-align: center;
+      width: 85%;
+    }
+
+    .header {
+      width: 112.3px;
+    }
+
+    .text-item {
+      text-align: left;
+    }
   }
 
+  $canvas_margin: 10px;
+
   #graph {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
     flex-grow: 0;
     width: calc(100% - 20px);
-    height: auto;
+    height: 420px;
     margin: 0px;
 
     .canvas {
-      margin: 8px;
       height: 400px;
+      width: calc(50% - 1.5 * #{$canvas_margin});
+      margin: $canvas_margin;
     }
   }
-}
-.flex-container-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  table {
-    width: 300px;
-    border: 1px solid #dee2e6;
-    th {
-      padding: 0.75rem;
-
-      background: #8b8b8b;
-      color: #fff;
-    }
-    td {
-      text-align: center;
-      background-color: rgba(0, 0, 0, 0);
-      display: table-cell;
-    }
-  }
-}
-.flex-container-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-app-option-component {
-  margin-top: 8px;
-  margin-bottom: 5px;
-}
-.border {
-  margin-right: 30px;
-  padding: 10px;
-  border: solid 1px;
-  text-align: center;
-  width: 85%;
-}
-.header {
-  width: 112.3px;
-}
-.text-item {
-  text-align: left;
 }
 </style>
 <style lang="scss"></style>
