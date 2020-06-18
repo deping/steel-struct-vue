@@ -47,6 +47,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { getAjaxUrl } from "@/utils/path";
+import { headerCellStyle } from "@/utils/misc";
 import axios from "axios";
 import { ElTable2 } from "@/typings/element-ui";
 import VueSplitter from "vue-splitpane";
@@ -217,9 +218,7 @@ export default class HomePageDownloadDrawing extends Vue {
   }
 
   headerCellStyle(indicator: any) {
-    if (indicator.rowIndex === 0) {
-      return "background-color: rgb(84, 92, 100);color: white;font-weight: 700;";
-    }
+    return headerCellStyle(indicator);
   }
 }
 </script>

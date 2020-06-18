@@ -116,6 +116,7 @@ import {
   /* Getter, Action, */ Mutation /*, namespace */
 } from "vuex-class";
 import { getAjaxUrl } from "@/utils/path";
+import { setCurrentRow } from "@/utils/misc";
 import axios from "axios";
 import VueSplitter from "vue-splitpane";
 import { Table } from "element-ui";
@@ -291,17 +292,7 @@ export default class ProjectPage extends Vue {
   }
 
   setCurrentRow(index: number) {
-    // Table.setCurrentRow(node) doesn't work
-    if (!this.$refs.table.$el) return;
-    const trs = this.$refs.table.$el.querySelectorAll("tr.construct-row");
-    for (let i = 0; i < trs.length; ++i) {
-      const tr = trs[i];
-      if (i === index) {
-        tr.classList.add("current-row");
-      } else {
-        tr.classList.remove("current-row");
-      }
-    }
+    return setCurrentRow(this.$refs.table.$el, "construct-row", index);
   }
 
   async openConstruct(index: number, node: ConstructNode) {

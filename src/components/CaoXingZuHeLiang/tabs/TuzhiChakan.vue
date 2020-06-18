@@ -15,7 +15,6 @@
           <span ref="feedback"></span>
         </div>
         <el-table
-          id="table"
           ref="drawingTable"
           :data="drawings"
           stripe
@@ -60,7 +59,7 @@ import { Component, Vue } from "vue-property-decorator";
 import { Persist } from "@/components/ConstructBase";
 import { State /* , Getter, Action, Mutation, namespace */ } from "vuex-class";
 import { getAjaxUrl } from "@/utils/path";
-import { generateUUID, getWsUrl } from "@/utils/misc";
+import { generateUUID, getWsUrl, setCurrentRow } from "@/utils/misc";
 import axios from "axios";
 import { ThreeModelFile } from "@/components/ThreeJs.vue";
 import { ElTable2 } from "@/typings/element-ui";
@@ -379,17 +378,7 @@ export default class TuzhiChakan extends Vue {
   }
 
   setCurrentRow(index: number) {
-    // Table.setCurrentRow(node) doesn't work
-    if (!this.$refs.drawingTable.$el) return;
-    const trs = this.$refs.drawingTable.$el.querySelectorAll("tr.drawing-row");
-    for (let i = 0; i < trs.length; ++i) {
-      const tr = trs[i];
-      if (i === index) {
-        tr.classList.add("current-row");
-      } else {
-        tr.classList.remove("current-row");
-      }
-    }
+    return setCurrentRow(this.$refs.drawingTable.$el, "drawing-row", index);
   }
 
   headerCellStyle(indicator: any) {

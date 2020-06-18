@@ -31,6 +31,7 @@ import {
   /* State, Getter, Action, */ Mutation /* namespace */
 } from "vuex-class";
 import { getAjaxUrl } from "@/utils/path";
+import { headerCellStyle } from "@/utils/misc";
 import axios from "axios";
 
 interface ProjectInfo {
@@ -51,9 +52,7 @@ export default class HomePageRecentProject extends Vue {
   @Mutation setProjectId!: (projectId: number) => void;
 
   headerCellStyle(indicator: any) {
-    if (indicator.rowIndex === 0) {
-      return "background-color: rgb(84, 92, 100);color: white;font-weight: 700;";
-    }
+    return headerCellStyle(indicator);
   }
 
   async created() {

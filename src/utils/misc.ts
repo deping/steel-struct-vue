@@ -62,3 +62,23 @@ export function generateUUID() {
     return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
   });
 }
+
+// Element Table.setCurrentRow(node) doesn't work
+export function setCurrentRow(e: Element | undefined, rowClassName: string, index: number) {
+  if (!e) return;
+  const trs = e.querySelectorAll("tr." + rowClassName);
+  for (let i = 0; i < trs.length; ++i) {
+    const tr = trs[i];
+    if (i === index) {
+      tr.classList.add("current-row");
+    } else {
+      tr.classList.remove("current-row");
+    }
+  }
+}
+
+export function headerCellStyle(indicator: any) {
+  if (indicator.rowIndex === 0) {
+    return "background-color: rgb(84, 92, 100);color: white;font-weight: 700;";
+  }
+}
