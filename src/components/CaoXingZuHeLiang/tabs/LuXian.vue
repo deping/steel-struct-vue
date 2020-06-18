@@ -1,27 +1,31 @@
 /* eslint-disable no-constant-condition */
 <template>
-  <div style="margin:10px 0 0 10px ">
-    <div>
+  <div style="margin:20px 0 0 10px ">
+    <div style="width:calc(100% - 10px)">
       <el-form ref="form" :model="form" label-width="100px">
         <el-form-item label="DXF文件：">
-          <el-upload ref="upload" action :auto-upload="false">
-            <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-            <el-button
-              style="margin-left: 10px;"
-              size="small"
-              type="success"
-              @click="UploadFiles"
-            >上传文件</el-button>
-            <el-button
-              size="small"
-              type="success"
-              plain
-              @click="downloadDxfFile()"
-            >平曲线丶竖曲线.DXF文件格式样例下载</el-button>
-          </el-upload>
+          <div style="width:500px;text-align:left">
+            <el-upload ref="upload" action :auto-upload="false">
+              <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+              <el-button
+                style="margin-left: 10px;"
+                size="small"
+                type="success"
+                @click="UploadFiles"
+              >上传文件</el-button>
+              <el-button
+                size="small"
+                type="success"
+                plain
+                @click="downloadDxfFile()"
+              >平曲线丶竖曲线.DXF文件格式样例下载</el-button>
+            </el-upload>
+          </div>
         </el-form-item>
         <el-form-item label="起始桩号：">
-          <el-input v-model="form.qishizhuanghao"></el-input>
+          <div style="width:100px">
+            <el-input v-model="form.qishizhuanghao"></el-input>
+          </div>
         </el-form-item>
       </el-form>
       <el-table :data="tableData" stripe border>
@@ -63,7 +67,7 @@
           </template>
         </el-table-column>
       </el-table>
-      <div style="width: 100%;text-align:center;">
+      <div style="width: 100%;">
         <el-button
           type="primary"
           @click="addtableData(tableData)"
@@ -71,16 +75,16 @@
         >增加行</el-button>
         <el-button
           type="success"
-          style="margin-top:15px ;float:right; margin:10px 10px 0 0"
+          style="margin-top:15px ;float:left; margin:10px 10px 0 10px"
           @click="submit()"
         >提交</el-button>
       </div>
     </div>
-    <div style="margin:80px 0 0 0px ;width:calc(100% - 20px)">
-      <div style="width: 100%;height: 400px;margin-top: 10px;">
+    <div style="margin:80px 0 0 0px ;width:100%;display: flex;">
+      <div style="width:calc(50% - 5px);height: 520px;margin: 0 5px 0 0;">
         <fabric-canvas :showCoord="true" ref="canvas1" />
       </div>
-      <div style="width: 100%;height: 400px;margin-top: 10px;">
+      <div style="width: calc(50% - 5px);height: 520px;;margin: 0 5px 0 0;">
         <fabric-canvas :showCoord="true" ref="canvas2" />
       </div>
     </div>
