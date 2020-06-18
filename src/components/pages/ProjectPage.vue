@@ -165,7 +165,7 @@ export default class ProjectPage extends Vue {
   @State project_id!: string;
   @Mutation setProjectId!: (payload: string) => void;
   @Mutation setConstructId!: (payload: number) => void;
-  @Mutation setCurrentConstruct!: (payload: Vue) => void;
+  @Mutation setCurrentConstruct!: (payload: Vue | undefined) => void;
   $refs!: {
     table: Table;
     currentComponent: Vue & Persist;
@@ -218,6 +218,7 @@ export default class ProjectPage extends Vue {
   async closeProject() {
     if (this.$refs.currentComponent) {
       await this.$refs.currentComponent.save();
+      this.setCurrentConstruct(undefined);
     }
     // this will close project page, and open home page.
     this.setProjectId("");
@@ -352,6 +353,7 @@ export default class ProjectPage extends Vue {
           if (res.data.code === "00100") {
             this.constructs.splice(index, 1);
             if (construct === this.currentConstruct) {
+              this.setCurrentConstruct(undefined);
               this.currentConstruct = undefined;
               this.constructName = "";
             }
