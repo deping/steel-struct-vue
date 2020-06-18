@@ -181,6 +181,9 @@ export default class ThreeJs extends Vue {
       this.camera,
       this.renderer.domElement
     );
+    this.controls.addEventListener("change", () => {
+      this.renderer.render(this.scene, this.camera);
+    });
 
     // lights
     const light = new THREE.PointLight(0xffffff, 0.8);
@@ -198,8 +201,7 @@ export default class ThreeJs extends Vue {
    * render the scene and request the window animation frame
    */
   animate() {
-    this.controls.update();
-    this.renderer.render(this.scene, this.camera);
+    this.controls.update(); // emit change event as needed.
     requestAnimationFrame(() => {
       this.animate();
     });
@@ -220,9 +222,11 @@ export default class ThreeJs extends Vue {
   }
 
   mounted() {
-    this.init3D();
-    const div = this.$el as HTMLDivElement;
-    this.resizeSensor = new ResizeSensor(div, this.onDivResize.bind(this));
+    setTimeout(() => {
+      this.init3D();
+      const div = this.$el as HTMLDivElement;
+      this.resizeSensor = new ResizeSensor(div, this.onDivResize.bind(this));
+    }, 0);
   }
 }
 </script>
