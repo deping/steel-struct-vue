@@ -63,7 +63,7 @@ export default class CaoxingZuheliang extends Vue implements Persist {
 
   async save() {
     try {
-      await this.serialize();
+      this.serialize();
       const formdata = new FormData();
       formdata.append("componentId", String(this.construct_id));
       formdata.append(
@@ -156,11 +156,18 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     }
   }
 
-  async serialize() {
+  serialize() {
     console.log("开始序列化");
     console.log("TODO 序列化");
     this.jsonDataService.uiJSON.isEmpty = "false";
     console.log("结束序列化");
+  }
+
+  deserialize() {
+    console.log("开始反序列化");
+    console.log("TODO 反序列化");
+    this.jsonDataService.uiJSON.isEmpty = "false";
+    console.log("结束反序列化");
   }
 
   onModelChange(model: ThreeModelFile) {
