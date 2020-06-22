@@ -77,12 +77,9 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
       this.currentTab.$children[0].deserialize();
     }
-    // console.log(this.currentTab);
   }
 
   onTabClick(tab: any) {
-    // if (!this.currentTab) console.log("this.currentTab = null");
-    // else console.log(this.currentTab);
     if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
       this.currentTab.$children[0].serialize();
     }
@@ -90,7 +87,6 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
       this.currentTab.$children[0].deserialize();
     }
-    console.log(tab);
   }
 
   async save() {
@@ -206,10 +202,6 @@ export default class CaoxingZuheliang extends Vue implements Persist {
 
   onModelChange(model: ThreeModelFile) {
     this.$refs.three.setModelFile(model);
-  }
-
-  getTab(label: string) {
-    return label;
   }
 }
 </script>
