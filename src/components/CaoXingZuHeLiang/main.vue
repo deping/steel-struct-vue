@@ -1,5 +1,10 @@
 <template>
-  <el-tabs type="border-card" style="width:100%;height:100%;border:0px">
+  <el-tabs
+    type="border-card"
+    style="width:100%;height:100%;border:0px"
+    @tab-click="onTabClick"
+    ref="tabs"
+  >
     <el-tab-pane label="路线">
       <GJ-luxian ref="luxian"></GJ-luxian>
     </el-tab-pane>
@@ -24,7 +29,7 @@
 
 <script lang="ts">
 import { Component, Vue, ProvideReactive } from "vue-property-decorator";
-import { Persist } from "@/components/ConstructBase";
+import { Persist, canSerialize } from "@/components/ConstructBase";
 import ThreeJs, { ThreeModelFile } from "@/components/ThreeJs.vue";
 import { JsonDataService } from "./models/JsonDataService";
 import LuXian from "@/components/CaoXingZuHeLiang/tabs/LuXian.vue";
@@ -36,6 +41,7 @@ import TuzhiChakan from "@/components/CaoXingZuHeLiang/tabs/TuzhiChakan.vue";
 import { JsonData } from "@/models/json-data";
 import { ComponentInfo } from "./models/component-info";
 import { LJK } from "./models/export-data";
+import { Tabs } from "element-ui";
 
 @Component({
   components: {
@@ -47,6 +53,8 @@ import { LJK } from "./models/export-data";
 })
 export default class CaoxingZuheliang extends Vue implements Persist {
   name = "cao-xing-zu-he-liang";
+
+  currentTab?: { $children: Vue[] };
 
   @State construct_id!: string;
 
@@ -61,7 +69,29 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     three: ThreeJs;
     luxian: LuXian;
     zongtisheji: ZongtiSheji;
+    tabs: Tabs;
   };
+
+  mounted() {
+    this.currentTab = (this.$refs.tabs as any).panes[0];
+    if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
+      this.currentTab.$children[0].deserialize();
+    }
+    // console.log(this.currentTab);
+  }
+
+  onTabClick(tab: any) {
+    // if (!this.currentTab) console.log("this.currentTab = null");
+    // else console.log(this.currentTab);
+    if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
+      this.currentTab.$children[0].serialize();
+    }
+    this.currentTab = tab;
+    if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
+      this.currentTab.$children[0].deserialize();
+    }
+    console.log(tab);
+  }
 
   async save() {
     try {
@@ -176,6 +206,10 @@ export default class CaoxingZuheliang extends Vue implements Persist {
 
   onModelChange(model: ThreeModelFile) {
     this.$refs.three.setModelFile(model);
+  }
+
+  getTab(label: string) {
+    return label;
   }
 }
 </script>

@@ -279,7 +279,7 @@ export default class ProjectPage extends Vue {
       case 4:
         break;
       default:
-        alert("未知的构件类型");
+        this.$alert("未知的构件类型");
         break;
     }
   }
