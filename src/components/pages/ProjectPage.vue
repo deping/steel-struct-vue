@@ -97,20 +97,16 @@
         </div>
       </template>
       <template v-slot:paneR>
-        <component
-          v-if="constructName"
-          :is="constructName"
-          ref="currentComponent"
-        />
-        <div v-else>请打开某个构件进行编辑。</div>
+        <div id="constructContainer" ref="constructContainer"></div>
       </template>
     </splitter>
   </div>
 </template>
 
 <script lang="ts">
+import VueOrg, { VueConstructor } from "vue";
 import { Component, Vue } from "vue-property-decorator";
-import { Persist } from "@/components/ConstructBase";
+import { Persist, canSave } from "@/components/ConstructBase";
 import {
   State,
   /* Getter, Action, */ Mutation /*, namespace */
@@ -121,6 +117,7 @@ import axios from "axios";
 import VueSplitter from "vue-splitpane";
 import { Table } from "element-ui";
 import CaoxingZuheliang from "@/components/CaoXingZuHeLiang/main.vue";
+import { createVue, createEmpty, createNotRegist } from "@/utils/createVue";
 
 interface ConstructNode {
   id: number;
@@ -158,18 +155,19 @@ export default class ProjectPage extends Vue {
     { label: "钢箱梁", value: "gang-xiang-liang", disabled: true }
   ];
 
-  constructName = "";
-  currentConstruct: ConstructNode | undefined = undefined;
+  constructNode: ConstructNode | undefined = undefined;
+  currentConstruct: Vue | undefined;
   constructs: ConstructNode[] = [];
 
   @State user!: any;
   @State project_id!: string;
+  @State construct_id!: number;
   @Mutation setProjectId!: (payload: string) => void;
   @Mutation setConstructId!: (payload: number) => void;
   @Mutation setCurrentConstruct!: (payload: Vue | undefined) => void;
   $refs!: {
     table: Table;
-    currentComponent: Vue & Persist;
+    constructContainer: HTMLDivElement;
   };
 
   convertType(type: number): string {
@@ -216,10 +214,41 @@ export default class ProjectPage extends Vue {
     }
   }
 
-  async closeProject() {
-    if (this.$refs.currentComponent) {
-      await this.$refs.currentComponent.save();
+  async createConstructVue(
+    CompClass: VueConstructor<Vue>,
+    node: ConstructNode
+  ) {
+    this.currentConstruct = createVue(
+      this.$refs.constructContainer,
+      CompClass
+    ) as Vue & Persist;
+    this.setCurrentConstruct(this.currentConstruct);
+    this.constructNode = node;
+    this.setConstructId(node.id);
+    await this.$nextTick();
+    // DOM 更新了
+    if (canSave(this.currentConstruct)) {
+      await this.currentConstruct.load();
+    }
+  }
+
+  destroyComp() {
+    if (this.currentConstruct) {
+      this.currentConstruct.$destroy();
+      this.$refs.constructContainer.removeChild(this.currentConstruct.$el);
       this.setCurrentConstruct(undefined);
+      this.currentConstruct = undefined;
+      this.constructNode = undefined;
+      this.setConstructId(0);
+    }
+  }
+
+  async closeProject() {
+    if (this.currentConstruct) {
+      if (canSave(this.currentConstruct)) {
+        await this.currentConstruct.save();
+      }
+      this.destroyComp();
     }
     // this will close project page, and open home page.
     this.setProjectId("");
@@ -296,20 +325,27 @@ export default class ProjectPage extends Vue {
   }
 
   async openConstruct(index: number, node: ConstructNode) {
-    if (this.$refs.currentComponent) {
-      await this.$refs.currentComponent.save();
+    if (node.id === this.construct_id) {
+      return;
     }
-    this.currentConstruct = node;
-    this.constructName = node.type;
-    this.setConstructId(node.id);
-    setTimeout(() => {
-      this.setCurrentRow(index);
-    }, 0);
-    await this.$nextTick();
-    // DOM 更新了
-    if (this.$refs.currentComponent) {
-      this.setCurrentConstruct(this.$refs.currentComponent);
-      await this.$refs.currentComponent.load();
+    if (this.currentConstruct) {
+      if (canSave(this.currentConstruct)) {
+        await this.currentConstruct.save();
+      }
+      this.destroyComp();
+    }
+    const components = this.$options?.components;
+    if (components && components[node.type]) {
+      setTimeout(() => {
+        this.setCurrentRow(index);
+      }, 0);
+      const CompClass = components[node.type] as VueConstructor<VueOrg>;
+      await this.createConstructVue(CompClass, node);
+    } else {
+      this.currentConstruct = createNotRegist(
+        this.$refs.constructContainer,
+        node.type
+      );
     }
   }
 
@@ -343,10 +379,13 @@ export default class ProjectPage extends Vue {
           );
           if (res.data.code === "00100") {
             this.constructs.splice(index, 1);
-            if (construct === this.currentConstruct) {
-              this.setCurrentConstruct(undefined);
-              this.currentConstruct = undefined;
-              this.constructName = "";
+            if (construct === this.constructNode) {
+              if (this.currentConstruct) {
+                this.destroyComp();
+              }
+              this.currentConstruct = createEmpty(
+                this.$refs.constructContainer
+              );
             }
           }
           this.$message({
@@ -371,6 +410,10 @@ export default class ProjectPage extends Vue {
 div.content {
   width: 100vw;
   height: 100vh;
+
+  div#constructContainer {
+    height: 100%;
+  }
 }
 
 .flex-container {

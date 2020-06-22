@@ -1,4 +1,13 @@
-export interface Persist {
+
+export interface Persist0 {
+  // If tab hasn't own data, then let serialize/deserialize empty.
+  // save tab data to construct data
+  serialize: () => void;
+  // set tab data from construct data
+  deserialize: () => void;
+}
+
+export interface Persist extends Persist0 {
   // If tab hasn't own data, then let serialize/deserialize empty.
   // save tab data to construct data
   serialize: () => void;
@@ -8,4 +17,12 @@ export interface Persist {
   save: () => Promise<void>;
   // pull from backend then deserialize
   load: () => Promise<void>;
+}
+
+export function canSerialize(obj: any): obj is Persist0 {
+  return "serialize" in obj;
+}
+
+export function canSave(obj: any): obj is Persist {
+  return "serialize" in obj;
 }
