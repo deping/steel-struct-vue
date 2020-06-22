@@ -127,11 +127,6 @@ interface ConstructNode {
   needFill?: boolean;
 }
 
-interface ConstructVue extends Vue {
-  save: () => Promise<undefined>;
-  load: () => Promise<undefined>;
-}
-
 @Component({
   components: {
     splitter: VueSplitter,
