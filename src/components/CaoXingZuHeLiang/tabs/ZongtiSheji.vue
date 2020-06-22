@@ -148,7 +148,7 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Vue, InjectReactive } from "vue-property-decorator";
+import { Component, Vue, Inject } from "vue-property-decorator";
 import {
   State
   /* Getter, Action,  Mutation, namespace */
@@ -219,7 +219,7 @@ export default class ZongtiSheji extends Vue {
 
   @State construct_id!: string;
   @State currentConstruct!: Vue & Persist;
-  @InjectReactive() jsonDataService!: JsonDataService;
+  @Inject() jsonDataService!: JsonDataService;
 
   $refs!: {
     canvas1: FabricCanvas;

@@ -220,8 +220,6 @@ export default class ProjectPage extends Vue {
     this.setCurrentConstruct(this.currentConstruct);
     this.constructNode = node;
     this.setConstructId(node.id);
-    await this.$nextTick();
-    // DOM 更新了
     if (canSave(this.currentConstruct)) {
       await this.currentConstruct.load();
     }

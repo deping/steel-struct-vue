@@ -93,7 +93,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, InjectReactive } from "vue-property-decorator";
+import { Component, Vue, Inject } from "vue-property-decorator";
 import {
   State
   /* Getter, Action,  Mutation, namespace */
@@ -129,7 +129,7 @@ export default class LuXian extends Vue {
   @State construct_id!: string;
   @State currentConstruct!: Vue & Persist;
 
-  @InjectReactive() jsonDataService!: JsonDataService;
+  @Inject() jsonDataService!: JsonDataService;
 
   $refs!: {
     upload: ElUpload2;
@@ -260,6 +260,7 @@ export default class LuXian extends Vue {
     );
     if (qmCs) {
       qmCs.v = this.getStringDLHP();
+      console.log("serialize qmCs=", qmCs.v);
     }
 
     const importFiles = this.jsonDataService.exportJSON.MAIN.find(
@@ -277,7 +278,52 @@ export default class LuXian extends Vue {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  deserialize() {}
+  deserialize() {
+    console.log("反序列化 路线 开始");
+    const bk = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "bk");
+    if (bk) {
+      this.form.qishizhuanghao = bk.v;
+    }
+    this.valueL = parseFloat(this.jsonDataService.uiJSON.valueL);
+    const BK_0: number = parseFloat(this.form.qishizhuanghao);
+    const BK_1: number = BK_0 + this.valueL / 1000;
+    this.tableData = [];
+    const qmCS = this.jsonDataService.exportJSON.MAIN.find(
+      e => e.aaak === "qmCS"
+    );
+    if (qmCS) {
+      console.log(
+        "exportJSON.MAIN[7]",
+        this.jsonDataService.exportJSON.MAIN[7].v
+      );
+      console.log("deserialize qmcs=", qmCS.v);
+      qmCS.v.split(";").forEach(value => {
+        const row: string[] = value.split(",");
+        const tmp = {
+          yhp: "",
+          zh: "",
+          zhp: "",
+          bkl: "BK0",
+          bk: 0
+        };
+        const bkLength: number = parseFloat(row[0]);
+        if (bkLength <= (BK_0 + BK_1) / 2) {
+          tmp.bk = 0;
+          tmp.bkl = "BK0";
+          tmp.zh = String(bkLength - BK_0);
+        } else {
+          tmp.bk = 1;
+          tmp.bkl = "BK1";
+          tmp.zh = String(bkLength - BK_1);
+        }
+        tmp.zhp = row[1];
+        tmp.yhp = row[2];
+        this.tableData.push(tmp);
+      });
+    }
+    console.log("tableData=", this.tableData);
+    console.log("反序列化 路线 完成");
+  }
 
   // 立即提交
   async submit() {
@@ -303,8 +349,18 @@ export default class LuXian extends Vue {
         this.$refs.canvas2.loadObjects(objs2);
         this.$refs.canvas1.zoomToFit();
         this.$refs.canvas2.zoomToFit();
-        // this.jsonDataService.eventEmitDataL.emit(JSON.parse(info.outInfo).L);
-        // this.jsonDataService.eventEmitDataQB.emit(JSON.parse(info.outInfo).QB);
+        const glH = this.jsonDataService.exportJSON.MAIN.find(
+          e => e.aaak === "glH"
+        );
+        const outInfo = JSON.parse(info.outInfo);
+        if (glH) {
+          let tmp: number = Math.floor(parseInt(outInfo.L) / 22);
+          if (tmp % 50 !== 0) {
+            tmp += 50 - (tmp % 50);
+          }
+          glH.v = String(tmp);
+        }
+        this.jsonDataService.valueQB = parseInt(outInfo.QB);
       }
     } catch (error) {
       this.$message({

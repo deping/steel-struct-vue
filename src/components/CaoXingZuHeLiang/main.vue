@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, ProvideReactive } from "vue-property-decorator";
+import { Component, Vue, Provide } from "vue-property-decorator";
 import { Persist, canSerialize } from "@/components/ConstructBase";
 import ThreeJs, { ThreeModelFile } from "@/components/ThreeJs.vue";
 import { JsonDataService } from "./models/JsonDataService";
@@ -59,11 +59,11 @@ export default class CaoxingZuheliang extends Vue implements Persist {
   @State construct_id!: string;
 
   // 在子组件，使用
-  // @InjectReactive() jsonDataService!: JsonDataService;
+  // @Inject() jsonDataService!: JsonDataService;
   // 来导入这个对象
   // 在注入类中，x = this.jsonDataService.x; 会报错。
   // 在注入类的mouted()中调用 this.x = this.jsonDataService.x;
-  @ProvideReactive() jsonDataService = new JsonDataService();
+  @Provide() jsonDataService = new JsonDataService();
 
   $refs!: {
     three: ThreeJs;
@@ -74,9 +74,9 @@ export default class CaoxingZuheliang extends Vue implements Persist {
 
   mounted() {
     this.currentTab = (this.$refs.tabs as any).panes[0];
-    if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
-      this.currentTab.$children[0].deserialize();
-    }
+    // if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
+    //   this.currentTab.$children[0].deserialize();
+    // }
   }
 
   onTabClick(tab: any) {
@@ -154,7 +154,7 @@ export default class CaoxingZuheliang extends Vue implements Persist {
           this.jsonDataService.exportJSON = JSON.parse(czJSON);
         } else {
           this.jsonDataService.exportJSON = JSON.parse(
-            JSON.stringify(this.jsonDataService.defaultExportJSON)
+            JSON.stringify(JsonDataService.defaultExportJSON)
           );
         }
       }
@@ -172,10 +172,10 @@ export default class CaoxingZuheliang extends Vue implements Persist {
         this.jsonDataService.htszJSON = JSON.parse(data.data);
       } else {
         this.jsonDataService.htszJSON = JSON.parse(
-          JSON.stringify(this.jsonDataService.defaultHtszJSON)
+          JSON.stringify(JsonDataService.defaultHtszJSON)
         );
       }
-      // this.deserialize();
+      this.deserialize();
     } catch (err) {
       this.$message({
         type: "error",
