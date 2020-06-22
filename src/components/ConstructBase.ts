@@ -1,3 +1,4 @@
+declare const _: any;
 
 export interface Persist0 {
   // If tab hasn't own data, then let serialize/deserialize empty.
@@ -20,9 +21,11 @@ export interface Persist extends Persist0 {
 }
 
 export function canSerialize(obj: any): obj is Persist0 {
+  if (!_.isObject(obj)) return false;
   return "serialize" in obj;
 }
 
 export function canSave(obj: any): obj is Persist {
+  if (!_.isObject(obj)) return false;
   return "serialize" in obj;
 }

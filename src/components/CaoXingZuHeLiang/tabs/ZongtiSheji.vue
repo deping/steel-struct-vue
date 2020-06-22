@@ -243,6 +243,7 @@ export default class ZongtiSheji extends Vue {
   }
 
   serialize() {
+    console.log("序列化 总体设计 开始");
     const es = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "es");
     if (es) {
       if (isPoint(this.entriesZTSJ.ssfk)) {
@@ -255,10 +256,11 @@ export default class ZongtiSheji extends Vue {
         zs.v = this.entriesZTSJ.ldj;
       }
     }
+    console.log("序列化 总体设计 完成");
   }
 
   deserialize() {
-    alert("反序列化 总体设计 开始");
+    console.log("反序列化 总体设计 开始");
     const es = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "es");
     if (es) {
       this.entriesZTSJ.ssfk = es.v;
@@ -284,8 +286,6 @@ export default class ZongtiSheji extends Vue {
 
       const info = res.data as PreviewData;
       if (info.error === "") {
-        console.log("总体JSON为", res);
-
         const dataCanvas1 = JSON.parse(info.outLM) as [];
         const dataCanvas2 = JSON.parse(info.outPM) as [];
         this.$refs.canvas1.clear();

@@ -4,8 +4,10 @@ export function isDevMode(): boolean {
   return process.env.NODE_ENV === "development";
 }
 
+declare function isNaN(number: string | number): boolean;
+
 export function isNumber(txt: string): boolean {
-  return _.isFinite(txt) as boolean;
+  return !isNaN(txt) as boolean;
 }
 
 export function isPoint(txt: string): boolean {
@@ -13,7 +15,7 @@ export function isPoint(txt: string): boolean {
   if (a.length !== 2) {
     return false;
   }
-  return _.isFinite(a[0]) && _.isFinite(a[0]);
+  return isNumber(a[0]) && isNumber(a[1]);
 }
 
 // 创建一个序列 如 腹板0、腹板1、腹板2、腹板3
@@ -59,7 +61,7 @@ export function generateUUID() {
   return "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, c => {
     const r = (d + Math.random() * 16) % 16 | 0;
     d = Math.floor(d / 16);
-    return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
+     return (c === "x" ? r : (r & 0x3 | 0x8)).toString(16);
   });
 }
 

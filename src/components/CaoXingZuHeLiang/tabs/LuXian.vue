@@ -105,6 +105,7 @@ import { ElUpload2 } from "@/typings/element-ui";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
 import FabricCanvas from "@/components/FabricCanvas.vue";
 import { PreviewData } from "../models/preview-data";
+import { Persist } from "@/components/ConstructBase";
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace rightHand {
   function loadObjects(ar: any[]): any[]; // fabric.Object[]
@@ -126,6 +127,7 @@ export default class LuXian extends Vue {
   valueL = 40000;
 
   @State construct_id!: string;
+  @State currentConstruct!: Vue & Persist;
 
   @InjectReactive() jsonDataService!: JsonDataService;
 
@@ -280,6 +282,7 @@ export default class LuXian extends Vue {
   // 立即提交
   async submit() {
     try {
+      this.currentConstruct.serialize();
       const LXJSON: string = await JSON.stringify(this.getLXJSON());
       const formdata = new FormData();
       formdata.append("componentId", this.construct_id);
