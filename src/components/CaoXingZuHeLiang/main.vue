@@ -11,8 +11,10 @@
     <el-tab-pane label="总体设计">
       <zongti-sheji ref="zongtisheji"></zongti-sheji>
     </el-tab-pane>
-    <el-tab-pane label="标准横断面">替换为对应的标签页组件</el-tab-pane>
-    <el-tab-pane label="立面">替换为对应的标签页组件</el-tab-pane>
+    <el-tab-pane label="标准横断面">
+      <GJ-BiaoZhunHengDuanMian ref="biaozhunhengduanmian"></GJ-BiaoZhunHengDuanMian>
+    </el-tab-pane>
+    <el-tab-pane label="立面"><limian ref="limian"></limian></el-tab-pane>
     <el-tab-pane label="纵肋">替换为对应的标签页组件</el-tab-pane>
     <el-tab-pane label="横隔系">替换为对应的标签页组件</el-tab-pane>
     <el-tab-pane label="桥面板">替换为对应的标签页组件</el-tab-pane>
@@ -38,6 +40,8 @@ import { getAjaxUrl } from "@/utils/path";
 import axios from "axios";
 import ZongtiSheji from "@/components/CaoXingZuHeLiang/tabs/ZongtiSheji.vue";
 import TuzhiChakan from "@/components/CaoXingZuHeLiang/tabs/TuzhiChakan.vue";
+import BiaoZhunHengDuanMian from "@/components/CaoXingZuHeLiang/tabs/BiaoZhunHengDuanMian.vue";
+import LiMian from "@/components/CaoXingZuHeLiang/tabs/LiMian.vue";
 import { JsonData } from "@/models/json-data";
 import { ComponentInfo } from "./models/component-info";
 import { LJK } from "./models/export-data";
@@ -48,7 +52,9 @@ import { Tabs } from "element-ui";
     "zongti-sheji": ZongtiSheji,
     "three-js": ThreeJs,
     "GJ-luxian": LuXian,
-    "tuzhi-chakan": TuzhiChakan
+    "tuzhi-chakan": TuzhiChakan,
+    "GJ-BiaoZhunHengDuanMian": BiaoZhunHengDuanMian,
+    limian: LiMian
   }
 })
 export default class CaoxingZuheliang extends Vue implements Persist {
@@ -69,6 +75,8 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     three: ThreeJs;
     luxian: LuXian;
     zongtisheji: ZongtiSheji;
+    biaozhunhengduanmian: BiaoZhunHengDuanMian;
+    limian: LiMian;
     tabs: Tabs;
   };
 
@@ -188,6 +196,8 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     console.log("开始序列化");
     this.$refs.luxian.serialize();
     this.$refs.zongtisheji.serialize();
+    this.$refs.biaozhunhengduanmian.serialize();
+    this.$refs.limian.serialize();
     this.jsonDataService.uiJSON.isEmpty = "false";
     console.log("结束序列化");
   }
@@ -196,6 +206,8 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     console.log("开始反序列化");
     this.$refs.luxian.deserialize();
     this.$refs.zongtisheji.deserialize();
+    this.$refs.biaozhunhengduanmian.deserialize();
+    this.$refs.limian.deserialize();
     this.jsonDataService.uiJSON.isEmpty = "false";
     console.log("结束反序列化");
   }

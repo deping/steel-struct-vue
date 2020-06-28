@@ -260,7 +260,6 @@ export default class LuXian extends Vue {
     );
     if (qmCs) {
       qmCs.v = this.getStringDLHP();
-      console.log("serialize qmCs=", qmCs.v);
     }
 
     const importFiles = this.jsonDataService.exportJSON.MAIN.find(
@@ -292,11 +291,6 @@ export default class LuXian extends Vue {
       e => e.aaak === "qmCS"
     );
     if (qmCS) {
-      console.log(
-        "exportJSON.MAIN[7]",
-        this.jsonDataService.exportJSON.MAIN[7].v
-      );
-      console.log("deserialize qmcs=", qmCS.v);
       qmCS.v.split(";").forEach(value => {
         const row: string[] = value.split(",");
         const tmp = {
@@ -321,7 +315,6 @@ export default class LuXian extends Vue {
         this.tableData.push(tmp);
       });
     }
-    console.log("tableData=", this.tableData);
     console.log("反序列化 路线 完成");
   }
 
