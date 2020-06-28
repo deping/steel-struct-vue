@@ -220,12 +220,6 @@ export default class CaoxingZuheliang extends Vue implements Persist {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-div.tab-content {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
-  display: block;
-}
 </style>
 
 <style lang="scss">
