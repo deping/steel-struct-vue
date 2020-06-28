@@ -488,7 +488,7 @@ import {
   /* Getter, Action,  Mutation, namespace */
 } from "vuex-class";
 import { getAjaxUrl } from "@/utils/path";
-// import { amountBeamByQB } from "@/utils/bridge";
+import { amountBeamByQB } from "@/utils/bridge";
 import axios from "axios";
 import { ElUpload2 } from "@/typings/element-ui";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
@@ -923,8 +923,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
 
   // 根据梁宽自动计算
   autoCalcGZL() {
-    this.jsonDataService.amoutGZL = this.GangLiangform.GLpianshu;
-    this.GangLiangform.GLpianshu = 2;
+    this.GangLiangform.GLpianshu = amountBeamByQB(this.valueQB);
     this.updateDataGZL();
   }
 
@@ -1447,6 +1446,8 @@ export default class BiaoZhunHengDuanMian extends Vue {
     }
 
     // 四丶 钢主梁
+    this.jsonDataService.amoutGZL = this.GangLiangform.GLpianshu;
+
     const dbDirect = this.jsonDataService.exportJSON.MAIN.find(
       e => e.aaak === "dbDirect"
     );
@@ -1665,6 +1666,8 @@ export default class BiaoZhunHengDuanMian extends Vue {
       }
     }
     // 四 钢主梁
+    this.GangLiangform.GLpianshu = this.jsonDataService.amoutGZL;
+
     if (this.jsonDataService.uiJSON.isEmpty === "true") {
       console.log("钢主梁不是第一次初始化");
       const fbLay = this.jsonDataService.exportJSON.MAIN.find(
