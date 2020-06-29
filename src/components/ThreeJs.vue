@@ -99,6 +99,7 @@ export default class ThreeJs extends Vue {
     }
     this.fileModel = object3d;
     this.scene.add(object3d);
+    this.$emit("modelChange", object3d);
     if (this.camera) {
       const bbox = new THREE.Box3().setFromObject(
         this.fileModel as THREE.Object3D
@@ -205,6 +206,10 @@ export default class ThreeJs extends Vue {
     requestAnimationFrame(() => {
       this.animate();
     });
+  }
+
+  render2() {
+    this.renderer.render(this.scene, this.camera);
   }
 
   onDivResize(size: { width: number; height: number }) {

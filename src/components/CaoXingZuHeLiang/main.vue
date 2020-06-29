@@ -24,7 +24,7 @@
       ><tuzhi-chakan @modelChange="onModelChange"></tuzhi-chakan
     ></el-tab-pane>
     <el-tab-pane label="三维模型">
-      <three-js ref="three" :file="'model/sample.fbx'"></three-js>
+      <model-viewer ref="modelViewer"></model-viewer>
     </el-tab-pane>
   </el-tabs>
 </template>
@@ -32,7 +32,7 @@
 <script lang="ts">
 import { Component, Vue, Provide } from "vue-property-decorator";
 import { Persist, canSerialize } from "@/components/ConstructBase";
-import ThreeJs, { ThreeModelFile } from "@/components/ThreeJs.vue";
+import { ThreeModelFile } from "@/components/ThreeJs.vue";
 import { JsonDataService } from "./models/JsonDataService";
 import LuXian from "@/components/CaoXingZuHeLiang/tabs/LuXian.vue";
 import { State /*, Getter, Action, Mutation, namespace */ } from "vuex-class";
@@ -42,6 +42,7 @@ import ZongtiSheji from "@/components/CaoXingZuHeLiang/tabs/ZongtiSheji.vue";
 import TuzhiChakan from "@/components/CaoXingZuHeLiang/tabs/TuzhiChakan.vue";
 import BiaoZhunHengDuanMian from "@/components/CaoXingZuHeLiang/tabs/BiaoZhunHengDuanMian.vue";
 import LiMian from "@/components/CaoXingZuHeLiang/tabs/LiMian.vue";
+import ModelViewer from "./tabs/ModelViewer.vue";
 import { JsonData } from "@/models/json-data";
 import { ComponentInfo } from "./models/component-info";
 import { LJK } from "./models/export-data";
@@ -50,7 +51,7 @@ import { Tabs } from "element-ui";
 @Component({
   components: {
     "zongti-sheji": ZongtiSheji,
-    "three-js": ThreeJs,
+    "model-viewer": ModelViewer,
     "GJ-luxian": LuXian,
     "tuzhi-chakan": TuzhiChakan,
     "GJ-BiaoZhunHengDuanMian": BiaoZhunHengDuanMian,
@@ -72,7 +73,7 @@ export default class CaoxingZuheliang extends Vue implements Persist {
   @Provide() jsonDataService = new JsonDataService();
 
   $refs!: {
-    three: ThreeJs;
+    modelViewer: ModelViewer;
     luxian: LuXian;
     zongtisheji: ZongtiSheji;
     biaozhunhengduanmian: BiaoZhunHengDuanMian;
@@ -213,7 +214,7 @@ export default class CaoxingZuheliang extends Vue implements Persist {
   }
 
   onModelChange(model: ThreeModelFile) {
-    this.$refs.three.setModelFile(model);
+    this.$refs.modelViewer.setModelFile(model);
   }
 }
 </script>
