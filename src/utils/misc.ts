@@ -32,6 +32,20 @@ export function makeSequenceStringArray(
   return res;
 }
 
+export function makeLabelValueArray(
+  label: string,
+  value: string,
+  start: number,
+  end: number,
+  init: {label: string; value: string} [] = []
+): {label: string; value: string}[] {
+  const res = init;
+  for (let i = start; i <= end; ++i) {
+    res.push({ label: `${label}${i}`, value: `${value}${i}` });
+  }
+  return res;
+}
+
 export function getPos(e: HTMLElement) {
   let x = 0;
   let y = 0;

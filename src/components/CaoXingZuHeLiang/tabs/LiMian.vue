@@ -17,8 +17,8 @@
                 <el-option
                   v-for="(item, index) in options"
                   :key="index"
-                  :label="item"
-                  :value="item"
+                  :label="item.label"
+                  :value="item.value"
                 ></el-option>
               </el-select>
             </template>
@@ -83,8 +83,8 @@
                 <el-option
                   v-for="(item, index) in options"
                   :key="index"
-                  :label="item"
-                  :value="item"
+                  :label="item.label"
+                  :value="item.value"
                 ></el-option>
               </el-select>
             </template>
@@ -149,8 +149,8 @@
                 <el-option
                   v-for="(item, index) in options"
                   :key="index"
-                  :label="item"
-                  :value="item"
+                  :label="item.label"
+                  :value="item.value"
                 ></el-option>
               </el-select>
             </template>
@@ -345,7 +345,7 @@ import {
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
 import { Persist } from "@/components/ConstructBase";
 import { getAjaxUrl } from "@/utils/path";
-import { makeSequenceStringArray } from "@/utils/misc";
+import { makeLabelValueArray } from "@/utils/misc";
 import { PreviewData } from "../models/preview-data";
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace rightHand {
@@ -536,7 +536,11 @@ export default class LiMian extends Vue {
   ];
 
   // 参考线名称
-  options = ["DLX", "XLCen1", "XLCen2"];
+  options = [
+    { value: "DLX", label: "道路设计线" },
+    { value: "XLCen1", label: "箱梁中心线1" },
+    { value: "XLCen2", label: "箱梁中心线2" }
+  ];
 
   // 钢梁阶段布置下拉框
   options_gljd = [
@@ -660,11 +664,12 @@ export default class LiMian extends Vue {
 
   // 反序列化
   deserialize() {
-    this.options = makeSequenceStringArray(
+    this.options = makeLabelValueArray(
+      "箱梁中心线",
       "XLCen",
       1,
       this.jsonDataService.amoutGZL,
-      ["DLX"]
+      [{ value: "DLX", label: "道路设计线" }]
     );
 
     console.log("反序列化 立面 开始");
