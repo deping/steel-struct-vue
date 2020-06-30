@@ -8,6 +8,7 @@
         <el-table
           :data="tableData"
           stripe
+          border
           style="width: 100%"
           :header-cell-style="{ background: '#eef1f6' }"
         >
@@ -38,7 +39,7 @@
               <el-input v-model="scope.row.hd" clearable></el-input>
             </template>
           </el-table-column>
-          <el-table-column>
+          <el-table-column label="操作">
             <template v-slot="scope">
               <el-button
                 size="mini"
@@ -74,6 +75,7 @@
         <el-table
           :data="tableData_fb"
           stripe
+          border
           style="width: 100%"
           :header-cell-style="{ background: '#eef1f6' }"
         >
@@ -104,7 +106,7 @@
               <el-input v-model="scope.row.fbhd" clearable></el-input>
             </template>
           </el-table-column>
-          <el-table-column>
+          <el-table-column label="操作">
             <template v-slot="scope">
               <el-button
                 size="mini"
@@ -140,6 +142,7 @@
         <el-table
           :data="tableData_db"
           stripe
+          border
           style="width: 100%"
           :header-cell-style="{ background: '#eef1f6' }"
         >
@@ -170,7 +173,7 @@
               <el-input v-model="scope.row.dbhd" clearable></el-input>
             </template>
           </el-table-column>
-          <el-table-column>
+          <el-table-column label="操作">
             <template v-slot="scope">
               <el-button
                 size="mini"
@@ -235,6 +238,7 @@
         <el-table
           :data="tableData_gljd"
           stripe
+          border
           style="width: 100%"
           :header-cell-style="{ background: '#eef1f6' }"
         >
@@ -284,7 +288,7 @@
               </el-select>
             </template>
           </el-table-column>
-          <el-table-column>
+          <el-table-column label="操作">
             <template v-slot="scope">
               <el-button
                 size="mini"
