@@ -1,13 +1,28 @@
 <template>
   <div id="box">
-    <div style="width:200px;height:100%;overflow:auto">
-      <el-tree
-        ref="tree"
-        :data="meshTree"
-        :render-content="renderContent"
-        height="100%"
-      >
-      </el-tree>
+    <div id="left">
+      <div>
+        <span style="margin-right: 8px">选中颜色</span>
+        <el-color-picker
+          v-model="hightlightColor"
+          size="mini"
+          color-format="hex"
+        ></el-color-picker>
+      </div>
+      <div style="width:100%;height:100%;overflow:auto">
+        <el-tree
+          ref="tree"
+          :data="object3D"
+          :props="propMap"
+          :render-content="renderContent"
+          height="100%"
+          :expand-on-click-node="false"
+          :highlight-current="false"
+          node-key="id"
+          default-expand-all
+        >
+        </el-tree>
+      </div>
     </div>
     <three-js
       ref="three"
@@ -18,7 +33,8 @@
 </template>
 
 <script lang="tsx">
-import { Component, Vue } from "vue-property-decorator";
+import * as THREE from "three";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { ElTree, TreeNode, TreeStore } from "element-ui/types/tree";
 import { Object3D, Mesh, Material } from "three";
 import { CreateElement, VNode } from "vue";
@@ -28,15 +44,9 @@ const onLight = require("../imgs/light-on.png");
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const offLight = require("../imgs/light-off.png");
 
-interface MeshData {
-  label: string;
-  children?: MeshData[];
+interface MeshMaterial {
+  material: Material | Material[];
   mesh: Mesh;
-}
-
-interface Opacity {
-  opacity: number;
-  transparent: boolean;
 }
 
 @Component({
@@ -47,36 +57,50 @@ interface Opacity {
 export default class ModelViewer extends Vue {
   name = "model-viewer";
 
-  meshTree: MeshData[] = [];
-  currentMesh?: Mesh;
-  opacity: Opacity[] = [];
+  object3D: Object3D[] = [];
+  propMap = { label: "id" };
+  currentObject3D?: Object3D;
+  MeshMaterial: MeshMaterial[] = [];
+  hightlightColor = "#409EFF";
+  hightlightMaterial = new THREE.MeshLambertMaterial({ color: "#409EFF" });
 
   $refs!: {
-    tree: ElTree<any, MeshData>;
+    tree: ElTree<any, Object3D>;
     three: ThreeJs;
   };
+
+  @Watch("hightlightColor")
+  onColorChanged() {
+    this.hightlightMaterial.color.setStyle(this.hightlightColor);
+    // redraw 3D scene.
+    this.$refs.three.render2();
+  }
 
   renderContent(
     h: CreateElement,
     ctx: {
-      node: TreeNode<any, MeshData>;
-      data: MeshData;
-      store: TreeStore<any, MeshData>;
+      node: TreeNode<any, Object3D>;
+      data: Object3D;
+      store: TreeStore<any, Object3D>;
     }
   ): VNode {
     return (
       <span>
         <span
+          class="text"
           onclick={() => {
-            this.highlightMesh(ctx.data);
+            this.highlightObject3D(ctx.data);
           }}
         >
-          {ctx.node.label}
+          {ctx.data.id}
         </span>
         <img
-          src={ctx.data.mesh.visible ? onLight : offLight}
-          onclick={() => {
-            ctx.data.mesh.visible = !ctx.data.mesh.visible;
+          src={ctx.data.visible ? onLight : offLight}
+          onclick={(e: MouseEvent) => {
+            ctx.data.visible = !ctx.data.visible;
+            // :highlight-current="false" doesn't work. So I hack it.
+            e.stopPropagation();
+            // redraw 3D scene.
             this.$refs.three.render2();
           }}
         ></img>
@@ -84,65 +108,37 @@ export default class ModelViewer extends Vue {
     );
   }
 
-  highlightMesh(data: MeshData) {
-    if (data.mesh === this.currentMesh) {
-      return;
+  collectMaterial(data: Object3D) {
+    if (data instanceof Mesh) {
+      this.MeshMaterial.push({ mesh: data, material: data.material });
+      data.material = this.hightlightMaterial;
     }
-    // restore opacity
-    if (this.currentMesh) {
-      let ms: Material[];
-      const m = this.currentMesh.material;
-      if (m instanceof Material) {
-        ms = [m];
-      } else {
-        ms = m;
-      }
-      for (let i = 0; i < ms.length; ++i) {
-        ms[i].transparent = this.opacity[i].transparent;
-        ms[i].opacity = this.opacity[i].opacity;
-      }
+    for (const child of data.children) {
+      this.collectMaterial(child);
     }
-
-    this.currentMesh = data.mesh;
-    // set opacity
-    let ms: Material[];
-    const m = data.mesh.material;
-    if (m instanceof Material) {
-      ms = [m];
-    } else {
-      ms = m;
-    }
-    this.opacity = [];
-    for (let i = 0; i < ms.length; ++i) {
-      this.opacity.push({ transparent: false, opacity: 1 });
-      this.opacity[i].transparent = ms[i].transparent;
-      this.opacity[i].opacity = ms[i].opacity;
-      ms[i].transparent = true;
-      ms[i].opacity /= 2;
-    }
-    this.$refs.three.render2();
   }
 
-  pushMesh(meshTree: MeshData[], obj: Object3D) {
-    if (obj instanceof Mesh) {
-      const label = obj.id.toString();
-      const meshData: MeshData = {
-        label,
-        children: [],
-        mesh: obj
-      };
-      meshTree.push(meshData);
-      meshTree = meshData.children as MeshData[];
+  highlightObject3D(data: Object3D) {
+    if (data === this.currentObject3D) {
+      return;
+    }
+    // restore material
+    if (this.currentObject3D) {
+      for (const item of this.MeshMaterial) {
+        item.mesh.material = item.material;
+      }
     }
 
-    for (const child of obj.children) {
-      this.pushMesh(meshTree, child);
-    }
+    this.currentObject3D = data;
+    this.MeshMaterial = [];
+    this.collectMaterial(data);
+    // redraw 3D scene.
+    this.$refs.three.render2();
+    this.$refs.tree.setCurrentKey(data.id);
   }
 
   onModelChange(obj: Object3D) {
-    this.meshTree = [];
-    this.pushMesh(this.meshTree, obj);
+    this.object3D = [obj];
   }
 
   setModelFile(model: ThreeModelFile) {
@@ -159,7 +155,24 @@ export default class ModelViewer extends Vue {
   flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
+
+  #left {
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 }
 </style>
 <style lang="scss">
+// :highlight-current="false" doesn't work. so hack it.
+#left .el-tree-node.is-current > .el-tree-node__content {
+  background-color: white;
+}
+#left .el-tree-node.is-current > .el-tree-node__content span.text {
+  background-color: red;
+}
 </style>
