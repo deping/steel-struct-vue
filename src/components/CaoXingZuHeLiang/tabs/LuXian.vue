@@ -6,20 +6,11 @@
       <el-form ref="form" :model="form" label-width="100px">
         <el-form-item label="DXF文件：">
           <div style="width:500px;text-align:left">
-            <el-upload ref="upload" action :auto-upload="false">
-              <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-              <el-button
-                style="margin-left: 10px;"
-                size="small"
-                type="success"
-                @click="UploadFiles"
-              >上传文件</el-button>
-              <el-button
-                size="small"
-                type="success"
-                plain
-                @click="downloadDxfFile()"
-              >平曲线丶竖曲线.DXF文件格式样例下载</el-button>
+            <el-upload ref="upload" action :auto-upload="false" :on-change="onAddDxf">
+              <el-button slot="trigger" size="small" type="primary">选取文件
+              </el-button>
+              <el-button style="margin-left: 10px;" size="small" type="success" @click="UploadFiles">上传文件</el-button>
+              <el-button size="small" type="success" plain @click="downloadDxfFile()">平曲线丶竖曲线.DXF文件格式样例下载</el-button>
             </el-upload>
           </div>
         </el-form-item>
@@ -33,12 +24,7 @@
         <el-table-column label="桩号">
           <template v-slot="scope">
             <el-select v-model="scope.row.bkl" placeholder="请选择">
-              <el-option
-                v-for="item in options"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value"
-              ></el-option>
+              <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
             <el-input v-model="scope.row.zh" clearable></el-input>
           </template>
@@ -55,30 +41,16 @@
         </el-table-column>
         <el-table-column label="操作">
           <template v-slot="scope">
-            <el-button
-              size="mini"
-              type="primary"
-              @click="inserttableData(scope.$index, tableData)"
-            >插入</el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.$index, tableData)"
-            >删除</el-button>
+            <el-button size="mini" type="primary" @click="inserttableData(scope.$index, tableData)">插入</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, tableData)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
       <div style="width: 100%;">
-        <el-button
-          type="primary"
-          @click="addtableData(tableData)"
-          style="float:left; margin:10px 0 10px 0"
-        >增加行</el-button>
-        <el-button
-          type="success"
-          style="margin-top:15px ;float:left; margin:10px 10px 0 10px"
-          @click="submit()"
-        >提交</el-button>
+        <el-button type="primary" @click="addtableData(tableData)" style="float:left; margin:10px 0 10px 0">增加行
+        </el-button>
+        <el-button type="success" style="margin-top:15px ;float:left; margin:10px 10px 0 10px" @click="submit()">提交
+        </el-button>
       </div>
     </div>
     <div style="margin:80px 0 0 0px ;width:100%;display: flex;">
@@ -102,6 +74,7 @@ import { getAjaxUrl } from "@/utils/path";
 import axios from "axios";
 import * as FileSaver from "file-saver";
 import { ElUpload2 } from "@/typings/element-ui";
+import { ElUploadInternalFileDetail } from "element-ui/types/upload";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
 import FabricCanvas from "@/components/FabricCanvas.vue";
 import { PreviewData } from "../models/preview-data";
@@ -156,6 +129,21 @@ export default class LuXian extends Vue {
     },
     { value: "BK1", label: "BK1" }
   ];
+
+  // 添加文件、上传成功和上传失败时都会被调用
+  // 但是我们是自己上传，所以只有添加文件是才会被调用
+  async onAddDxf(
+    file: ElUploadInternalFileDetail,
+    fileList: ElUploadInternalFileDetail[]
+  ) {
+    const isDxf =
+      file.name.substring(file.name.length - 4).toLowerCase() === ".dxf";
+
+    if (!isDxf) {
+      this.$message.error("只能上传DXF文件!");
+      fileList.splice(fileList.indexOf(file), 1);
+    }
+  }
 
   // 上传文件方法
   async UploadFiles() {

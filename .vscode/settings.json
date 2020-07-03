@@ -1,13 +1,19 @@
 {
   "vetur.format.defaultFormatterOptions": {
     "prettyhtml": {
-      "printWidth": 80,
+      "printWidth": 120,
     },
     "prettier": {
       "semi": true,
       "singleQuote": false
+    },
+    "js-beautify-html": {
+      "wrap_line_length": 120,
+      "wrap_attributes": "aligned-multiple",
+      "end_with_newline": false
     }
   },
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
   "javascript.preferences.quoteStyle": "double",
   "typescript.preferences.quoteStyle": "double",
   "editor.formatOnSave": true,
