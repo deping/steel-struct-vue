@@ -7,19 +7,23 @@
         <el-form-item label="DXF文件：">
           <div style="width:500px;text-align:left">
             <el-upload ref="upload" action :auto-upload="false">
-              <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+              <el-button slot="trigger" size="small" type="primary"
+                >选取文件</el-button
+              >
               <el-button
                 style="margin-left: 10px;"
                 size="small"
                 type="success"
                 @click="UploadFiles"
-              >上传文件</el-button>
+                >上传文件</el-button
+              >
               <el-button
                 size="small"
                 type="success"
                 plain
                 @click="downloadDxfFile()"
-              >平曲线丶竖曲线.DXF文件格式样例下载</el-button>
+                >平曲线丶竖曲线.DXF文件格式样例下载</el-button
+              >
             </el-upload>
           </div>
         </el-form-item>
@@ -59,12 +63,14 @@
               size="mini"
               type="primary"
               @click="inserttableData(scope.$index, tableData)"
-            >插入</el-button>
+              >插入</el-button
+            >
             <el-button
               size="mini"
               type="danger"
               @click="handleDelete(scope.$index, tableData)"
-            >删除</el-button>
+              >删除</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -73,12 +79,14 @@
           type="primary"
           @click="addtableData(tableData)"
           style="float:left; margin:10px 0 10px 0"
-        >增加行</el-button>
+          >增加行</el-button
+        >
         <el-button
           type="success"
           style="margin-top:15px ;float:left; margin:10px 10px 0 10px"
           @click="submit()"
-        >提交</el-button>
+          >提交</el-button
+        >
       </div>
     </div>
     <div style="margin:80px 0 0 0px ;width:100%;display: flex;">
@@ -172,7 +180,7 @@ export default class LuXian extends Vue {
           formdata
         );
         if (res.data.code === "00100") {
-          this.$refs.upload.uploadFiles = [];
+          this.$refs.upload.clearFiles();
           this.$message({
             type: "success",
             message: res.data.msg
