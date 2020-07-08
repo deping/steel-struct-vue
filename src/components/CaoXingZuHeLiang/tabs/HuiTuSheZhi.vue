@@ -5,23 +5,13 @@
         <h3>出图选项</h3>
       </div>
       <div class="text-item">
-        <el-table
-          ref="table"
-          :data="tableData"
-          border
-          style="width: 100%"
-          :header-cell-style="{ background: '#eef1f6' }"
-          :span-method="mergeRow"
-        >
+        <el-table ref="table" :data="tableData" border style="width: 100%"
+                  :header-cell-style="{ background: '#eef1f6' }" :span-method="mergeRow">
           <el-table-column prop="tzmc" label="图纸名称" class-name="top">
           </el-table-column>
           <el-table-column label="出图">
-            <el-table-column
-              type="selection"
-              width="155"
-              class-name="top"
-              :selectable="checkBoxDisable"
-            ></el-table-column>
+            <el-table-column type="selection" width="155" class-name="top" :selectable="checkBoxDisable">
+            </el-table-column>
           </el-table-column>
 
           <el-table-column prop="tk" label="图块"> </el-table-column>
@@ -402,8 +392,8 @@ export default class HuiTuSheZhi extends Vue {
       // row.tk = value.note;
       row.bl = Number(value.scale);
       row.draw = value.draw === "true";
-      if (row.rowSpan) {
-        this.$refs.table.toggleRowSelection(row, true);
+      if (row.rowSpan && row.draw) {
+        this.$refs.table.toggleRowSelection(row);
       }
       ++index;
     });

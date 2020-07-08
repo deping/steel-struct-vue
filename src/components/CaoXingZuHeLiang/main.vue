@@ -217,30 +217,18 @@ export default class CaoxingZuheliang extends Vue implements Persist {
 
   serialize() {
     console.log("开始序列化");
-    this.$refs.luxian.serialize();
-    this.$refs.zongtisheji.serialize();
-    this.$refs.biaozhunhengduanmian.serialize();
-    this.$refs.limian.serialize();
-    this.$refs.zonglei.serialize();
-    this.$refs.fushu.serialize();
-    this.$refs.henggexi.serialize();
-    this.$refs.qiaomianban.serialize();
-    this.$refs.huitushezhi.serialize();
+    if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
+      this.currentTab.$children[0].serialize();
+    }
     this.jsonDataService.uiJSON.isEmpty = "false";
     console.log("结束序列化");
   }
 
   deserialize() {
     console.log("开始反序列化");
-    this.$refs.luxian.deserialize();
-    this.$refs.zongtisheji.deserialize();
-    this.$refs.biaozhunhengduanmian.deserialize();
-    this.$refs.limian.deserialize();
-    this.$refs.zonglei.deserialize();
-    this.$refs.fushu.deserialize();
-    this.$refs.henggexi.deserialize();
-    this.$refs.qiaomianban.deserialize();
-    this.$refs.huitushezhi.deserialize();
+    if (this.currentTab && canSerialize(this.currentTab.$children[0])) {
+      this.currentTab.$children[0].deserialize();
+    }
     this.jsonDataService.uiJSON.isEmpty = "false";
     console.log("结束反序列化");
   }
