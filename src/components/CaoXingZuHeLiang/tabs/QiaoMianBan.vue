@@ -5,20 +5,12 @@
         <h3>钢筋</h3>
       </div>
       <div class="text-item">
-        <el-table
-          :data="tableData"
-          stripe
-          style="width: 100%"
-          :header-cell-style="{ background: '#eef1f6' }"
-        >
-          <el-table-column label="钢筋名称" width="190px">
-            <template v-slot="scope">
-              <el-input v-model="scope.row.gjmc" readonly></el-input>
-            </template>
+        <el-table :data="tableData" stripe style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
+          <el-table-column label="钢筋名称" prop="gjmc" width="190px">
           </el-table-column>
           <el-table-column label="钢筋直径">
             <template v-slot="scope">
-              <el-input v-model="scope.row.gjzj" clearable></el-input>
+              <el-input v-model.number="scope.row.gjzj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="钢种">
@@ -28,32 +20,32 @@
           </el-table-column>
           <el-table-column label="横向间距/间隔">
             <template v-slot="scope">
-              <el-input v-model="scope.row.hxjj" clearable></el-input>
+              <el-input v-model.number="scope.row.hxjj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="横向最小间距">
             <template v-slot="scope">
-              <el-input v-model="scope.row.hxzxjj" clearable></el-input>
+              <el-input v-model.number="scope.row.hxzxjj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="弯钩长度">
             <template v-slot="scope">
-              <el-input v-model="scope.row.wgcd" clearable></el-input>
+              <el-input v-model.number="scope.row.wgcd" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="边距（中心到边）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.bj" clearable></el-input>
+              <el-input v-model.number="scope.row.bj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="纵向间距/间隔">
             <template v-slot="scope">
-              <el-input v-model="scope.row.zxjj" clearable></el-input>
+              <el-input v-model.number="scope.row.zxjj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="锚固长度">
             <template v-slot="scope">
-              <el-input v-model="scope.row.mgcd" clearable></el-input>
+              <el-input v-model.number="scope.row.mgcd" clearable></el-input>
             </template>
           </el-table-column>
         </el-table>
@@ -212,19 +204,20 @@ export default class QiaoMianBan extends Vue {
 
   deserialize() {
     console.log("反序列化 桥面板 开始");
+    let index = 0;
     this.jsonDataService.exportJSON.GJ.forEach(value => {
-      const gj = {
-        gjmc: value.aaaid,
-        gjzj: Number(value.d),
-        gz: Number(value.type),
-        hxjj: Number(value.sb),
-        hxzxjj: Number(value.sm),
-        wgcd: Number(value.wg),
-        bj: Number(value.sz),
-        zxjj: Number(value.s),
-        mgcd: Number(value["锚固长度"])
-      };
-      this.tableData.push(gj);
+      const row = this.tableData[index];
+      // row.gjmc = value.aaaid;
+      row.gjzj = Number(value.d);
+      row.gz = Number(value.type);
+      row.hxjj = Number(value.sb);
+      row.hxzxjj = Number(value.sm);
+      row.wgcd = Number(value.wg);
+      row.bj = Number(value.sz);
+      row.zxjj = Number(value.s);
+      row.mgcd = Number(value["锚固长度"]);
+
+      ++index;
     });
     console.log("反序列化 桥面板 完成");
   }
