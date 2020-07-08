@@ -1,10 +1,5 @@
 <template>
-  <el-tabs
-    type="border-card"
-    style="width:100%;height:100%;border:0px"
-    @tab-click="onTabClick"
-    ref="tabs"
-  >
+  <el-tabs type="border-card" style="width:100%;height:100%;border:0px" @tab-click="onTabClick" ref="tabs">
     <el-tab-pane label="路线">
       <GJ-luxian ref="luxian"></GJ-luxian>
     </el-tab-pane>
@@ -12,19 +7,29 @@
       <zongti-sheji ref="zongtisheji"></zongti-sheji>
     </el-tab-pane>
     <el-tab-pane label="标准横断面">
-      <GJ-BiaoZhunHengDuanMian
-        ref="biaozhunhengduanmian"
-      ></GJ-BiaoZhunHengDuanMian>
+      <GJ-BiaoZhunHengDuanMian ref="biaozhunhengduanmian"></GJ-BiaoZhunHengDuanMian>
     </el-tab-pane>
-    <el-tab-pane label="立面"><limian ref="limian"></limian></el-tab-pane>
-    <el-tab-pane label="纵肋"><zonglei ref="zonglei"></zonglei></el-tab-pane>
-    <el-tab-pane label="横隔系">替换为对应的标签页组件</el-tab-pane>
-    <el-tab-pane label="桥面板">替换为对应的标签页组件</el-tab-pane>
-    <el-tab-pane label="附属">替换为对应的标签页组件</el-tab-pane>
-    <el-tab-pane label="绘图设置">替换为对应的标签页组件</el-tab-pane>
-    <el-tab-pane label="图纸查看"
-      ><tuzhi-chakan @modelChange="onModelChange"></tuzhi-chakan
-    ></el-tab-pane>
+    <el-tab-pane label="立面">
+      <limian ref="limian"></limian>
+    </el-tab-pane>
+    <el-tab-pane label="纵肋">
+      <zonglei ref="zonglei"></zonglei>
+    </el-tab-pane>
+    <el-tab-pane label="横隔系">
+      <GJ-henggexi ref="henggexi"></GJ-henggexi>
+    </el-tab-pane>
+    <el-tab-pane label="桥面板">
+      <qiaomianban ref="qiaomianban"></qiaomianban>
+    </el-tab-pane>
+    <el-tab-pane label="附属">
+      <fushu ref="fushu"></fushu>
+    </el-tab-pane>
+    <el-tab-pane label="绘图设置">
+      <huitushezhi ref="huitushezhi"></huitushezhi>
+    </el-tab-pane>
+    <el-tab-pane label="图纸查看">
+      <tuzhi-chakan @modelChange="onModelChange"></tuzhi-chakan>
+    </el-tab-pane>
     <el-tab-pane label="三维模型">
       <model-viewer ref="modelViewer"></model-viewer>
     </el-tab-pane>
@@ -45,7 +50,11 @@ import TuzhiChakan from "@/components/CaoXingZuHeLiang/tabs/TuzhiChakan.vue";
 import BiaoZhunHengDuanMian from "@/components/CaoXingZuHeLiang/tabs/BiaoZhunHengDuanMian.vue";
 import LiMian from "@/components/CaoXingZuHeLiang/tabs/LiMian.vue";
 import ZongLei from "@/components/CaoXingZuHeLiang/tabs/ZongLei.vue";
+import FuShu from "@/components/CaoXingZuHeLiang/tabs/FuShu.vue";
+import QiaoMianBan from "@/components/CaoXingZuHeLiang/tabs/QiaoMianBan.vue";
+import HuiTuSheZhi from "@/components/CaoXingZuHeLiang/tabs/HuiTuSheZhi.vue";
 import ModelViewer from "./tabs/ModelViewer.vue";
+import HengGeXi from "@/components/CaoXingZuHeLiang/tabs/HengGeXi.vue";
 import { JsonData } from "@/models/json-data";
 import { ComponentInfo } from "./models/component-info";
 import { LJK } from "./models/export-data";
@@ -59,7 +68,11 @@ import { Tabs } from "element-ui";
     "tuzhi-chakan": TuzhiChakan,
     "GJ-BiaoZhunHengDuanMian": BiaoZhunHengDuanMian,
     limian: LiMian,
-    zonglei: ZongLei
+    zonglei: ZongLei,
+    fushu: FuShu,
+    "GJ-henggexi": HengGeXi,
+    qiaomianban: QiaoMianBan,
+    huitushezhi: HuiTuSheZhi
   }
 })
 export default class CaoxingZuheliang extends Vue implements Persist {
@@ -83,7 +96,11 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     biaozhunhengduanmian: BiaoZhunHengDuanMian;
     limian: LiMian;
     zonglei: ZongLei;
+    fushu: FuShu;
+    qiaomianban: QiaoMianBan;
+    huitushezhi: HuiTuSheZhi;
     tabs: Tabs;
+    henggexi: HengGeXi;
   };
 
   mounted() {
@@ -205,6 +222,10 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     this.$refs.biaozhunhengduanmian.serialize();
     this.$refs.limian.serialize();
     this.$refs.zonglei.serialize();
+    this.$refs.fushu.serialize();
+    this.$refs.henggexi.serialize();
+    this.$refs.qiaomianban.serialize();
+    this.$refs.huitushezhi.serialize();
     this.jsonDataService.uiJSON.isEmpty = "false";
     console.log("结束序列化");
   }
@@ -216,6 +237,10 @@ export default class CaoxingZuheliang extends Vue implements Persist {
     this.$refs.biaozhunhengduanmian.deserialize();
     this.$refs.limian.deserialize();
     this.$refs.zonglei.deserialize();
+    this.$refs.fushu.deserialize();
+    this.$refs.henggexi.deserialize();
+    this.$refs.qiaomianban.deserialize();
+    this.$refs.huitushezhi.deserialize();
     this.jsonDataService.uiJSON.isEmpty = "false";
     console.log("结束反序列化");
   }

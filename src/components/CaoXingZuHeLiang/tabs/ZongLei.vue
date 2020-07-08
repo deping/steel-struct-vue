@@ -357,8 +357,8 @@ export default class ZongLei extends Vue {
           this.tableDataD.push(tmp_d);
         }
       );
-      console.log("反序列化 纵肋 结束");
     }
+    console.log("反序列化 纵肋 结束");
   }
 
   // 腹板纵向加劲肋布置  最后一行加入行

@@ -242,75 +242,75 @@
                 border
               >
                 <el-table-column label="左悬臂">
-                  <template slot-scope="props">
+                  <template v-slot="props">
                     <el-input v-model="props.row.zxb"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="箱室宽度（GL-1）">
-                  <template slot-scope="props">
+                  <template v-slot="props">
                     <el-input v-model="props.row.gl1"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="箱间宽度">
-                  <template slot-scope="props">
+                  <template v-slot="props">
                     <el-input v-model="props.row.xjkd1"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="箱室宽度（GL-2）">
-                  <template slot-scope="props">
+                  <template v-slot="props">
                     <el-input v-model="props.row.gl2"></el-input>
                   </template>
                 </el-table-column>
                 <div v-if="GangLiangform.GLpianshu > 2">
                   <el-table-column label="箱间宽度">
-                    <template slot-scope="props">
+                    <template v-slot="props">
                       <el-input v-model="props.row.xjkd2"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column label="箱室宽度（GL-3）">
-                    <template slot-scope="props">
+                    <template v-slot="props">
                       <el-input v-model="props.row.gl3"></el-input>
                     </template>
                   </el-table-column>
                 </div>
                 <div v-if="GangLiangform.GLpianshu > 3">
                   <el-table-column label="箱间宽度">
-                    <template slot-scope="props">
+                    <template v-slot="props">
                       <el-input v-model="props.row.xjkd3"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column label="箱室宽度（GL-4）">
-                    <template slot-scope="props">
+                    <template v-slot="props">
                       <el-input v-model="props.row.gl4"></el-input>
                     </template>
                   </el-table-column>
                 </div>
                 <div v-if="GangLiangform.GLpianshu > 4">
                   <el-table-column label="箱间宽度">
-                    <template slot-scope="props">
+                    <template v-slot="props">
                       <el-input v-model="props.row.xjkd4"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column label="箱室宽度（GL-5）">
-                    <template slot-scope="props">
+                    <template v-slot="props">
                       <el-input v-model="props.row.gl5"></el-input>
                     </template>
                   </el-table-column>
                 </div>
                 <div v-if="GangLiangform.GLpianshu > 5">
                   <el-table-column label="箱间宽度">
-                    <template slot-scope="props">
+                    <template v-slot="props">
                       <el-input v-model="props.row.xjkd5"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column label="箱室宽度（GL-6）" width="150">
-                    <template slot-scope="props">
+                    <template v-slot="props">
                       <el-input v-model="props.row.gl6"></el-input>
                     </template>
                   </el-table-column>
                 </div>
                 <el-table-column label="右悬臂">
-                  <template slot-scope="props">
+                  <template v-slot="props">
                     <el-input v-model="props.row.yxb"></el-input>
                   </template>
                 </el-table-column>
@@ -371,7 +371,7 @@
                   >
                     <el-table-column prop="dbkd" label="钢梁编号"></el-table-column>
                     <el-table-column label="值">
-                      <template slot-scope="scope">
+                      <template v-slot="scope">
                         <el-input
                           v-model="scope.row.zhi"
                           :disabled="scope.row.disabled"
@@ -392,7 +392,7 @@
                   >
                     <el-table-column prop="dbkd" label="钢梁编号"></el-table-column>
                     <el-table-column label="值">
-                      <template slot-scope="select">
+                      <template v-slot="select">
                         <el-select
                           v-model="select.row.xielv"
                           :disabled="select.row.disabled"
@@ -1447,7 +1447,6 @@ export default class BiaoZhunHengDuanMian extends Vue {
 
     // 四丶 钢主梁
     this.jsonDataService.amoutGZL = this.GangLiangform.GLpianshu;
-
     const dbDirect = this.jsonDataService.exportJSON.MAIN.find(
       e => e.aaak === "dbDirect"
     );
@@ -1667,7 +1666,6 @@ export default class BiaoZhunHengDuanMian extends Vue {
     }
     // 四 钢主梁
     this.GangLiangform.GLpianshu = this.jsonDataService.amoutGZL;
-
     if (this.jsonDataService.uiJSON.isEmpty === "true") {
       console.log("钢主梁不是第一次初始化");
       const fbLay = this.jsonDataService.exportJSON.MAIN.find(
@@ -1970,7 +1968,6 @@ export default class BiaoZhunHengDuanMian extends Vue {
     try {
       this.currentConstruct.serialize();
       const DMJSON: string = await JSON.stringify(this.getDMJSON());
-      console.log(DMJSON);
       const formdata = new FormData();
       formdata.append("componentId", this.construct_id);
       formdata.append("json", encodeURIComponent(DMJSON));

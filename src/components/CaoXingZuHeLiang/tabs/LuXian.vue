@@ -6,7 +6,7 @@
       <el-form ref="form" :model="form" label-width="100px">
         <el-form-item label="DXF文件：">
           <div style="width:500px;text-align:left">
-            <el-upload ref="upload" action :auto-upload="false" :on-change="onAddDxf">
+            <el-upload ref="upload" action :auto-upload="false" :on-change="onAddDxf" :limit=1>
               <el-button slot="trigger" size="small" type="primary">选取文件
               </el-button>
               <el-button style="margin-left: 10px;" size="small" type="success" @click="UploadFiles">上传文件</el-button>

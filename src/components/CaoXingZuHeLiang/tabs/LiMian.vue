@@ -254,36 +254,36 @@
           </el-table-column>
           <el-table-column label="腹板连接">
             <template v-slot="scope">
-              <el-select v-model="scope.row.fblj" placeholder="请选择">
+              <el-select v-model="scope.row.fblj">
                 <el-option
                   v-for="item in options_gljd"
                   :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+                  :label="item"
+                  :value="item"
                 ></el-option>
               </el-select>
             </template>
           </el-table-column>
           <el-table-column label="底板连接">
             <template v-slot="scope">
-              <el-select v-model="scope.row.dblj" placeholder="请选择">
+              <el-select v-model="scope.row.dblj">
                 <el-option
                   v-for="item in options_gljd"
                   :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+                  :label="item"
+                  :value="item"
                 ></el-option>
               </el-select>
             </template>
           </el-table-column>
           <el-table-column label="底板纵肋连接">
             <template v-slot="scope">
-              <el-select v-model="scope.row.dbzllj" placeholder="请选择">
+              <el-select v-model="scope.row.dbzllj">
                 <el-option
                   v-for="item in options_gljd"
                   :key="item.value"
-                  :label="item.label"
-                  :value="item.value"
+                  :label="item"
+                  :value="item"
                 ></el-option>
               </el-select>
             </template>
@@ -677,7 +677,6 @@ export default class LiMian extends Vue {
     );
 
     console.log("反序列化 立面 开始");
-
     // 翼缘板数据反序列化
     this.tableData = [];
     const yy = this.jsonDataService.exportJSON.MAIN.find(
