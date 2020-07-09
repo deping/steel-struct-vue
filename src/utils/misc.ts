@@ -37,8 +37,14 @@ export function makeLabelValueArray(
   value: string,
   start: number,
   end: number,
-  init: {label: string; value: string} [] = []
-): {label: string; value: string}[] {
+  init: {
+    label: string;
+    value: string;
+  }[] = []
+): {
+  label: string;
+  value: string;
+}[] {
   const res = init;
   for (let i = start; i <= end; ++i) {
     res.push({ label: `${label}${i}`, value: `${value}${i}` });
@@ -62,7 +68,7 @@ export function getWsUrl(url: string) {
   if (isDevMode()) {
     host = "192.168.6.54:9994";
   } else {
-    host = document.location.origin.replace(/http|https:\/\//, "");
+    host = document.location.origin.replace(/(http|https):\/\//, "");
   }
   return "ws://" + host + "/ws/" + url;
 }
