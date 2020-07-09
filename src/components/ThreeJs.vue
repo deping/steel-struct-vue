@@ -182,6 +182,10 @@ export default class ThreeJs extends Vue {
       this.camera,
       this.renderer.domElement
     );
+    this.controls.rotateSpeed = 6.0;
+    this.controls.zoomSpeed = 1.25;
+    this.controls.panSpeed = 1.2;
+    this.controls.staticMoving = true;
     this.controls.addEventListener("change", () => {
       this.renderer.render(this.scene, this.camera);
     });
