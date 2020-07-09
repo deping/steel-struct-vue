@@ -4,33 +4,16 @@
     <div id="lower-pane">
       <div id="lower-left">
         <div>
-          <el-button
-            id="generate"
-            type="primary"
-            @click="generateDrawings"
-            :disabled="generateDisabled"
-          >
+          <el-button id="generate" type="primary" @click="generateDrawings" :disabled="generateDisabled">
             出图
           </el-button>
           <span ref="feedback"></span>
         </div>
-        <el-table
-          ref="drawingTable"
-          :data="drawings"
-          stripe
-          :header-cell-style="headerCellStyle"
-          @cell-click="openPDF"
-          height="calc(100% - 100px)"
-          row-class-name="drawing-row"
-        >
+        <el-table ref="drawingTable" :data="drawings" stripe :header-cell-style="headerCellStyle" @cell-click="openPDF"
+                  height="calc(100% - 100px)" row-class-name="drawing-row">
           <el-table-column type="selection" width="40" :selectable="selectable">
           </el-table-column>
-          <el-table-column
-            class-name="file"
-            show-overflow-tooltip
-            prop="fileName"
-            label="文件"
-          >
+          <el-table-column class-name="file" show-overflow-tooltip prop="fileName" label="文件">
           </el-table-column>
           <el-table-column prop="dxfPrice" label="价格" width="60">
           </el-table-column>
@@ -46,11 +29,7 @@
         <iframe scrolling="no" ref="pdfViewer"></iframe>
       </div>
     </div>
-    <qrcode-dlg
-      @paid="onPaid"
-      :buyUrl="buyUrl"
-      :visible.sync="visible"
-    ></qrcode-dlg>
+    <qrcode-dlg @paid="onPaid" :buyUrl="buyUrl" :visible.sync="visible"></qrcode-dlg>
   </div>
 </template>
 
@@ -312,34 +291,41 @@ export default class TuzhiChakan extends Vue {
 
   updateMessage(uuid: string) {
     this.$refs.messagePane.innerHTML = "";
-    this.webSocket = new WebSocket(getWsUrl(this.construct_id + "/" + uuid));
-    this.webSocket.onmessage = (event: MessageEvent) => {
-      // 自动滚动到最下方
-      this.$refs.messagePane.scrollTop = this.$refs.messagePane.scrollHeight;
-      const line = document.createElement("p");
-      const message = event.data as string;
-      const colonPos = message.indexOf(":");
-      if (colonPos !== -1) {
-        const stateCode = message.substring(0, colonPos);
-        line.innerText = message.substring(colonPos + 1);
-        switch (stateCode) {
-          case "0":
-            line.style.color = "red";
-            break;
-          case "1":
-            line.style.color = "blue";
-            break;
-          case "2":
-          default:
-            line.style.color = "black";
-            break;
+    try {
+      this.webSocket = new WebSocket(getWsUrl(this.construct_id + "/" + uuid));
+      this.webSocket.onmessage = (event: MessageEvent) => {
+        // 自动滚动到最下方
+        this.$refs.messagePane.scrollTop = this.$refs.messagePane.scrollHeight;
+        const line = document.createElement("p");
+        const message = event.data as string;
+        const colonPos = message.indexOf(":");
+        if (colonPos !== -1) {
+          const stateCode = message.substring(0, colonPos);
+          line.innerText = message.substring(colonPos + 1);
+          switch (stateCode) {
+            case "0":
+              line.style.color = "red";
+              break;
+            case "1":
+              line.style.color = "blue";
+              break;
+            case "2":
+            default:
+              line.style.color = "black";
+              break;
+          }
+        } else {
+          line.innerText = message;
+          line.style.color = "black";
         }
-      } else {
-        line.innerText = message;
-        line.style.color = "black";
-      }
+        this.$refs.messagePane.appendChild(line);
+      };
+    } catch (err) {
+      const line = document.createElement("p");
+      line.style.color = "red";
+      line.innerText = err.message;
       this.$refs.messagePane.appendChild(line);
-    };
+    }
   }
 
   fillDrawings(data: any) {
