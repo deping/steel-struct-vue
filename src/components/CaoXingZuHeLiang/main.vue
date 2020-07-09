@@ -146,6 +146,8 @@ export default class CaoxingZuheliang extends Vue implements Persist {
           type: "error",
           message: res.data.msg
         });
+      } else {
+        console.log("保存组件信息");
       }
     } catch (err) {
       this.$message({
@@ -158,7 +160,7 @@ export default class CaoxingZuheliang extends Vue implements Persist {
   async load() {
     try {
       const res1 = await axios.get(getAjaxUrl("/calc/parts/getAllPartsIndex"));
-      console.log("得到零件库");
+      console.log("加载零件库");
       const infoLJK = res1.data as JsonData;
       if (infoLJK.data) {
         this.jsonDataService.ljkJSON = infoLJK.data as LJK;
@@ -167,45 +169,42 @@ export default class CaoxingZuheliang extends Vue implements Persist {
 
       const formdata = new FormData();
       formdata.append("componentId", this.construct_id);
-      formdata.append("jsonFlg", "33");
       const res2 = await axios.post(
         getAjaxUrl("/calc/queryComponentInfo"),
         formdata
       );
-      console.log("得到组件信息");
+      console.log("加载组件信息");
       const componentInfo = res2.data as ComponentInfo;
       // uiJSON
       if (componentInfo.uiJson) {
         this.jsonDataService.uiJSON = JSON.parse(componentInfo.uiJson);
       }
-      // 全局JSON
-      if (componentInfo.data.componentInputParamList.length !== 0) {
-        const czJSON = componentInfo.data.componentInputParamList[0].inputParam;
-        if (czJSON) {
-          this.jsonDataService.exportJSON = JSON.parse(czJSON);
-        } else {
-          this.jsonDataService.exportJSON = JSON.parse(
-            JSON.stringify(JsonDataService.defaultExportJSON)
-          );
+      let exportJSONSet = false;
+      let htszJSONSet = false;
+      const componentInputParamList =
+        componentInfo.data.componentInputParamList;
+      for (const inputParam of componentInputParamList) {
+        const jsonString = inputParam.inputParam;
+        const json = JSON.parse(jsonString);
+        if (inputParam.jsonFlag === "33") {
+          this.jsonDataService.exportJSON = json;
+          exportJSONSet = true;
+        } else if (inputParam.jsonFlag === "44") {
+          this.jsonDataService.htszJSON = json;
+          htszJSONSet = true;
         }
       }
-
-      const formdata2 = new FormData();
-      formdata2.append("componentId", this.construct_id);
-      formdata2.append("jsonFlg", "44");
-      const res3 = await axios.post(
-        getAjaxUrl("/calc/parts/getExportJSON"),
-        formdata2
-      );
-      console.log("得到绘图设置");
-      const data = res3.data as JsonData;
-      if (data.data) {
-        this.jsonDataService.htszJSON = JSON.parse(data.data);
-      } else {
+      if (!exportJSONSet) {
+        this.jsonDataService.exportJSON = JSON.parse(
+          JSON.stringify(JsonDataService.defaultExportJSON)
+        );
+      }
+      if (!htszJSONSet) {
         this.jsonDataService.htszJSON = JSON.parse(
           JSON.stringify(JsonDataService.defaultHtszJSON)
         );
       }
+
       this.deserialize();
     } catch (err) {
       this.$message({
