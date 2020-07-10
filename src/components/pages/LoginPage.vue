@@ -36,47 +36,25 @@
 
         <!-- Main Content area -->
         <div id="content">
-          <el-form
-            id="box"
-            :model="user"
-            :rules="rules"
-            ref="loginForm"
-            label-position="left"
-            label-width="0px"
-          >
+          <el-form id="box" :model="user" :rules="rules" ref="loginForm" label-position="left" label-width="0px">
             <el-form-item prop="name">
-              <el-input
-                v-model="user.name"
-                placeholder="手机号"
-                @keyup.enter.native="login"
-              ></el-input>
+              <el-input v-model="user.name" placeholder="手机号" @keyup.enter.native="login"></el-input>
             </el-form-item>
             <el-form-item prop="password">
-              <el-input
-                type="password"
-                v-model="user.password"
-                placeholder="密码"
-                show-password
-                @keyup.enter.native="login"
-              ></el-input>
+              <el-input type="password" v-model="user.password" placeholder="密码" show-password
+                        @keyup.enter.native="login"></el-input>
             </el-form-item>
             <el-form-item prop="captcha">
-              <el-input
-                v-model="user.captcha"
-                placeholder="验证码"
-                @keyup.enter.native="login"
-              >
-                <img
-                  ref="captchaImg"
-                  src=""
-                  @click="changeCaptcha()"
-                  title="更换验证码"
-                  slot="append"
-                />
+              <el-input v-model="user.captcha" placeholder="验证码" @keyup.enter.native="login">
+                <img ref="captchaImg" src="" @click="changeCaptcha" title="更换验证码" slot="append" />
               </el-input>
             </el-form-item>
             <el-form-item prop="login">
-              <el-button type="primary" @click="login()">登录</el-button>
+              <el-button type="primary" @click="login">登录</el-button>
+            </el-form-item>
+            <el-form-item>
+              <el-button @click="resetPasswordDlgVisible = true" type="text" class="minor">忘记密码</el-button>
+              <el-button @click="registerUserDlgVisible = true" type="text" class="minor">注册账号</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -88,6 +66,9 @@
         </div>
       </div>
     </div>
+
+    <reset-password-dlg :visible.sync="resetPasswordDlgVisible"></reset-password-dlg>
+    <register-user-dlg :visible.sync="registerUserDlgVisible"></register-user-dlg>
   </div>
 </template>
 
@@ -99,8 +80,15 @@ import {
 import { Form } from "element-ui";
 import { getAjaxUrl } from "@/utils/path";
 import axios from "axios";
+import RegisterUserDlg from "./RegisterUserDlg.vue";
+import ResetPasswordDlg from "./ResetPasswordDlg.vue";
 
-@Component
+@Component({
+  components: {
+    "reset-password-dlg": ResetPasswordDlg,
+    "register-user-dlg": RegisterUserDlg
+  }
+})
 export default class LoginPage extends Vue {
   name = "login-page";
 
@@ -121,6 +109,9 @@ export default class LoginPage extends Vue {
       { length: 5, message: "长度在4个字符", trigger: "blur" }
     ]
   };
+
+  resetPasswordDlgVisible = false;
+  registerUserDlgVisible = false;
 
   $refs!: {
     loginForm: Form;
@@ -262,5 +253,8 @@ input.el-input__inner {
 }
 label.el-form-item__label {
   padding: 0px 10px;
+}
+button.minor {
+  font-size: 16px;
 }
 </style>
