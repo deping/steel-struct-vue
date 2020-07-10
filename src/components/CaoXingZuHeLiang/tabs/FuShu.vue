@@ -22,7 +22,7 @@
           </el-table-column>
           <el-table-column label="横向定位">
             <template v-slot="scope">
-              <el-input v-model="scope.row.hxdw" clearable></el-input>
+              <el-input v-model.number="scope.row.hxdw" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="支座类型" width="190px">
@@ -39,13 +39,15 @@
           </el-table-column>
           <el-table-column>
             <template v-slot="scope">
-              <el-button size="mini" type="primary" @click="addRow(scope.$index, tableData0)">插入</el-button>
-              <el-button size="mini" type="danger" @click="removeRow(scope.$index, tableData0)">删除</el-button>
+              <el-button size="mini" type="primary" @click="addRow(scope.$index, tableData[gangLiangShu - 2])">插入
+              </el-button>
+              <el-button size="mini" type="danger" @click="removeRow(scope.$index, tableData[gangLiangShu - 2])">删除
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
         <div style="width: 100%;text-align:center; margin:10px 0 0 0">
-          <el-button type="primary" @click="addRow2(tableData0)" style="float:left">增加行</el-button>
+          <el-button type="primary" @click="addRow2(tableData[gangLiangShu - 2])" style="float:left">增加行</el-button>
         </div>
       </div>
       <p>备注：横向定位，默认参考线为道路设计线</p>
@@ -66,7 +68,7 @@
           </el-table-column>
           <el-table-column label="纵向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.zxbz" clearable></el-input>
+              <el-input v-model.number="scope.row.zxbz" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="横向索引腹板线" width="190px">
@@ -79,7 +81,7 @@
           </el-table-column>
           <el-table-column label="横向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.hxbz" clearable></el-input>
+              <el-input v-model.number="scope.row.hxbz" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="引水板定位">
@@ -131,7 +133,7 @@
           </el-table-column>
           <el-table-column label="纵向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.jxkZxbz" clearable></el-input>
+              <el-input v-model.number="scope.row.jxkZxbz" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="横向/竖向布置参考线" width="190px">
@@ -178,12 +180,12 @@
         <el-table :data="tableDataYgd" stripe style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="纵向定位（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.ygdZxdw" clearable></el-input>
+              <el-input v-model.number="scope.row.ygdZxdw" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="矢高（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.sg" clearable></el-input>
+              <el-input v-model.number="scope.row.sg" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column>
@@ -208,7 +210,7 @@
         <el-table :data="tableDataYybJld" stripe style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="起始端/终止端距离（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.qsdJl" clearable></el-input>
+              <el-input v-model.number="scope.row.qsdJl" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="布置（mm）">
@@ -238,17 +240,17 @@
         <el-table :data="tableDataHgbJld" stripe style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="箱室内调整间距（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.xsjj" clearable></el-input>
+              <el-input v-model.number="scope.row.xsjj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="箱梁范围内调整间距（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.xljj" clearable></el-input>
+              <el-input v-model.number="scope.row.xljj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="标准间距（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.bzjj" clearable></el-input>
+              <el-input v-model.number="scope.row.bzjj" clearable></el-input>
             </template>
           </el-table-column>
         </el-table>
@@ -1073,63 +1075,68 @@ export default class FuShu extends Vue {
 
     if (this.gangLiangShu === 2) {
       const zz = this.jsonDataService.exportJSON.ZZ;
-      const tableData0: any[] = this.tableData;
-      const minLen = Math.min(zz.length, tableData0.length);
-      for (let i = 0; i < minLen; ++i) {
-        const tdBH = tableData0[i];
-        tdBH.bh = zz[i].aaaid;
-        tdBH.zxdw = zz[i].zxckx;
-        tdBH.hxdw = zz[i].hxpos;
-        tdBH.zzlx = zz[i].type;
-        tdBH.xxk = zz[i].xxk;
+      const tableData0 = this.tableData[0];
+      tableData0.splice(0);
+      for (let i = 0; i < zz.length; ++i) {
+        tableData0.push({
+          bh: zz[i].aaaid,
+          zxdw: zz[i].zxckx,
+          hxdw: zz[i].hxpos,
+          zzlx: zz[i].type,
+          xxk: zz[i].xxk
+        });
       }
     } else if (this.gangLiangShu === 3) {
       const zz1 = this.jsonDataService.exportJSON.ZZ;
-      const tableData1: any[] = this.tableData;
-      const minLen = Math.min(zz1.length, tableData1.length);
-      for (let i = 0; i < minLen; ++i) {
-        const tdBH1 = tableData1[i];
-        tdBH1.bh = zz1[i].aaaid;
-        tdBH1.zxdw = zz1[i].zxckx;
-        tdBH1.hxdw = zz1[i].hxpos;
-        tdBH1.zzlx = zz1[i].type;
-        tdBH1.xxk = zz1[i].xxk;
+      const tableData1 = this.tableData[1];
+      tableData1.splice(0);
+      for (let i = 0; i < zz1.length; ++i) {
+        tableData1.push({
+          bh: zz1[i].aaaid,
+          zxdw: zz1[i].zxckx,
+          hxdw: zz1[i].hxpos,
+          zzlx: zz1[i].type,
+          xxk: zz1[i].xxk
+        });
       }
     } else if (this.gangLiangShu === 4) {
       const zz2 = this.jsonDataService.exportJSON.ZZ;
-      const tableData2: any[] = this.tableData;
-      const minLen = Math.min(zz2.length, tableData2.length);
-      for (let i = 0; i < minLen; ++i) {
-        const tdBH2 = tableData2[i];
-        tdBH2.bh = zz2[i].aaaid;
-        tdBH2.zxdw = zz2[i].zxckx;
-        tdBH2.hxdw = zz2[i].hxpos;
-        tdBH2.zzlx = zz2[i].type;
-        tdBH2.xxk = zz2[i].xxk;
+      const tableData2 = this.tableData[2];
+      tableData2.splice(0);
+      for (let i = 0; i < zz2.length; ++i) {
+        tableData2.push({
+          bh: zz2[i].aaaid,
+          zxdw: zz2[i].zxckx,
+          hxdw: zz2[i].hxpos,
+          zzlx: zz2[i].type,
+          xxk: zz2[i].xxk
+        });
       }
     } else if (this.gangLiangShu === 5) {
       const zz3 = this.jsonDataService.exportJSON.ZZ;
-      const tableData3: any[] = this.tableData;
-      const minLen = Math.min(zz3.length, tableData3.length);
-      for (let i = 0; i < minLen; ++i) {
-        const tdBH3 = tableData3[i];
-        tdBH3.bh = zz3[i].aaaid;
-        tdBH3.zxdw = zz3[i].zxckx;
-        tdBH3.hxdw = zz3[i].hxpos;
-        tdBH3.zzlx = zz3[i].type;
-        tdBH3.xxk = zz3[i].xxk;
+      const tableData3 = this.tableData[3];
+      tableData3.splice(0);
+      for (let i = 0; i < zz3.length; ++i) {
+        tableData3.push({
+          bh: zz3[i].aaaid,
+          zxdw: zz3[i].zxckx,
+          hxdw: zz3[i].hxpos,
+          zzlx: zz3[i].type,
+          xxk: zz3[i].xxk
+        });
       }
     } else if (this.gangLiangShu === 6) {
       const zz4 = this.jsonDataService.exportJSON.ZZ;
-      const tableData4: any[] = this.tableData;
-      const minLen = Math.min(zz4.length, tableData4.length);
-      for (let i = 0; i < minLen; ++i) {
-        const tdBH4 = tableData4[i];
-        tdBH4.bh = zz4[i].aaaid;
-        tdBH4.zxdw = zz4[i].zxckx;
-        tdBH4.hxdw = zz4[i].hxpos;
-        tdBH4.zzlx = zz4[i].type;
-        tdBH4.xxk = zz4[i].xxk;
+      const tableData4 = this.tableData[4];
+      tableData4.splice(0);
+      for (let i = 0; i < zz4.length; ++i) {
+        tableData4.push({
+          bh: zz4[i].aaaid,
+          zxdw: zz4[i].zxckx,
+          hxdw: zz4[i].hxpos,
+          zzlx: zz4[i].type,
+          xxk: zz4[i].xxk
+        });
       }
     }
     // 泄水孔
