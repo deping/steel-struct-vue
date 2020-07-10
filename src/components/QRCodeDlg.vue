@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible="visible" width="400px">
+  <el-dialog :visible="visible" width="400px" @update:visible="updateVisible($event)">
     <canvas ref="canvas"></canvas>
     <br />
     <h4>请使用支付宝扫码支付</h4>
@@ -69,6 +69,10 @@ export default class QRCodeDlg extends Vue {
 
   close() {
     this.$emit("update:visible", false);
+  }
+
+  updateVisible(visible: boolean) {
+    this.$emit("update:visible", visible);
   }
 }
 </script>

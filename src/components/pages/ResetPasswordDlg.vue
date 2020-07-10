@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible="visible" width="400px">
+  <el-dialog :visible="visible" width="400px" @update:visible="updateVisible($event)">
     <el-form ref="form" :model="user" :rules="rules" label-width="80px">
       <el-form-item label="邮箱" prop="email">
         <el-input type="email" v-model="user.email"></el-input>
@@ -70,6 +70,10 @@ export default class ResetPasswordDlg extends Vue {
 
   close() {
     this.$emit("update:visible", false);
+  }
+
+  updateVisible(visible: boolean) {
+    this.$emit("update:visible", visible);
   }
 }
 </script>

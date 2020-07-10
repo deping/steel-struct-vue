@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :visible="visible" width="400px">
+  <el-dialog :visible="visible" width="400px" @update:visible="updateVisible($event)">
     <el-form ref="form" :model="user" :rules="rules" label-width="80px">
       <el-form-item label="手机号" prop="phone">
         <el-input v-model="user.phone"></el-input>
@@ -195,6 +195,10 @@ export default class RegisterUserDlg extends Vue {
 
   close() {
     this.$emit("update:visible", false);
+  }
+
+  updateVisible(visible: boolean) {
+    this.$emit("update:visible", visible);
   }
 }
 </script>
