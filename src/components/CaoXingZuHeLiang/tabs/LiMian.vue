@@ -257,58 +257,55 @@ export default class LiMian extends Vue {
   };
 
   getLMJSON(): any {
+    const main = this.jsonDataService.exportJSON.MAIN;
     const LMJSON = {
       MAIN: [
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "name"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "type"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "note1"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "note2"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "bk"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "zs"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "es"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "qmCS"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "hulan"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "pz"),
-        this.jsonDataService.exportJSON.MAIN.find(
-          e => e.aaak === "importFiles"
-        ),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "fbLay"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xfK"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbL"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "ckW"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "ckH"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "ckLS"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "ckRS"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dsc"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "tt"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dt"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "bt"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dunTopD"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "sybTopD"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xbLenS"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xbLenE"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xbDS"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xbDE"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "glH"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbDirect"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "fbt"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "yybB"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbCSType"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbExtendfb"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "qmbMat"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "gbMat"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "yybD"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "fbD"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbD"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "hgbLay"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "sxjjLLay"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "ygd"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "zxjtw"),
-        this.jsonDataService.exportJSON.MAIN.find(
-          e => e.aaak === "bHulanWaiBaoInLx"
-        ),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "fbDirect"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "yybDirect")
+        main.find(e => e.aaak === "name"),
+        main.find(e => e.aaak === "type"),
+        main.find(e => e.aaak === "note1"),
+        main.find(e => e.aaak === "note2"),
+        main.find(e => e.aaak === "bk"),
+        main.find(e => e.aaak === "zs"),
+        main.find(e => e.aaak === "es"),
+        main.find(e => e.aaak === "qmCS"),
+        main.find(e => e.aaak === "hulan"),
+        main.find(e => e.aaak === "pz"),
+        main.find(e => e.aaak === "importFiles"),
+        main.find(e => e.aaak === "fbLay"),
+        main.find(e => e.aaak === "xfK"),
+        main.find(e => e.aaak === "dbL"),
+        main.find(e => e.aaak === "ckW"),
+        main.find(e => e.aaak === "ckH"),
+        main.find(e => e.aaak === "ckLS"),
+        main.find(e => e.aaak === "ckRS"),
+        main.find(e => e.aaak === "dsc"),
+        main.find(e => e.aaak === "tt"),
+        main.find(e => e.aaak === "dt"),
+        main.find(e => e.aaak === "bt"),
+        main.find(e => e.aaak === "dunTopD"),
+        main.find(e => e.aaak === "sybTopD"),
+        main.find(e => e.aaak === "xbLenS"),
+        main.find(e => e.aaak === "xbLenE"),
+        main.find(e => e.aaak === "xbDS"),
+        main.find(e => e.aaak === "xbDE"),
+        main.find(e => e.aaak === "glH"),
+        main.find(e => e.aaak === "dbDirect"),
+        main.find(e => e.aaak === "fbt"),
+        main.find(e => e.aaak === "yybB"),
+        main.find(e => e.aaak === "dbCSType"),
+        main.find(e => e.aaak === "dbExtendfb"),
+        main.find(e => e.aaak === "qmbMat"),
+        main.find(e => e.aaak === "gbMat"),
+        main.find(e => e.aaak === "yybD"),
+        main.find(e => e.aaak === "fbD"),
+        main.find(e => e.aaak === "dbD"),
+        main.find(e => e.aaak === "hgbLay"),
+        main.find(e => e.aaak === "sxjjLLay"),
+        main.find(e => e.aaak === "ygd"),
+        main.find(e => e.aaak === "zxjtw"),
+        main.find(e => e.aaak === "bHulanWaiBaoInLx"),
+        main.find(e => e.aaak === "fbDirect"),
+        main.find(e => e.aaak === "yybDirect")
       ],
       ZXJJL: this.jsonDataService.exportJSON.ZXJJL,
       ZXJT: this.jsonDataService.exportJSON.ZXJT
@@ -500,41 +497,34 @@ export default class LiMian extends Vue {
   serialize() {
     console.log("序列化 立面 开始");
     // 翼缘板数据
-    const yy = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "yybD"
-    );
+    const main = this.jsonDataService.exportJSON.MAIN;
+    const yy = main.find(e => e.aaak === "yybD");
     if (yy) {
       yy.v = this.getStringYYBHD(this.tableData);
     }
     // 腹板数据
-    const fb = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "fbD");
+    const fb = main.find(e => e.aaak === "fbD");
     if (fb) {
       fb.v = this.getStringFBBHD(this.tableData_fb);
     }
     // 底板数据
-    const db = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbD");
+    const db = main.find(e => e.aaak === "dbD");
     if (db) {
       db.v = this.getStringDBHD(this.tableData_db);
     }
     // 纵桥向横隔系布置
     // 横隔板布置
-    const hgbbz = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "hgbLay"
-    );
+    const hgbbz = main.find(e => e.aaak === "hgbLay");
     if (hgbbz) {
       hgbbz.v = this.form.hgbbz;
     }
     // 竖向加劲肋布置
-    const sxjjlbz = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "sxjjLLay"
-    );
+    const sxjjlbz = main.find(e => e.aaak === "sxjjLLay");
     if (sxjjlbz) {
       sxjjlbz.v = this.form.sxjjlbz;
     }
     // 钢梁阶段布置
-    const zxjfkd = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "zxjtw"
-    );
+    const zxjfkd = main.find(e => e.aaak === "zxjtw");
     if (zxjfkd) {
       zxjfkd.v = this.form_gl.zxjfkd;
     }
@@ -554,9 +544,8 @@ export default class LiMian extends Vue {
     console.log("反序列化 立面 开始");
     // 翼缘板数据反序列化
     this.tableData = [];
-    const yy = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "yybD"
-    );
+    const main = this.jsonDataService.exportJSON.MAIN;
+    const yy = main.find(e => e.aaak === "yybD");
     if (yy && yy.v) {
       yy.v
         .split(";")
@@ -574,9 +563,7 @@ export default class LiMian extends Vue {
 
     // 腹板数据反序列化
     this.tableData_fb = [];
-    const yy_fb = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "fbD"
-    );
+    const yy_fb = main.find(e => e.aaak === "fbD");
     if (yy_fb && yy_fb.v) {
       yy_fb.v
         .split(";")
@@ -594,9 +581,7 @@ export default class LiMian extends Vue {
 
     // 底板数据反序列化
     this.tableData_db = [];
-    const yy_db = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "dbD"
-    );
+    const yy_db = main.find(e => e.aaak === "dbD");
     if (yy_db && yy_db.v) {
       yy_db.v
         .split(";")
@@ -614,16 +599,12 @@ export default class LiMian extends Vue {
 
     // 纵桥向横隔系布置
     // 横隔板布置
-    const hgbbz = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "hgbLay"
-    );
+    const hgbbz = main.find(e => e.aaak === "hgbLay");
     if (hgbbz) {
       this.form.hgbbz = hgbbz.v;
     }
     // 竖向加劲肋布置
-    const sxjjlbz = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "sxjjLLay"
-    );
+    const sxjjlbz = main.find(e => e.aaak === "sxjjLLay");
     if (sxjjlbz) {
       this.form.sxjjlbz = sxjjlbz.v;
     }
@@ -644,9 +625,7 @@ export default class LiMian extends Vue {
         tmp.dbzllj = col[4];
         this.tableData_gljd.push(tmp);
       });
-    const zxjfkd = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "zxjtw"
-    );
+    const zxjfkd = main.find(e => e.aaak === "zxjtw");
     if (zxjfkd) {
       this.form_gl.zxjfkd = zxjfkd.v;
     }

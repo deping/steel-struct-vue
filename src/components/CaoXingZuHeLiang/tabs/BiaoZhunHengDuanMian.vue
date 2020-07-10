@@ -999,6 +999,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
   // 获取字符串FBLay用于序列化
   getStringFBLay() {
     let res = "";
+    const main = this.jsonDataService.exportJSON.MAIN;
     if (this.GangLiangform.GLpianshu === 2) {
       const tmp = this.GangZLData[this.GangLiangform.GLpianshu - 2][0];
       const a: number = parseFloat(tmp.zxb);
@@ -1007,9 +1008,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
       const d: number = parseFloat(tmp.gl2);
       const e: number = parseFloat(tmp.yxb);
       res = `ZBX,${a};ZBX,${a + b};YBX,${-(d + e)};YBX,${-e}`;
-      const extraGzl = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "extraGzl"
-      );
+      const extraGzl = main.find(e => e.aaak === "extraGzl");
       if (extraGzl) {
         extraGzl.v = String(c);
       }
@@ -1026,9 +1025,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
       res = `ZBX,${a};ZBX,${a + b};ZBX,${a + b + c};YBX,${-(e + f + g)};YBX,${-(
         f + g
       )};YBX,${-g}`;
-      const extraGzl = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "extraGzl"
-      );
+      const extraGzl = main.find(e => e.aaak === "extraGzl");
       if (extraGzl) {
         extraGzl.v = String(d);
       }
@@ -1050,9 +1047,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
         d};YBX,${-(f + g + h + i)};YBX,${-(g + h + i)};YBX,${-(
         h + i
       )};YBX,${-i}`;
-      const extraGzl = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "extraGzl"
-      );
+      const extraGzl = main.find(e => e.aaak === "extraGzl");
       if (extraGzl) {
         extraGzl.v = String(e);
       }
@@ -1079,9 +1074,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
         j +
         k
       )};YBX,${-(i + j + k)};YBX,${-(j + k)};YBX,${-k}`;
-      const extraGzl = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "extraGzl"
-      );
+      const extraGzl = main.find(e => e.aaak === "extraGzl");
       if (extraGzl) {
         extraGzl.v = String(f);
       }
@@ -1116,9 +1109,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
         l +
         m
       )};YBX,${-(l + m)};YBX,${-m}`;
-      const extraGzl = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "extraGzl"
-      );
+      const extraGzl = main.find(e => e.aaak === "extraGzl");
       if (extraGzl) {
         extraGzl.v = String(g);
       }
@@ -1136,9 +1127,8 @@ export default class BiaoZhunHengDuanMian extends Vue {
     });
     let index = 0;
     index = tableData.length / 2 - 2;
-    const extraGzl = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "extraGzl"
-    );
+    const main = this.jsonDataService.exportJSON.MAIN;
+    const extraGzl = main.find(e => e.aaak === "extraGzl");
     if (this.GangZhuLiangoptions[index] === 2) {
       this.GangZLData = [
         [
@@ -1244,14 +1234,13 @@ export default class BiaoZhunHengDuanMian extends Vue {
     this.tableData.forEach(value => {
       stringPZ += `${value.pz},${value.value},${value.pzhd};`;
     });
-    const pz = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "pz");
+    const main = this.jsonDataService.exportJSON.MAIN;
+    const pz = main.find(e => e.aaak === "pz");
     if (pz) {
       pz.v = stringPZ.substring(0, stringPZ.length - 1);
     }
     // 二丶 护栏
-    const hulan = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "hulan"
-    );
+    const hulan = main.find(e => e.aaak === "hulan");
     if (hulan) {
       hulan.v = this.getStringHL();
     }
@@ -1259,91 +1248,69 @@ export default class BiaoZhunHengDuanMian extends Vue {
       (this.form.HuLan === "外包" && this.form.luji === "外包在路基宽度内") ||
       (this.form.HuLan === "内缩" && this.form.luji === "内缩在路基宽度内")
     ) {
-      const bHulanWaiBaoInLx = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "bHulanWaiBaoInLx"
-      );
+      const bHulanWaiBaoInLx = main.find(e => e.aaak === "bHulanWaiBaoInLx");
       if (bHulanWaiBaoInLx) {
         bHulanWaiBaoInLx.v = "1";
       }
     } else {
-      const bHulanWaiBaoInLx = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "bHulanWaiBaoInLx"
-      );
+      const bHulanWaiBaoInLx = main.find(e => e.aaak === "bHulanWaiBaoInLx");
       if (bHulanWaiBaoInLx) {
         bHulanWaiBaoInLx.v = "0";
       }
     }
     // 三丶桥面板
-    const dsc = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "dsc"
-    );
+    const dsc = main.find(e => e.aaak === "dsc");
     if (dsc) {
       dsc.v = `${this.QMBform.liangduanSX},${this.QMBform.banjingR}`;
     }
-    const tt = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "tt");
+    const tt = main.find(e => e.aaak === "tt");
     if (tt) {
       tt.v =
         this.QMBform.QiaoMianBan === "等厚"
           ? this.QMBform.DengHou
           : this.QMBform.qmbbzhd;
     }
-    const dt = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dt");
+    const dt = main.find(e => e.aaak === "dt");
     if (dt) {
       dt.v =
         this.QMBform.QiaoMianBan === "等厚"
           ? this.QMBform.DengHou
           : this.QMBform.qiaomianbanBCH;
     }
-    const sybTopD = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "sybTopD"
-    );
+    const sybTopD = main.find(e => e.aaak === "sybTopD");
     if (sybTopD) {
       sybTopD.v = this.QMBform.xiangnei;
     }
-    const xbDS = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "xbDS"
-    );
+    const xbDS = main.find(e => e.aaak === "xbDS");
     if (xbDS) {
       xbDS.v = `${this.QMBform.xuanbihd},0`;
     }
 
-    const xbDE = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "xbDE"
-    );
+    const xbDE = main.find(e => e.aaak === "xbDE");
     if (xbDE) {
       xbDE.v = `${this.QMBform.xuanbihd},0`;
     }
-    const fbt = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "fbt"
-    );
+    const fbt = main.find(e => e.aaak === "fbt");
     if (fbt) {
       fbt.v = this.QMBform.chengtuo;
     }
 
     // 四丶 钢主梁
     this.jsonDataService.amoutGZL = this.GangLiangform.GLpianshu;
-    const dbDirect = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "dbDirect"
-    );
+    const dbDirect = main.find(e => e.aaak === "dbDirect");
     if (dbDirect) {
       dbDirect.v = "1";
     }
 
-    const fbDirect = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "fbDirect"
-    );
+    const fbDirect = main.find(e => e.aaak === "fbDirect");
     if (fbDirect) {
       fbDirect.v = "3";
     }
-    const yybDirect = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "yybDirect"
-    );
+    const yybDirect = main.find(e => e.aaak === "yybDirect");
     if (yybDirect) {
       yybDirect.v = "3";
     }
-    const dbCSType = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "dbCSType"
-    );
+    const dbCSType = main.find(e => e.aaak === "dbCSType");
     if (dbCSType) {
       if (this.GangLiangform.DBxl === "水平") {
         dbCSType.v = "2";
@@ -1352,63 +1319,45 @@ export default class BiaoZhunHengDuanMian extends Vue {
       }
     }
 
-    const dbExtendfb = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "dbExtendfb"
-    );
+    const dbExtendfb = main.find(e => e.aaak === "dbExtendfb");
     if (dbExtendfb) {
       dbExtendfb.v = this.GangLiangform.DBws;
     }
-    const gbMat = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "gbMat"
-    );
+    const gbMat = main.find(e => e.aaak === "gbMat");
     if (gbMat) {
       gbMat.v = this.GangLiangform.GLcaizhi;
     }
 
     if (this.GangLiangform.Fbxlfs === "水平尺寸") {
-      const xfK = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "xfK"
-      );
+      const xfK = main.find(e => e.aaak === "xfK");
       if (xfK) {
         xfK.v = "";
       }
-      const dbL = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "dbL"
-      );
+      const dbL = main.find(e => e.aaak === "dbL");
       if (dbL) {
         dbL.v = this.getStringDBKD();
       }
     }
     if (this.GangLiangform.Fbxlfs === "固定斜率") {
-      const dbL = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "dbL"
-      );
+      const dbL = main.find(e => e.aaak === "dbL");
       if (dbL) {
         dbL.v = "";
       }
-      const xfK = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "xfK"
-      );
+      const xfK = main.find(e => e.aaak === "xfK");
       if (xfK) {
         xfK.v = this.getStringFBXL();
       }
     }
-    const yybB = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "yybB"
-    );
+    const yybB = main.find(e => e.aaak === "yybB");
     if (yybB) {
       yybB.v = this.GangLiangform.Yybkd;
     }
-    const glH = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "glH"
-    );
+    const glH = main.find(e => e.aaak === "glH");
     if (glH) {
       glH.v = this.GangLiangform.Gzlgd;
     }
     this.jsonDataService.valueQB = this.valueQB;
-    const fbLay = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "fbLay"
-    );
+    const fbLay = main.find(e => e.aaak === "fbLay");
     if (fbLay) {
       fbLay.v = this.getStringFBLay();
     }
@@ -1435,7 +1384,8 @@ export default class BiaoZhunHengDuanMian extends Vue {
     console.log("标准横断面反序列化开始");
     // 一 桥面铺装
     this.tableData = [];
-    const pz = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "pz");
+    const main = this.jsonDataService.exportJSON.MAIN;
+    const pz = main.find(e => e.aaak === "pz");
     if (pz) {
       pz.v
         .split(";")
@@ -1455,9 +1405,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
         });
     }
     // 二 护栏
-    const hulan = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "hulan"
-    );
+    const hulan = main.find(e => e.aaak === "hulan");
     if (hulan) {
       let valueHL: number = parseFloat(hulan.v.split(";")[0].split(",")[1]);
       if (valueHL === 0) {
@@ -1469,9 +1417,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
         valueHL = -valueHL;
       }
       this.form.waibao = String(valueHL);
-      const bHulanWaiBaoInLx = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "bHulanWaiBaoInLx"
-      );
+      const bHulanWaiBaoInLx = main.find(e => e.aaak === "bHulanWaiBaoInLx");
       if (bHulanWaiBaoInLx) {
         if (bHulanWaiBaoInLx.v === "1") {
           if (this.form.HuLan === "外包") {
@@ -1484,9 +1430,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
       }
     }
     // 三丶 桥面板
-    const dsc = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "dsc"
-    );
+    const dsc = main.find(e => e.aaak === "dsc");
     if (dsc) {
       dsc.v.split(",").forEach((value, index) => {
         if (index === 0) {
@@ -1497,44 +1441,32 @@ export default class BiaoZhunHengDuanMian extends Vue {
       });
 
       if (this.QMBform.QiaoMianBan === "等厚") {
-        const tt = this.jsonDataService.exportJSON.MAIN.find(
-          e => e.aaak === "tt"
-        );
+        const tt = main.find(e => e.aaak === "tt");
         if (tt) {
           this.QMBform.DengHou = tt.v;
         }
       } else {
-        const tt = this.jsonDataService.exportJSON.MAIN.find(
-          e => e.aaak === "tt"
-        );
+        const tt = main.find(e => e.aaak === "tt");
         if (tt) {
           this.QMBform.qmbbzhd = tt.v;
         }
-        const dt = this.jsonDataService.exportJSON.MAIN.find(
-          e => e.aaak === "dt"
-        );
+        const dt = main.find(e => e.aaak === "dt");
         if (dt) {
           this.QMBform.qiaomianbanBCH = dt.v;
         }
       }
 
-      const sybTopD = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "sybTopD"
-      );
+      const sybTopD = main.find(e => e.aaak === "sybTopD");
       if (sybTopD) {
         this.QMBform.xiangnei = sybTopD.v;
       }
 
-      const xbDS = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "xbDS"
-      );
+      const xbDS = main.find(e => e.aaak === "xbDS");
       if (xbDS) {
         this.QMBform.xuanbihd = xbDS.v.split(",")[0];
       }
 
-      const fbt = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "fbt"
-      );
+      const fbt = main.find(e => e.aaak === "fbt");
       if (fbt) {
         this.QMBform.chengtuo = fbt.v;
       }
@@ -1543,16 +1475,12 @@ export default class BiaoZhunHengDuanMian extends Vue {
     this.GangLiangform.GLpianshu = this.jsonDataService.amoutGZL;
     if (this.jsonDataService.uiJSON.isEmpty === "true") {
       console.log("钢主梁不是第一次初始化");
-      const fbLay = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "fbLay"
-      );
+      const fbLay = main.find(e => e.aaak === "fbLay");
       if (fbLay) {
         this.updateDataGZLByJSON(fbLay.v);
       }
     }
-    const dbDirect = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "dbDirect"
-    );
+    const dbDirect = main.find(e => e.aaak === "dbDirect");
     if (dbDirect) {
       if (parseInt(dbDirect.v) - 1 === 0) {
         this.GangLiangform.DBhdbh = "顶缘对齐";
@@ -1560,9 +1488,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
         this.GangLiangform.DBhdbh = "底缘对齐";
       }
     }
-    const fbDirect = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "fbDirect"
-    );
+    const fbDirect = main.find(e => e.aaak === "fbDirect");
     if (fbDirect) {
       if (parseInt(fbDirect.v) - 1 === 0) {
         this.GangLiangform.FBhdbh = "外缘对齐";
@@ -1574,17 +1500,13 @@ export default class BiaoZhunHengDuanMian extends Vue {
         this.GangLiangform.FBhdbh = "中心对齐";
       }
     }
-    const yybDirect = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "yybDirect"
-    );
+    const yybDirect = main.find(e => e.aaak === "yybDirect");
     if (yybDirect) {
       if (parseInt(yybDirect.v) - 1 === 0) {
         this.GangLiangform.Yybhd = "顶缘对齐";
       }
     }
-    const dbCSType = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "dbCSType"
-    );
+    const dbCSType = main.find(e => e.aaak === "dbCSType");
     if (dbCSType) {
       if (parseInt(dbCSType.v) - 1 === 0) {
         this.GangLiangform.DBxl = "随横坡";
@@ -1592,21 +1514,15 @@ export default class BiaoZhunHengDuanMian extends Vue {
         this.GangLiangform.DBxl = "水平";
       }
     }
-    const dbExtendfb = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "dbExtendfb"
-    );
+    const dbExtendfb = main.find(e => e.aaak === "dbExtendfb");
     if (dbExtendfb) {
       this.GangLiangform.DBws = dbExtendfb.v;
     }
-    const xfK = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "xfK"
-    );
+    const xfK = main.find(e => e.aaak === "xfK");
     this.isFuBanXieLV = false;
     if (xfK?.v === "") {
       this.GangLiangform.Fbxlfs = "水平尺寸";
-      const dbL = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "dbL"
-      );
+      const dbL = main.find(e => e.aaak === "dbL");
       if (dbL) {
         const dvllength = dbL.v.split(";");
         let tmplength = 0;
@@ -1675,9 +1591,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
       }
     } else {
       this.GangLiangform.Fbxlfs = "固定斜率";
-      const xfK = this.jsonDataService.exportJSON.MAIN.find(
-        e => e.aaak === "xfK"
-      );
+      const xfK = main.find(e => e.aaak === "xfK");
       if (xfK) {
         const xfKlengths = xfK.v.split(";");
         let tmplengthS = 0;
@@ -1776,15 +1690,11 @@ export default class BiaoZhunHengDuanMian extends Vue {
       }
     }
 
-    const glH = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "glH"
-    );
+    const glH = main.find(e => e.aaak === "glH");
     if (glH) {
       this.GangLiangform.Gzlgd = glH.v;
     }
-    const yybB = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "yybB"
-    );
+    const yybB = main.find(e => e.aaak === "yybB");
     if (yybB) {
       this.GangLiangform.Yybkd = yybB.v;
     }
@@ -1794,45 +1704,42 @@ export default class BiaoZhunHengDuanMian extends Vue {
 
   // 获取jsondataservice
   getDMJSON(): any {
+    const main = this.jsonDataService.exportJSON.MAIN;
     const DMJSON = {
       MAIN: [
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "name"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "type"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "note1"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "note2"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "bk"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "zs"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "es"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "qmCS"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "hulan"),
-        this.jsonDataService.exportJSON.MAIN.find(
-          e => e.aaak === "bHulanWaiBaoInLx"
-        ),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "pz"),
-        this.jsonDataService.exportJSON.MAIN.find(
-          e => e.aaak === "importFiles"
-        ),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "fbLay"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xfK"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbL"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dsc"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "tt"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dt"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dunTopD"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "sybTopD"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xbLenS"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xbLenE"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xbDS"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "xbDE"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "glH"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbDirect"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "fbDirect"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "yybDirect"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "fbt"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "yybB"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbCSType"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "dbExtendfb"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "gbMat")
+        main.find(e => e.aaak === "name"),
+        main.find(e => e.aaak === "type"),
+        main.find(e => e.aaak === "note1"),
+        main.find(e => e.aaak === "note2"),
+        main.find(e => e.aaak === "bk"),
+        main.find(e => e.aaak === "zs"),
+        main.find(e => e.aaak === "es"),
+        main.find(e => e.aaak === "qmCS"),
+        main.find(e => e.aaak === "hulan"),
+        main.find(e => e.aaak === "bHulanWaiBaoInLx"),
+        main.find(e => e.aaak === "pz"),
+        main.find(e => e.aaak === "importFiles"),
+        main.find(e => e.aaak === "fbLay"),
+        main.find(e => e.aaak === "xfK"),
+        main.find(e => e.aaak === "dbL"),
+        main.find(e => e.aaak === "dsc"),
+        main.find(e => e.aaak === "tt"),
+        main.find(e => e.aaak === "dt"),
+        main.find(e => e.aaak === "dunTopD"),
+        main.find(e => e.aaak === "sybTopD"),
+        main.find(e => e.aaak === "xbLenS"),
+        main.find(e => e.aaak === "xbLenE"),
+        main.find(e => e.aaak === "xbDS"),
+        main.find(e => e.aaak === "xbDE"),
+        main.find(e => e.aaak === "glH"),
+        main.find(e => e.aaak === "dbDirect"),
+        main.find(e => e.aaak === "fbDirect"),
+        main.find(e => e.aaak === "yybDirect"),
+        main.find(e => e.aaak === "fbt"),
+        main.find(e => e.aaak === "yybB"),
+        main.find(e => e.aaak === "dbCSType"),
+        main.find(e => e.aaak === "dbExtendfb"),
+        main.find(e => e.aaak === "gbMat")
       ]
     };
     return DMJSON;

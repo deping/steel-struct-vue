@@ -172,16 +172,17 @@ export default class ZongtiSheji extends Vue {
   };
 
   getZTJSON(): any {
+    const main = this.jsonDataService.exportJSON.MAIN;
     const ZTJSON = {
       MAIN: [
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "name"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "type"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "note1"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "note2"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "bk"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "zs"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "es"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "importFiles")
+        main.find(e => e.aaak === "name"),
+        main.find(e => e.aaak === "type"),
+        main.find(e => e.aaak === "note1"),
+        main.find(e => e.aaak === "note2"),
+        main.find(e => e.aaak === "bk"),
+        main.find(e => e.aaak === "zs"),
+        main.find(e => e.aaak === "es"),
+        main.find(e => e.aaak === "importFiles")
       ]
     };
     return ZTJSON;
@@ -189,13 +190,14 @@ export default class ZongtiSheji extends Vue {
 
   serialize() {
     console.log("序列化 总体设计 开始");
-    const es = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "es");
+    const main = this.jsonDataService.exportJSON.MAIN;
+    const es = main.find(e => e.aaak === "es");
     if (es) {
       if (isPoint(this.entriesZTSJ.ssfk)) {
         es.v = this.entriesZTSJ.ssfk;
       }
     }
-    const zs = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "zs");
+    const zs = main.find(e => e.aaak === "zs");
     if (zs) {
       if (isPoint(this.entriesZTSJ.ldj)) {
         zs.v = this.entriesZTSJ.ldj;
@@ -206,11 +208,12 @@ export default class ZongtiSheji extends Vue {
 
   deserialize() {
     console.log("反序列化 总体设计 开始");
-    const es = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "es");
+    const main = this.jsonDataService.exportJSON.MAIN;
+    const es = main.find(e => e.aaak === "es");
     if (es) {
       this.entriesZTSJ.ssfk = es.v;
     }
-    const zs = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "zs");
+    const zs = main.find(e => e.aaak === "zs");
     if (zs) {
       this.entriesZTSJ.ldj = zs.v;
     }

@@ -216,12 +216,13 @@ export default class LuXian extends Vue {
 
   // 查询LXJSON
   getLXJSON(): any {
+    const main = this.jsonDataService.exportJSON.MAIN;
     const LXJSON = {
       MAIN: [
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "name"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "note1"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "note2"),
-        this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "importFiles")
+        main.find(e => e.aaak === "name"),
+        main.find(e => e.aaak === "note1"),
+        main.find(e => e.aaak === "note2"),
+        main.find(e => e.aaak === "importFiles")
       ]
     };
     return LXJSON;
@@ -241,20 +242,17 @@ export default class LuXian extends Vue {
   // 路线序列化
   serialize() {
     console.log("序列化 路线 开始");
-    const qmCs = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "qmCS"
-    );
+    const main = this.jsonDataService.exportJSON.MAIN;
+    const qmCs = main.find(e => e.aaak === "qmCS");
     if (qmCs) {
       qmCs.v = this.getStringDLHP();
     }
 
-    const importFiles = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "importFiles"
-    );
+    const importFiles = main.find(e => e.aaak === "importFiles");
     if (importFiles) {
       importFiles.v = "A.pm,A道路边线.dxf,A.ZDM,A.sup";
     }
-    const bk = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "bk");
+    const bk = main.find(e => e.aaak === "bk");
     if (bk) {
       bk.v = this.form.qishizhuanghao;
     }
@@ -265,7 +263,8 @@ export default class LuXian extends Vue {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   deserialize() {
     console.log("反序列化 路线 开始");
-    const bk = this.jsonDataService.exportJSON.MAIN.find(e => e.aaak === "bk");
+    const main = this.jsonDataService.exportJSON.MAIN;
+    const bk = main.find(e => e.aaak === "bk");
     if (bk) {
       this.form.qishizhuanghao = bk.v;
     }
@@ -273,9 +272,7 @@ export default class LuXian extends Vue {
     const BK_0: number = parseFloat(this.form.qishizhuanghao);
     const BK_1: number = BK_0 + this.valueL / 1000;
     this.tableData = [];
-    const qmCS = this.jsonDataService.exportJSON.MAIN.find(
-      e => e.aaak === "qmCS"
-    );
+    const qmCS = main.find(e => e.aaak === "qmCS");
     if (qmCS) {
       qmCS.v.split(";").forEach(value => {
         const row: string[] = value.split(",");
@@ -328,9 +325,8 @@ export default class LuXian extends Vue {
         this.$refs.canvas2.loadObjects(objs2);
         this.$refs.canvas1.zoomToFit();
         this.$refs.canvas2.zoomToFit();
-        const glH = this.jsonDataService.exportJSON.MAIN.find(
-          e => e.aaak === "glH"
-        );
+        const main = this.jsonDataService.exportJSON.MAIN;
+        const glH = main.find(e => e.aaak === "glH");
         const outInfo = JSON.parse(info.outInfo);
         if (glH) {
           let tmp: number = Math.floor(parseInt(outInfo.L) / 22);
