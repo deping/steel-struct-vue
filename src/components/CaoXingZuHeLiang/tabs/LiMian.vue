@@ -5,22 +5,12 @@
         <h3>翼缘板厚度</h3>
       </div>
       <div class="text-item">
-        <el-table
-          :data="tableData"
-          stripe
-          border
-          style="width: 100%"
-          :header-cell-style="{ background: '#eef1f6' }"
-        >
+        <el-table :data="tableData" stripe border style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="参考线名称" width="190px">
             <template v-slot="scope">
               <el-select v-model="scope.row.ckxmc" placeholder="请选择">
-                <el-option
-                  v-for="(item, index) in options"
-                  :key="index"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
+                <el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value">
+                </el-option>
               </el-select>
             </template>
           </el-table-column>
@@ -41,28 +31,13 @@
           </el-table-column>
           <el-table-column label="操作">
             <template v-slot="scope">
-              <el-button
-                size="mini"
-                type="primary"
-                @click="addRow(scope.$index, tableData)"
-                >插入</el-button
-              >
-              <el-button
-                size="mini"
-                type="danger"
-                @click="removeRow(scope.$index, tableData)"
-                >删除</el-button
-              >
+              <el-button size="mini" type="primary" @click="addRow(scope.$index, tableData)">插入</el-button>
+              <el-button size="mini" type="danger" @click="removeRow(scope.$index, tableData)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
         <div style="width: 100%;text-align:center; margin:10px 0 0 0">
-          <el-button
-            type="primary"
-            @click="addRow2(tableData)"
-            style="float:left"
-            >增加行</el-button
-          >
+          <el-button type="primary" @click="addRow2(tableData)" style="float:left">增加行</el-button>
         </div>
       </div>
     </div>
@@ -72,22 +47,12 @@
         <h3>腹板厚度</h3>
       </div>
       <div class="text-item">
-        <el-table
-          :data="tableData_fb"
-          stripe
-          border
-          style="width: 100%"
-          :header-cell-style="{ background: '#eef1f6' }"
-        >
+        <el-table :data="tableData_fb" stripe border style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="参考线名称" width="190px">
             <template v-slot="scope">
               <el-select v-model="scope.row.ckxmc_fb" placeholder="请选择">
-                <el-option
-                  v-for="(item, index) in options"
-                  :key="index"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
+                <el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value">
+                </el-option>
               </el-select>
             </template>
           </el-table-column>
@@ -108,28 +73,13 @@
           </el-table-column>
           <el-table-column label="操作">
             <template v-slot="scope">
-              <el-button
-                size="mini"
-                type="primary"
-                @click="addRowfb(scope.$index, tableData_fb)"
-                >插入</el-button
-              >
-              <el-button
-                size="mini"
-                type="danger"
-                @click="removeRowfb(scope.$index, tableData_fb)"
-                >删除</el-button
-              >
+              <el-button size="mini" type="primary" @click="addRowfb(scope.$index, tableData_fb)">插入</el-button>
+              <el-button size="mini" type="danger" @click="removeRowfb(scope.$index, tableData_fb)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
         <div style="width: 100%;text-align:center; margin:10px 0 0 0">
-          <el-button
-            type="primary"
-            @click="addRowafb(tableData_fb)"
-            style="float:left"
-            >增加行</el-button
-          >
+          <el-button type="primary" @click="addRowafb(tableData_fb)" style="float:left">增加行</el-button>
         </div>
       </div>
     </div>
@@ -139,22 +89,12 @@
         <h3>底板厚度</h3>
       </div>
       <div class="text-item">
-        <el-table
-          :data="tableData_db"
-          stripe
-          border
-          style="width: 100%"
-          :header-cell-style="{ background: '#eef1f6' }"
-        >
+        <el-table :data="tableData_db" stripe border style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="参考线名称" width="190px">
             <template v-slot="scope">
               <el-select v-model="scope.row.ckxmc_db" placeholder="请选择">
-                <el-option
-                  v-for="(item, index) in options"
-                  :key="index"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
+                <el-option v-for="(item, index) in options" :key="index" :label="item.label" :value="item.value">
+                </el-option>
               </el-select>
             </template>
           </el-table-column>
@@ -175,28 +115,13 @@
           </el-table-column>
           <el-table-column label="操作">
             <template v-slot="scope">
-              <el-button
-                size="mini"
-                type="primary"
-                @click="addRowdb(scope.$index, tableData_db)"
-                >插入</el-button
-              >
-              <el-button
-                size="mini"
-                type="danger"
-                @click="removeRowdb(scope.$index, tableData_db)"
-                >删除</el-button
-              >
+              <el-button size="mini" type="primary" @click="addRowdb(scope.$index, tableData_db)">插入</el-button>
+              <el-button size="mini" type="danger" @click="removeRowdb(scope.$index, tableData_db)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
         <div style="width: 100%;text-align:center; margin:10px 0 0 0">
-          <el-button
-            type="primary"
-            @click="addRowadb(tableData_db)"
-            style="float:left"
-            >增加行</el-button
-          >
+          <el-button type="primary" @click="addRowadb(tableData_db)" style="float:left">增加行</el-button>
         </div>
       </div>
     </div>
@@ -205,12 +130,7 @@
       <div class="header" style="width: 170px;">
         <h3>纵桥向横隔系布置</h3>
       </div>
-      <el-form
-        ref="form"
-        :model="form"
-        label-width="150px"
-        label-position="left"
-      >
+      <el-form ref="form" :model="form" label-width="150px" label-position="left">
         <el-form-item label="横隔板布置:">
           <el-input v-model="form.hgbbz"></el-input>
         </el-form-item>
@@ -235,13 +155,8 @@
       </div>
       <div class="text-item">
         <section></section>
-        <el-table
-          :data="tableData_gljd"
-          stripe
-          border
-          style="width: 100%"
-          :header-cell-style="{ background: '#eef1f6' }"
-        >
+        <el-table :data="tableData_gljd" stripe border style="width: 100%"
+                  :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="接头名称" width="190px">
             <template v-slot="scope">
               <el-input v-model="scope.row.name" clearable></el-input>
@@ -255,79 +170,41 @@
           <el-table-column label="腹板连接">
             <template v-slot="scope">
               <el-select v-model="scope.row.fblj">
-                <el-option
-                  v-for="item in options_gljd"
-                  :key="item.value"
-                  :label="item"
-                  :value="item"
-                ></el-option>
+                <el-option v-for="item in options_gljd" :key="item.value" :label="item" :value="item"></el-option>
               </el-select>
             </template>
           </el-table-column>
           <el-table-column label="底板连接">
             <template v-slot="scope">
               <el-select v-model="scope.row.dblj">
-                <el-option
-                  v-for="item in options_gljd"
-                  :key="item.value"
-                  :label="item"
-                  :value="item"
-                ></el-option>
+                <el-option v-for="item in options_gljd" :key="item.value" :label="item" :value="item"></el-option>
               </el-select>
             </template>
           </el-table-column>
           <el-table-column label="底板纵肋连接">
             <template v-slot="scope">
               <el-select v-model="scope.row.dbzllj">
-                <el-option
-                  v-for="item in options_gljd"
-                  :key="item.value"
-                  :label="item"
-                  :value="item"
-                ></el-option>
+                <el-option v-for="item in options_gljd" :key="item.value" :label="item" :value="item"></el-option>
               </el-select>
             </template>
           </el-table-column>
           <el-table-column label="操作">
             <template v-slot="scope">
-              <el-button
-                size="mini"
-                type="primary"
-                @click="addRowgljd(scope.$index, tableData_gljd)"
-                >插入</el-button
-              >
-              <el-button
-                size="mini"
-                type="danger"
-                @click="removeRowgljd(scope.$index, tableData_gljd)"
-                >删除</el-button
-              >
+              <el-button size="mini" type="primary" @click="addRowgljd(scope.$index, tableData_gljd)">插入</el-button>
+              <el-button size="mini" type="danger" @click="removeRowgljd(scope.$index, tableData_gljd)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
-        <el-form
-          ref="form_gl"
-          :model="form_gl"
-          label-width="150px"
-          label-position="left"
-        >
+        <el-form ref="form_gl" :model="form_gl" label-width="150px" label-position="left">
           <el-form-item label="纵向接缝宽度:">
             <el-input v-model="form_gl.zxjfkd"></el-input>
           </el-form-item>
         </el-form>
         <div style="width: 100%;">
-          <el-button
-            type="primary"
-            @click="addRowagljd(tableData_gljd)"
-            style="float:left; margin:10px 0 10px 0"
-            >增加行</el-button
-          >
-          <el-button
-            @click="submit"
-            type="success"
-            style="margin-top:15px ;float:left; margin:10px 10px 0 10px"
-            >提交</el-button
-          >
+          <el-button type="primary" @click="addRowagljd(tableData_gljd)" style="float:left; margin:10px 0 10px 0">增加行
+          </el-button>
+          <el-button @click="submit" type="success" style="margin-top:15px ;float:left; margin:10px 10px 0 10px">提交
+          </el-button>
         </div>
       </div>
     </div>
@@ -347,7 +224,6 @@ import {
   /* Getter, Action,  Mutation, namespace */
 } from "vuex-class";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
-import { Persist } from "@/components/ConstructBase";
 import { getAjaxUrl } from "@/utils/path";
 import { makeLabelValueArray } from "@/utils/misc";
 import { PreviewData } from "../models/preview-data";
@@ -375,7 +251,6 @@ export default class LiMian extends Vue {
   canvas: any;
   dataCanvas: [] = [];
   @State construct_id!: string;
-  @State currentConstruct!: Vue & Persist;
   @Inject() jsonDataService!: JsonDataService;
   $refs!: {
     canvas: FabricCanvas;
@@ -781,7 +656,7 @@ export default class LiMian extends Vue {
   // 提交出图
   async submit() {
     try {
-      this.currentConstruct.serialize();
+      this.serialize();
       const LMJSON: string = await JSON.stringify(this.getLMJSON());
       const formdata = new FormData();
       formdata.append("componentId", this.construct_id);

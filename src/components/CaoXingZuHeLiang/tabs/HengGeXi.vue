@@ -2429,21 +2429,13 @@
 
 <script lang="ts">
 import { Component, Vue, Inject } from "vue-property-decorator";
-import {
-  State
-  /* Getter, Action,  Mutation, namespace */
-} from "vuex-class";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
-import { Persist } from "@/components/ConstructBase";
 
 @Component({
   components: {}
 })
 export default class HeGeXi extends Vue {
   name = "Heng-GeXi";
-
-  // 约定传给后端ID，区分上传文件类型。
-  @State currentConstruct!: Vue & Persist;
 
   @Inject() jsonDataService!: JsonDataService;
 

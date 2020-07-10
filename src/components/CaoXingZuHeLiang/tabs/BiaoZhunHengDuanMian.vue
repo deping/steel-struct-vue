@@ -12,12 +12,7 @@
         <el-table-column label="材料类型">
           <template v-slot="scope">
             <el-select v-model="scope.row.value">
-              <el-option
-                v-for="(item, index) in options"
-                :key="index"
-                :label="item"
-                :value="item"
-              ></el-option>
+              <el-option v-for="(item, index) in options" :key="index" :label="item" :value="item"></el-option>
             </el-select>
           </template>
         </el-table-column>
@@ -28,25 +23,14 @@
         </el-table-column>
         <el-table-column label="操作">
           <template v-slot="scope">
-            <el-button
-              size="mini"
-              type="primary"
-              @click="inserttableData(scope.$index, tableData)"
-            >插入</el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.$index, tableData)"
-            >删除</el-button>
+            <el-button size="mini" type="primary" @click="inserttableData(scope.$index, tableData)">插入</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, tableData)">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
       <div style="width: 100%;text-align:center;">
-        <el-button
-          type="primary"
-          @click="addtableData(tableData)"
-          style="float:left ;margin:10px 0 10px 0 "
-        >增加行</el-button>
+        <el-button type="primary" @click="addtableData(tableData)" style="float:left ;margin:10px 0 10px 0 ">增加行
+        </el-button>
       </div>
     </div>
 
@@ -58,22 +42,12 @@
           <el-form ref="form" :model="form" label-width="100px">
             <el-form-item label="护栏：">
               <el-select v-model="form.HuLan" @change="change(form.HuLan)">
-                <el-option
-                  v-for="(item,index) in HuLanoptions"
-                  :key="index"
-                  :label="item"
-                  :value="item"
-                ></el-option>
+                <el-option v-for="(item,index) in HuLanoptions" :key="index" :label="item" :value="item"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="路基：" v-if="form.HuLan !== '与路基齐平'">
               <el-select v-model="form.luji">
-                <el-option
-                  v-for="(item,index) in LuJioptions"
-                  :key="index"
-                  :label="item"
-                  :value="item"
-                ></el-option>
+                <el-option v-for="(item,index) in LuJioptions" :key="index" :label="item" :value="item"></el-option>
               </el-select>
             </el-form-item>
             <el-form-item label="宽度[WB]：">
@@ -81,12 +55,7 @@
             </el-form-item>
             <el-form-item label="护栏类型：">
               <el-select v-model="form.leixing">
-                <el-option
-                  v-for="(item,index) in LeiXingoptions"
-                  :key="index"
-                  :label="item"
-                  :value="item"
-                ></el-option>
+                <el-option v-for="(item,index) in LeiXingoptions" :key="index" :label="item" :value="item"></el-option>
               </el-select>
             </el-form-item>
           </el-form>
@@ -104,30 +73,13 @@
       <h3 align="left">三、桥面板</h3>
       <div class="hulan">
         <div class="hulan-left">
-          <el-select
-            v-model="QMBform.QiaoMianBan"
-            placeholder="请选择"
-            style="margin: 0 540px 10px 0"
-          >
-            <el-option
-              v-for="(item,index) in QiaoMianBanoptions"
-              :key="index"
-              :label="item.label"
-              :value="item.label"
-              :disabled="item.disabled"
-            ></el-option>
+          <el-select v-model="QMBform.QiaoMianBan" placeholder="请选择" style="margin: 0 540px 10px 0">
+            <el-option v-for="(item,index) in QiaoMianBanoptions" :key="index" :label="item.label" :value="item.label"
+                       :disabled="item.disabled"></el-option>
           </el-select>
-          <el-form
-            ref="QMBform"
-            :model="QMBform"
-            label-width="200px"
-            label-position="left"
-          >
+          <el-form ref="QMBform" :model="QMBform" label-width="200px" label-position="left">
             <!-- 滴水槽 -->
-            <div
-              v-if="form.HuLan === '内缩' "
-              style="height:398px;margin-bottom:30px"
-            >
+            <div v-if="form.HuLan === '内缩' " style="height:398px;margin-bottom:30px">
               <el-form-item label="滴水槽设计"></el-form-item>
               <el-form-item label="距离梁端SX：">
                 <el-input v-model="QMBform.liangduanSX"></el-input>
@@ -189,58 +141,30 @@
           <el-form ref="form" :model="GangLiangform">
             <div class="hulan-left">
               <el-form-item label="4.1 钢梁材质">
-                <el-select
-                  v-model="GangLiangform.GangLiangCZ"
-                  @change="Gangliangchange(GangLiangform.GangLiangCZ)"
-                  style="width:380px"
-                >
-                  <el-option
-                    v-for="(item,index ) in GangLiangoptions"
-                    :key="index"
-                    :label="item"
-                    :value="item"
-                  ></el-option>
+                <el-select v-model="GangLiangform.GangLiangCZ" @change="Gangliangchange(GangLiangform.GangLiangCZ)"
+                           style="width:380px">
+                  <el-option v-for="(item,index ) in GangLiangoptions" :key="index" :label="item" :value="item">
+                  </el-option>
                 </el-select>
                 <el-select v-model="GangLiangform.GLcaizhi" style="width:120px">
-                  <el-option
-                    v-for="(item,index) in GangLiang2options"
-                    :key="index"
-                    :label="item"
-                    :value="item"
-                  ></el-option>
+                  <el-option v-for="(item,index) in GangLiang2options" :key="index" :label="item" :value="item">
+                  </el-option>
                 </el-select>
               </el-form-item>
               <el-form-item label="4.2 钢主梁在桥梁宽度内的片数设计">
-                <el-select
-                  v-model="GangLiangform.GLpianshu"
-                  style="width:100px;margin-right:20px"
-                >
-                  <el-option
-                    v-for="(item,index) in GangZhuLiangoptions"
-                    :key="index"
-                    :label="item"
-                    :value="item"
-                  ></el-option>
+                <el-select v-model="GangLiangform.GLpianshu" style="width:100px;margin-right:20px">
+                  <el-option v-for="(item,index) in GangZhuLiangoptions" :key="index" :label="item" :value="item">
+                  </el-option>
                 </el-select>
-                <el-button
-                  size="small"
-                  type="primary"
-                  @click="autoCalcGZL()"
-                >根据梁宽自动计算</el-button>
+                <el-button size="small" type="primary" @click="autoCalcGZL()">根据梁宽自动计算</el-button>
               </el-form-item>
             </div>
             <el-form-item>
-              <p
-                align="left"
-                style="color:rgba(0,0,0,.87);font-size:20px;"
-              >{{this.pianming[GangLiangform.GLpianshu - 2]}}主梁(梁宽{{this.valueQB}}mm)</p>
+              <p align="left" style="color:rgba(0,0,0,.87);font-size:20px;">
+                {{this.pianming[GangLiangform.GLpianshu - 2]}}主梁(梁宽{{this.valueQB}}mm)</p>
             </el-form-item>
             <el-form-item>
-              <el-table
-                :data="GangZLData[GangLiangform.GLpianshu - 2]"
-                style="width: 100%"
-                border
-              >
+              <el-table :data="GangZLData[GangLiangform.GLpianshu - 2]" style="width: 100%" border>
                 <el-table-column label="左悬臂">
                   <template v-slot="props">
                     <el-input v-model="props.row.zxb"></el-input>
@@ -324,13 +248,8 @@
                 </el-form-item>
                 <el-form-item label="4.3 翼缘板厚度变化">
                   <el-select v-model="GangLiangform.Yybhd" style="width:100px;">
-                    <el-option
-                      v-for="(item,index) in Yybhdoptions"
-                      :key="index"
-                      :label="item.label"
-                      :value="item.label"
-                      :disabled="item.disabled"
-                    ></el-option>
+                    <el-option v-for="(item,index) in Yybhdoptions" :key="index" :label="item.label" :value="item.label"
+                               :disabled="item.disabled"></el-option>
                   </el-select>
                 </el-form-item>
               </div>
@@ -352,57 +271,33 @@
                 <el-form-item label="4.5 腹板设计"></el-form-item>
                 <el-form-item label="腹板斜率  方式">
                   <el-select v-model="GangLiangform.Fbxlfs">
-                    <el-option
-                      v-for="(item,index) in Fubanoptions"
-                      :key="index"
-                      :label="item"
-                      :value="item"
-                    ></el-option>
+                    <el-option v-for="(item,index) in Fubanoptions" :key="index" :label="item" :value="item">
+                    </el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="钢梁编号">
-                  <el-table
-                    :data="FuBanGangLiangtableData[GangLiangform.GLpianshu-2]"
-                    @selection-change="handleSelectionChange"
-                    :row-key="'id'"
-                    style="width: 100%"
-                    ref="shuiPingGangLiangtable"
-                    v-if="GangLiangform.Fbxlfs ==='水平尺寸' "
-                  >
+                  <el-table :data="FuBanGangLiangtableData[GangLiangform.GLpianshu-2]"
+                            @selection-change="handleSelectionChange" :row-key="'id'" style="width: 100%"
+                            ref="shuiPingGangLiangtable" v-if="GangLiangform.Fbxlfs ==='水平尺寸' ">
                     <el-table-column prop="dbkd" label="钢梁编号"></el-table-column>
                     <el-table-column label="值">
                       <template v-slot="scope">
-                        <el-input
-                          v-model="scope.row.zhi"
-                          :disabled="scope.row.disabled"
-                        ></el-input>
+                        <el-input v-model="scope.row.zhi" :disabled="scope.row.disabled"></el-input>
                       </template>
                     </el-table-column>
                     <el-table-column label="是否竖直">
                       <el-table-column type="selection" width="80"></el-table-column>
                     </el-table-column>
                   </el-table>
-                  <el-table
-                    :data="FuBanGangLiangXielvtableData[GangLiangform.GLpianshu-2]"
-                    :row-key="'id'"
-                    @selection-change="GdxlSelectionChange"
-                    style="width: 100%"
-                    ref="guDingXieLvGangLiangTable"
-                    v-if="GangLiangform.Fbxlfs ==='固定斜率' || this.isFuBanXieLV "
-                  >
+                  <el-table :data="FuBanGangLiangXielvtableData[GangLiangform.GLpianshu-2]" :row-key="'id'"
+                            @selection-change="GdxlSelectionChange" style="width: 100%" ref="guDingXieLvGangLiangTable"
+                            v-if="GangLiangform.Fbxlfs ==='固定斜率' || this.isFuBanXieLV ">
                     <el-table-column prop="dbkd" label="钢梁编号"></el-table-column>
                     <el-table-column label="值">
                       <template v-slot="select">
-                        <el-select
-                          v-model="select.row.xielv"
-                          :disabled="select.row.disabled"
-                        >
-                          <el-option
-                            v-for="(item,index) in XieLvoptions"
-                            :key="index"
-                            :label="item"
-                            :value="item"
-                          ></el-option>
+                        <el-select v-model="select.row.xielv" :disabled="select.row.disabled">
+                          <el-option v-for="(item,index) in XieLvoptions" :key="index" :label="item" :value="item">
+                          </el-option>
                         </el-select>
                       </template>
                     </el-table-column>
@@ -413,13 +308,8 @@
                 </el-form-item>
                 <el-form-item label="腹板厚度变化">
                   <el-select v-model="GangLiangform.FBhdbh">
-                    <el-option
-                      v-for="(item,index) in GLFuBanHouDuoptions"
-                      :key="index"
-                      :label="item.label"
-                      :value="item.label"
-                      :disabled="item.disabled"
-                    ></el-option>
+                    <el-option v-for="(item,index) in GLFuBanHouDuoptions" :key="index" :label="item.label"
+                               :value="item.label" :disabled="item.disabled"></el-option>
                   </el-select>
                 </el-form-item>
               </div>
@@ -435,23 +325,14 @@
                 <el-form-item label="4.6 底板设计"></el-form-item>
                 <el-form-item label="底板厚度变化">
                   <el-select v-model="GangLiangform.DBhdbh">
-                    <el-option
-                      v-for="(item,index) in GLDiBanHouDuoptions"
-                      :key="index"
-                      :label="item.label"
-                      :value="item.label"
-                      :disabled="item.disabled"
-                    ></el-option>
+                    <el-option v-for="(item,index) in GLDiBanHouDuoptions" :key="index" :label="item.label"
+                               :value="item.label" :disabled="item.disabled"></el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="底板斜率变化">
                   <el-select v-model="GangLiangform.DBxl">
-                    <el-option
-                      v-for="(item,index) in GLDiBanXieLvoptions"
-                      :key="index"
-                      :label="item"
-                      :value="item"
-                    ></el-option>
+                    <el-option v-for="(item,index) in GLDiBanXieLvoptions" :key="index" :label="item" :value="item">
+                    </el-option>
                   </el-select>
                 </el-form-item>
                 <el-form-item label="底板外伸[DS]">
@@ -468,11 +349,7 @@
         </div>
       </div>
     </div>
-    <el-button
-      type="success"
-      style="margin-top:15px ;float:left; margin:20px 10px 0 0"
-      @click="submit()"
-    >提交</el-button>
+    <el-button type="success" style="margin-top:15px ;float:left; margin:20px 10px 0 0" @click="submit()">提交</el-button>
     <div style="margin:80px 0 0 0px ;width:100%;">
       <div style="height: 400px;">
         <fabric-canvas :showCoord="true" ref="canvas1" />
@@ -494,7 +371,6 @@ import { ElUpload2 } from "@/typings/element-ui";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
 import FabricCanvas from "@/components/FabricCanvas.vue";
 import { PreviewData } from "../models/preview-data";
-import { Persist } from "@/components/ConstructBase";
 // import { Row } from "element-ui";
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace rightHand {
@@ -517,7 +393,6 @@ export default class BiaoZhunHengDuanMian extends Vue {
   dbwsURL = require("../imgs/widget-gzl-4.6.png");
   @Inject() jsonDataService!: JsonDataService;
   @State construct_id!: string;
-  @State currentConstruct!: Vue & Persist;
   $refs!: {
     upload: ElUpload2;
     canvas1: FabricCanvas;
@@ -1966,7 +1841,7 @@ export default class BiaoZhunHengDuanMian extends Vue {
   // 提交按钮
   async submit() {
     try {
-      this.currentConstruct.serialize();
+      this.serialize();
       const DMJSON: string = await JSON.stringify(this.getDMJSON());
       const formdata = new FormData();
       formdata.append("componentId", this.construct_id);

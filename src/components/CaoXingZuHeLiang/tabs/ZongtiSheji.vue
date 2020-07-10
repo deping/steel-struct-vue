@@ -5,18 +5,9 @@
         <h3>一、结构形式</h3>
       </div>
       <div class="text-item">
-        <el-select
-          v-model="construct.type"
-          placeholder="选择结构"
-          class="flex-item"
-        >
-          <el-option
-            v-for="(meta, index) of constructMetas"
-            :label="meta.label"
-            :value="index"
-            :key="index"
-            :disabled="meta.disabled"
-          ></el-option>
+        <el-select v-model="construct.type" placeholder="选择结构" class="flex-item">
+          <el-option v-for="(meta, index) of constructMetas" :label="meta.label" :value="index" :key="index"
+                     :disabled="meta.disabled"></el-option>
         </el-select>
       </div>
       <div class="header">
@@ -25,76 +16,41 @@
       <div class="flex-container-row">
         <div class="flex-container-col">
           <div class="border">
-            <el-switch
-              v-model="isJZ"
-              active-text="简支"
-              inactive-text="连续"
-              disabled
-            >
+            <el-switch v-model="isJZ" active-text="简支" inactive-text="连续" disabled>
             </el-switch>
           </div>
           <br />
           <div class="border">
-            <el-switch
-              v-model="isDG"
-              active-text="等高"
-              inactive-text="变高"
-              disabled
-            >
+            <el-switch v-model="isDG" active-text="等高" inactive-text="变高" disabled>
             </el-switch>
           </div>
           <br />
           <div class="border">
-            <el-switch
-              v-model="isGQLSLJ"
-              active-text="高强螺栓连接"
-              inactive-text="全焊接"
-              disabled
-            >
+            <el-switch v-model="isGQLSLJ" active-text="高强螺栓连接" inactive-text="全焊接" disabled>
             </el-switch>
           </div>
         </div>
         <br />
         <div class="flex-container-col">
           <div class="border">
-            <el-switch
-              v-model="isDK"
-              active-text="等宽"
-              inactive-text="变宽"
-              disabled
-            >
+            <el-switch v-model="isDK" active-text="等宽" inactive-text="变宽" disabled>
             </el-switch>
           </div>
           <br />
           <div class="border">
-            <el-switch
-              v-model="isXJHNTQMB"
-              active-text="现浇混凝土桥面板"
-              inactive-text="预制混凝土桥面板"
-              disabled
-            >
+            <el-switch v-model="isXJHNTQMB" active-text="现浇混凝土桥面板" inactive-text="预制混凝土桥面板" disabled>
             </el-switch>
           </div>
         </div>
         <br />
         <div class="flex-container-col">
           <div class="border">
-            <el-switch
-              v-model="isZJ"
-              active-text="正交"
-              inactive-text="斜交"
-              disabled
-            >
+            <el-switch v-model="isZJ" active-text="正交" inactive-text="斜交" disabled>
             </el-switch>
           </div>
           <br />
           <div class="border">
-            <el-switch
-              v-model="isQMBDXB"
-              active-text="桥面板单向板"
-              inactive-text="桥面板双向板"
-              disabled
-            >
+            <el-switch v-model="isQMBDXB" active-text="桥面板单向板" inactive-text="桥面板双向板" disabled>
             </el-switch>
           </div>
           <br />
@@ -122,18 +78,9 @@
               </tr>
             </table>
 
-            <el-button
-              @click="submit"
-              type="success"
-              style="margin-top:15px;margin-left:50px"
-              >提交</el-button
-            >
+            <el-button @click="submit" type="success" style="margin-top:15px;margin-left:50px">提交</el-button>
           </div>
-          <img
-            id="widget-qltz-1"
-            src="../imgs/papers/widget-qltz-1.png"
-            width="400"
-          />
+          <img id="widget-qltz-1" src="../imgs/papers/widget-qltz-1.png" width="400" />
         </div>
       </div>
     </div>
@@ -159,7 +106,6 @@ import axios from "axios";
 import FabricCanvas from "@/components/FabricCanvas.vue";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
 import { PreviewData } from "../models/preview-data";
-import { Persist } from "@/components/ConstructBase";
 // eslint-disable-next-line @typescript-eslint/no-namespace
 declare namespace rightHand {
   function loadObjects(ar: any[]): any[]; // fabric.Object[]
@@ -218,7 +164,6 @@ export default class ZongtiSheji extends Vue {
   dataCanvas2: [] = [];
 
   @State construct_id!: string;
-  @State currentConstruct!: Vue & Persist;
   @Inject() jsonDataService!: JsonDataService;
 
   $refs!: {
@@ -274,7 +219,7 @@ export default class ZongtiSheji extends Vue {
 
   async submit() {
     try {
-      this.currentConstruct.serialize();
+      this.serialize();
       const ZTJSON: string = await JSON.stringify(this.getZTJSON());
       const formdata = new FormData();
       formdata.append("componentId", this.construct_id);
