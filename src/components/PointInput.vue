@@ -1,6 +1,7 @@
 <template>
   <el-tooltip :disabled="error===''" :content="error" placement="bottom-start">
-    <el-input v-bind="$attrs" v-model="value" @blur="validate" @input="filter" :class="{error: error!==''}"></el-input>
+    <el-input v-bind="$attrs" :value="value" @input="input" :class="{error: error!==''}">
+    </el-input>
   </el-tooltip>
 </template>
 
@@ -18,17 +19,17 @@ export default class PointInput extends Vue {
   @Prop()
   value!: string;
 
-  validate() {
-    if (isPoint(this.value)) {
+  validate(value: string) {
+    if (isPoint(value)) {
       this.error = "";
     } else {
       this.error = this.tip;
     }
   }
 
-  filter(value: string) {
-    this.value = value.replace(/[^0-9,.+Ee-]/g, "");
-    this.$emit("input", this.value);
+  input(value: string) {
+    this.validate(value);
+    this.$emit("input", value);
   }
 }
 </script>
