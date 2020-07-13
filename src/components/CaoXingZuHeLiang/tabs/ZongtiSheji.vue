@@ -66,14 +66,14 @@
               <tr>
                 <td class="title">伸缩缝宽</td>
                 <td>
-                  <el-input v-model="entriesZTSJ.ssfk" clearable></el-input>
+                  <point-input v-model="entriesZTSJ.ssfk" clearable></point-input>
                 </td>
               </tr>
               <br />
               <tr>
                 <td class="title">梁端距</td>
                 <td>
-                  <el-input v-model="entriesZTSJ.ldj" clearable></el-input>
+                  <point-input v-model="entriesZTSJ.ldj" clearable></point-input>
                 </td>
               </tr>
             </table>

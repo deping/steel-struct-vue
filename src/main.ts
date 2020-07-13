@@ -4,8 +4,10 @@ import store from "./store";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 import axios from "axios";
+import PointInput from "@/components/PointInput.vue";
 
 Vue.use(ElementUI);
+Vue.component("point-input", PointInput);
 Vue.config.productionTip = false;
 
 axios.interceptors.request.use(function(config) {
