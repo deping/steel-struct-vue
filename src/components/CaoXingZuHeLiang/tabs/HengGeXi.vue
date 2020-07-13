@@ -33,17 +33,17 @@
         </el-table-column>
         <el-table-column label="翼缘板厚度（mm）" width="180">
           <template v-slot="yybhd">
-            <el-input v-model.number="yybhd.row.yybhd" clearable></el-input>
+            <el-input type="number" v-model="yybhd.row.yybhd" clearable></el-input>
           </template>
         </el-table-column>
         <el-table-column label="腹板厚度（mm）">
           <template v-slot="fbhd">
-            <el-input v-model.number="fbhd.row.fbhd" clearable></el-input>
+            <el-input type="number" v-model="fbhd.row.fbhd" clearable></el-input>
           </template>
         </el-table-column>
         <el-table-column label="底板厚度（mm）">
           <template v-slot="dbhd">
-            <el-input v-model.number="dbhd.row.dbhd" clearable></el-input>
+            <el-input type="number" v-model="dbhd.row.dbhd" clearable></el-input>
           </template>
         </el-table-column>
         <el-table-column label="竖肋编号" width="400px">
@@ -71,47 +71,47 @@
           <el-table border :data="fbslform[fbslselectvalue]" style="width:100%">
             <el-table-column label="腹板竖肋厚度FSt（mm）" prop="fbslhdFSt">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.fbslhdFSt"></el-input>
+                <el-input type="number" v-model="scope.row.fbslhdFSt"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="腹板竖肋宽度FSb（mm）" prop="fbslkdFSb">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.fbslkdFSb"></el-input>
+                <el-input type="number" v-model="scope.row.fbslkdFSb"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="R1（mm）" prop="R1">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.R1"></el-input>
+                <el-input type="number" v-model="scope.row.R1"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="b（mm）" prop="b" v-if="isI1">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.b"></el-input>
+                <el-input type="number" v-model="scope.row.b"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="R2（mm）" prop="R2" v-else>
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.R2"></el-input>
+                <el-input type="number" v-model="scope.row.R2"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="JL（mm）" prop="JL" v-if="isI1">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.JL"></el-input>
+                <el-input type="number" v-model="scope.row.JL"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="hf1（mm）" prop="hf1">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.hf1"></el-input>
+                <el-input type="number" v-model="scope.row.hf1"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="hf2（mm）" prop="hf2">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.hf2"></el-input>
+                <el-input type="number" v-model="scope.row.hf2"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="hf3（mm）" prop="hf3" v-if="!isI1">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.hf3"></el-input>
+                <el-input type="number" v-model="scope.row.hf3"></el-input>
               </template>
             </el-table-column>
             <el-table-column label="下部倒角" v-if="isI1">
@@ -421,22 +421,22 @@
             </el-table-column>
             <el-table-column label="翼缘板厚度（mm）" width="180">
               <template v-slot="yybhd">
-                <el-input v-model.number="yybhd.row.yybhd" clearable></el-input>
+                <el-input type="number" v-model="yybhd.row.yybhd" clearable></el-input>
               </template>
             </el-table-column>
             <el-table-column label="腹板厚度（mm）">
               <template v-slot="fbhd">
-                <el-input v-model.number="fbhd.row.fbhd" clearable></el-input>
+                <el-input type="number" v-model="fbhd.row.fbhd" clearable></el-input>
               </template>
             </el-table-column>
             <el-table-column label="底板厚度（mm）">
               <template v-slot="dbhd">
-                <el-input v-model.number="dbhd.row.dbhd" clearable></el-input>
+                <el-input type="number" v-model="dbhd.row.dbhd" clearable></el-input>
               </template>
             </el-table-column>
             <el-table-column label="斜交角（度）">
               <template v-slot="xjjd">
-                <el-input v-model.number="xjjd.row.xjjd" clearable></el-input>
+                <el-input type="number" v-model="xjjd.row.xjjd" clearable></el-input>
               </template>
             </el-table-column>
             <el-table-column label="横隔编号" width="400px">
@@ -474,47 +474,47 @@
               <el-table border :data="hglxform[zjhgselectvalue]" style="width:100%">
                 <el-table-column label="HGt（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.HGt"></el-input>
+                    <el-input type="number" v-model="scope.row.HGt"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="H1（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.H1"></el-input>
+                    <el-input type="number" v-model="scope.row.H1"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="b（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.b"></el-input>
+                    <el-input type="number" v-model="scope.row.b"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="R（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.R"></el-input>
+                    <el-input type="number" v-model="scope.row.R"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="DBZ（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.DBZ"></el-input>
+                    <el-input type="number" v-model="scope.row.DBZ"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="DBY（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.DBY"></el-input>
+                    <el-input type="number" v-model="scope.row.DBY"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="DBb（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.DBb"></el-input>
+                    <el-input type="number" v-model="scope.row.DBb"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="DBt（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.DBt"></el-input>
+                    <el-input type="number" v-model="scope.row.DBt"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="人孔中心线位置">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.rkzxxwz"></el-input>
+                    <el-input type="number" v-model="scope.row.rkzxxwz"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="顶板顶缘线" width="160px">
@@ -527,22 +527,22 @@
                 </el-table-column>
                 <el-table-column label="翼缘板和腹板交角处的过焊孔R（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.yyb_fb_R"></el-input>
+                    <el-input type="number" v-model="scope.row.yyb_fb_R"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="翼缘板和腹板交角处的过焊孔D（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.yyb_fb_D"></el-input>
+                    <el-input type="number" v-model="scope.row.yyb_fb_D"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="底板和腹板交角处的过焊孔R（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.db_fb_R"></el-input>
+                    <el-input type="number" v-model="scope.row.db_fb_R"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="底板和腹板交角处的过焊孔D（mm）">
                   <template v-slot="scope">
-                    <el-input v-model.number="scope.row.db_fb_D"></el-input>
+                    <el-input type="number" v-model="scope.row.db_fb_D"></el-input>
                   </template>
                 </el-table-column>
               </el-table>
@@ -562,40 +562,40 @@
                 <el-row>
                   <el-col :span="6">
                     <el-form-item label="H（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].H" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].H" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6"
                           v-if="rklxselectvalue === 'C型' ||rklxselectvalue === 'D型' ||rklxselectvalue === 'F型' ||rklxselectvalue === 'G型'">
                     <el-form-item label="RKD（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].RKD" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].RKD" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'F型' ||rklxselectvalue === 'G型'">
                     <el-form-item label="H1（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].H1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].H1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'D型' ">
                     <el-form-item label="B1（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].B1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].B1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6"
                           v-if="rklxselectvalue === 'A型' ||  rklxselectvalue === 'B型' ||  rklxselectvalue === 'E型'">
                     <el-form-item label="RKH（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].RKH" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].RKH" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6"
                           v-if="rklxselectvalue === 'A型'||  rklxselectvalue === 'B型' ||  rklxselectvalue === 'E型'">
                     <el-form-item label="RKB（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].RKB" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].RKB" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型' ||  rklxselectvalue === 'B型' ">
                     <el-form-item label="RKR（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].RKR" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].RKR" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型' ||  rklxselectvalue === 'B型' ">
@@ -616,65 +616,65 @@
                 <el-row>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型' || rklxselectvalue === 'B型' ">
                     <el-form-item label="H1（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].H1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].H1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="B1（mm）" v-if="rklxselectvalue === 'A型' || rklxselectvalue === 'B型' ">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].B1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].B1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型'">
                     <el-form-item label="B2（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].B2" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].B2" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型' || rklxselectvalue === 'B型' ">
                     <el-form-item label="W1t（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].W1t" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].W1t" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型' || rklxselectvalue === 'B型' ">
                     <el-form-item label="W1b（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].W1b" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].W1b" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型'">
                     <el-form-item label="W2t（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].W2t" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].W2t" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型'">
                     <el-form-item label="W2b（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].W2b" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].W2b" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6"
                           v-if="rklxselectvalue === 'C型' || rklxselectvalue === 'D型' || rklxselectvalue === 'E型' || rklxselectvalue === 'F型' ||rklxselectvalue === 'G型'">
                     <el-form-item label="RKt（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].RKt" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].RKt" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6"
                           v-if="rklxselectvalue === 'C型' || rklxselectvalue === 'D型' || rklxselectvalue === 'E型' || rklxselectvalue === 'F型' ||rklxselectvalue === 'G型'">
                     <el-form-item label="RKb（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].RKb" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].RKb" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6"
                           v-if="rklxselectvalue === 'A型' || rklxselectvalue === 'B型' || rklxselectvalue === 'E型'">
                     <el-form-item label="R1（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].R1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].R1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="hf1（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].hf1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].hf1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型' ||rklxselectvalue === 'G型'">
                     <el-form-item label="hf2（mm）">
-                      <el-input v-model.number="rklxform[rklxselectvalue][0].hf2" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxform[rklxselectvalue][0].hf2" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rklxselectvalue === 'A型' || rklxselectvalue === 'B型'">
@@ -703,37 +703,37 @@
                   <el-row>
                     <el-col :span="6" v-if="rklxselectvalue === 'C型'">
                       <el-form-item label="BZ">
-                        <el-input v-model.number="rklxform[rklxselectvalue][0].BZ" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxform[rklxselectvalue][0].BZ" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6" v-if="rklxselectvalue === 'C型'">
                       <el-form-item label="BY">
-                        <el-input v-model.number="rklxform[rklxselectvalue][0].BY" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxform[rklxselectvalue][0].BY" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6" v-if="rklxselectvalue === 'B型' || rklxselectvalue === 'C型'">
                       <el-form-item label="J1t">
-                        <el-input v-model.number="rklxform[rklxselectvalue][0].J1t" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxform[rklxselectvalue][0].J1t" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6" v-if="rklxselectvalue === 'B型' || rklxselectvalue === 'C型'">
                       <el-form-item label="J1b（mm）">
-                        <el-input v-model.number="rklxform[rklxselectvalue][0].J1b" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxform[rklxselectvalue][0].J1b" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6" v-if="rklxselectvalue === 'B型' || rklxselectvalue === 'C型'">
                       <el-form-item label="J1Y">
-                        <el-input v-model.number="rklxform[rklxselectvalue][0].J1Y" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxform[rklxselectvalue][0].J1Y" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6" v-if="rklxselectvalue === 'B型' || rklxselectvalue === 'C型'">
                       <el-form-item label="J1D">
-                        <el-input v-model.number="rklxform[rklxselectvalue][0].J1D" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxform[rklxselectvalue][0].J1D" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6" v-if="rklxselectvalue === 'B型' || rklxselectvalue === 'C型'">
                       <el-form-item label="hf2">
-                        <el-input v-model.number="rklxform[rklxselectvalue][0].hf2" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxform[rklxselectvalue][0].hf2" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6" v-if="rklxselectvalue === 'B型' || rklxselectvalue === 'C型'">
@@ -750,22 +750,26 @@
                     <el-row>
                       <el-col :span="6">
                         <el-form-item label="J2t">
-                          <el-input v-model.number="rklxform[rklxselectvalue][0].J2t" style="width:50%"></el-input>
+                          <el-input type="number" v-model="rklxform[rklxselectvalue][0].J2t" style="width:50%">
+                          </el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="6">
                         <el-form-item label="J2b">
-                          <el-input v-model.number="rklxform[rklxselectvalue][0].J2b" style="width:50%"></el-input>
+                          <el-input type="number" v-model="rklxform[rklxselectvalue][0].J2b" style="width:50%">
+                          </el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="6">
                         <el-form-item label="J2Y">
-                          <el-input v-model.number="rklxform[rklxselectvalue][0].J2Y" style="width:50%"></el-input>
+                          <el-input type="number" v-model="rklxform[rklxselectvalue][0].J2Y" style="width:50%">
+                          </el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="6">
                         <el-form-item label="hf2">
-                          <el-input v-model.number="rklxform[rklxselectvalue][0].hf22" style="width:50%"></el-input>
+                          <el-input type="number" v-model="rklxform[rklxselectvalue][0].hf22" style="width:50%">
+                          </el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="6">
@@ -783,22 +787,26 @@
                     <el-row>
                       <el-col :span="6">
                         <el-form-item label="J3t">
-                          <el-input v-model.number="rklxform[rklxselectvalue][0].J3t" style="width:50%"></el-input>
+                          <el-input type="number" v-model="rklxform[rklxselectvalue][0].J3t" style="width:50%">
+                          </el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="6">
                         <el-form-item label="J3b">
-                          <el-input v-model.number="rklxform[rklxselectvalue][0].J3b" style="width:50%"></el-input>
+                          <el-input type="number" v-model="rklxform[rklxselectvalue][0].J3b" style="width:50%">
+                          </el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="6">
                         <el-form-item label="J3D">
-                          <el-input v-model.number="rklxform[rklxselectvalue][0].J3D" style="width:50%"></el-input>
+                          <el-input type="number" v-model="rklxform[rklxselectvalue][0].J3D" style="width:50%">
+                          </el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="6">
                         <el-form-item label="hf3">
-                          <el-input v-model.number="rklxform[rklxselectvalue][0].hf23" style="width:50%"></el-input>
+                          <el-input type="number" v-model="rklxform[rklxselectvalue][0].hf23" style="width:50%">
+                          </el-input>
                         </el-form-item>
                       </el-col>
                       <el-col :span="6">
@@ -993,37 +1001,37 @@
             <el-row>
               <el-col :span="6">
                 <el-form-item label="H（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].H" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].H" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="H1（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].H1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].H1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="B（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].B" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].B" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="t1（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].t1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].t1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="t2（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].t2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].t2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="R（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].R" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].R" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf1">
-                  <el-input v-model.number="dlslxform['单梁式'].hf1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].hf1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -1039,37 +1047,37 @@
             <el-row>
               <el-col :span="6">
                 <el-form-item label="J1t（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].J1t" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].J1t" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="J1b（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].J1b" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].J1b" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="J1c（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].J1c" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].J1c" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="b1（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].b1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].b1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="b2（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].b2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].b2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="R（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].R2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].R2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf2">
-                  <el-input v-model.number="dlslxform['单梁式'].hf2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].hf2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -1093,22 +1101,22 @@
             <el-row>
               <el-col :span="6">
                 <el-form-item label="JJt（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].JJt" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].JJt" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="JJb（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].JJb" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].JJb" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="R（mm）">
-                  <el-input v-model.number="dlslxform['单梁式'].R" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].R" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf3">
-                  <el-input v-model.number="dlslxform['单梁式'].hf3" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dlslxform['单梁式'].hf3" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -1136,22 +1144,22 @@
             </el-table-column>
             <el-table-column label="翼缘板厚度（mm）">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.yybhd" clearable></el-input>
+                <el-input type="number" v-model="scope.row.yybhd" clearable></el-input>
               </template>
             </el-table-column>
             <el-table-column label="腹板厚度（mm）">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.fbhd" clearable></el-input>
+                <el-input type="number" v-model="scope.row.fbhd" clearable></el-input>
               </template>
             </el-table-column>
             <el-table-column label="底板厚度（mm）">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.dbhd" clearable></el-input>
+                <el-input type="number" v-model="scope.row.dbhd" clearable></el-input>
               </template>
             </el-table-column>
             <el-table-column label="斜交角（度）">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.xjj" clearable></el-input>
+                <el-input type="number" v-model="scope.row.xjj" clearable></el-input>
               </template>
             </el-table-column>
             <el-table-column label="支点横隔板编号">
@@ -1189,19 +1197,19 @@
             <el-row v-if="zzgsselectvalue === '单支座'">
               <el-col :span="6">
                 <el-form-item label="支座位置（mm）">
-                  <el-input v-model.number="zzgsform[zzgsselectvalue].zzwz" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zzgsform[zzgsselectvalue].zzwz" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
             <el-row v-else>
               <el-col :span="6">
                 <el-form-item label="左侧支座位置（mm）">
-                  <el-input v-model.number="zzgsform[zzgsselectvalue].zczzwz" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zzgsform[zzgsselectvalue].zczzwz" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="右侧支座位置（mm）">
-                  <el-input v-model.number="zzgsform[zzgsselectvalue].yczzwz" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zzgsform[zzgsselectvalue].yczzwz" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1220,22 +1228,22 @@
             <el-row>
               <el-col :span="6">
                 <el-form-item label="ZDHGt（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].ZDHGt" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].ZDHGt" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="DBZ（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].DBZ" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].DBZ" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="DBY（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].DBY" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].DBY" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="DBt（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].DBt" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].DBt" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -1260,37 +1268,37 @@
               <h5 v-if="zcjjllxselectvalue==='ZC3'">CJ1的参数表</h5>
               <el-col :span="6">
                 <el-form-item label="与隔板交角（度）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].ygbjjd" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].ygbjjd" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6" v-if="zcjjllxselectvalue==='ZC2'">
                 <el-form-item label="CKZ（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CKZ" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CKZ" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6" v-if="zcjjllxselectvalue==='ZC2'">
                 <el-form-item label="CKY（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CKY" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CKY" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6" v-if="zcjjllxselectvalue==='ZC2'">
                 <el-form-item label="CJt（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CJt" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CJt" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6" v-if="zcjjllxselectvalue==='ZC2'">
                 <el-form-item label="CJb（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CJb" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CJb" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6" v-if="zcjjllxselectvalue==='ZC3'">
                 <el-form-item label="CJ1t（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CJ1t" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CJ1t" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6" v-if="zcjjllxselectvalue==='ZC3'">
                 <el-form-item label="CJ1b（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CJ1b" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CJ1b" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
@@ -1303,22 +1311,22 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="D（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].D" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].D" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="R（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].R" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].R" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="b（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].b" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].b" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="h（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].h" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].h" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1327,27 +1335,28 @@
                 <h5>CJ2的参数表</h5>
                 <el-col :span="6">
                   <el-form-item label="与隔板交角（度）">
-                    <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].ygbjjd2" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].ygbjjd2" style="width:50%">
+                    </el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="CKZ（mm）">
-                    <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CKZ" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CKZ" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="CKY（mm）">
-                    <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CKY" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CKY" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="CJ2t（mm）">
-                    <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CJ2t" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CJ2t" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="CJ2b（mm）">
-                    <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].CJ2b" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].CJ2b" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
@@ -1360,22 +1369,22 @@
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="D（mm）">
-                    <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].D2" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].D2" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="R（mm）">
-                    <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].R2" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].R2" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="b（mm）">
-                    <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].b2" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].b2" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="h（mm）">
-                    <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].h2" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].h2" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
               </el-row>
@@ -1400,42 +1409,43 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="LC与隔板交角（度）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].LCygbjjd" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].LCygbjjd" style="width:50%">
+                  </el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="L2（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].L2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].L2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="LCt（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].LCt" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].LCt" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="LCb（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].LCb" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].LCb" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="LCH（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].LCH" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].LCH" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="D（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].D3" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].D3" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="b（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].b3" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].b3" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="h（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].h3" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].h3" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1459,7 +1469,7 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="L1（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].L1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].L1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -1480,62 +1490,62 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="L1（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].L14" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].L14" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="W1t（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].W1t" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].W1t" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="H（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].H" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].H" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="RKB（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].RKB" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].RKB" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="RKH（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].RKH" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].RKH" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="R1（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].R1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].R1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="R2（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].R2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].R2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="B1（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].B1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].B1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="B2（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].B2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].B2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="H1（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].H1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].H1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="H2（mm）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].H2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].H2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf1">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].hf1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].hf1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1543,32 +1553,34 @@
             <el-row>
               <el-col :span="10">
                 <el-form-item label="钢材的强度设计值（MPa）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].gcdqdsjz" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].gcdqdsjz" style="width:50%">
+                  </el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="系数">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].xs" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].xs" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="倍数">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].bs" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].bs" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item label="支座反力设计值（KN）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].zzflsjz" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].zzflsjz" style="width:50%">
+                  </el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="承压面积（平方毫米）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].cymj" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].cymj" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="验算强度值（MPa）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].ysqdz" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].ysqdz" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1576,32 +1588,34 @@
             <el-row>
               <el-col :span="8">
                 <el-form-item label="钢材的强度设计值（MPa）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].gcdqdsjz2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].gcdqdsjz2" style="width:50%">
+                  </el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="系数">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].xs2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].xs2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="倍数">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].bs2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].bs2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item label="支座反力设计值（KN）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].zzflsjz2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].zzflsjz2" style="width:50%">
+                  </el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="承压面积（平方毫米）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].cymj2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].cymj2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="验算强度值（MPa）">
-                  <el-input v-model.number="zcjjllxform[zcjjllxselectvalue].ysqdz2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zcjjllxform[zcjjllxselectvalue].ysqdz2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1671,12 +1685,12 @@
             </el-table-column>
             <el-table-column label="钢梁高度">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.glgd" clearable></el-input>
+                <el-input type="number" v-model="scope.row.glgd" clearable></el-input>
               </template>
             </el-table-column>
             <el-table-column label="斜交角（度）">
               <template v-slot="scope">
-                <el-input v-model.number="scope.row.xjj" clearable></el-input>
+                <el-input type="number" v-model="scope.row.xjj" clearable></el-input>
               </template>
             </el-table-column>
           </el-table>
@@ -1686,19 +1700,19 @@
             <el-row>
               <el-col :span="24">
                 <el-form-item label="横梁腹板在翼缘板、主梁腹板交角处的过焊孔R（mm）">
-                  <el-input v-model.number="zdchlsjform.HLFB_YYB_ZFB_R" style="width:50%">
+                  <el-input type="number" v-model="zdchlsjform.HLFB_YYB_ZFB_R" style="width:50%">
                   </el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="24">
                 <el-form-item label="横梁腹板在横梁底板、主梁腹板交角处的过焊孔R（mm）">
-                  <el-input v-model.number="zdchlsjform.HLFB_HLDB_ZLFB_R" style="width:50%">
+                  <el-input type="number" v-model="zdchlsjform.HLFB_HLDB_ZLFB_R" style="width:50%">
                   </el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="24">
                 <el-form-item label="横梁顶板与翼缘板的过焊孔R（mm）">
-                  <el-input v-model.number="zdchlsjform.HLDB_YYB_R" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlsjform.HLDB_YYB_R" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1718,22 +1732,22 @@
               <h4>支点横梁的参数设置</h4>
               <el-col :span="6">
                 <el-form-item label="横梁高度H（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].hlgdH" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].hlgdH" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="DBZ（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].DBZ" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].DBZ" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="DBY（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].DBY" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].DBY" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="t1（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].t1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].t1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -1754,37 +1768,37 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="B（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].B" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].B" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="t2（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].t2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].t2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="t3（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].t3" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].t3" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf1">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].hf1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].hf1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf2">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].hf2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].hf2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf3">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].hf3" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].hf3" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf4">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].hf4" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].hf4" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1824,37 +1838,37 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="J1t（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].J1t" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].J1t" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="J1b（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].J1b" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].J1b" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="J1c（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].J1c" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].J1c" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="b1（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].b1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].b1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="b2（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].b2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].b2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="R（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].R" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].R" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf2">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].hf22" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].hf22" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <div v-if="zdchlform[zdchlsjselectvalue].hldbdbxs === 1">
@@ -1863,27 +1877,27 @@
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="L（mm）">
-                    <el-input v-model.number="zdchlform[zdchlsjselectvalue].LQKT" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].LQKT" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="k1（mm）">
-                    <el-input v-model.number="zdchlform[zdchlsjselectvalue].k1QKT" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].k1QKT" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="k2（mm）">
-                    <el-input v-model.number="zdchlform[zdchlsjselectvalue].k2QKT" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].k2QKT" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="b1（mm）">
-                    <el-input v-model.number="zdchlform[zdchlsjselectvalue].b1QKT" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].b1QKT" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="R（mm）">
-                    <el-input v-model.number="zdchlform[zdchlsjselectvalue].RQKT" style="width:50%"></el-input>
+                    <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].RQKT" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
               </div>
@@ -1900,27 +1914,27 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="L（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].L" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].L" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="k1（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].k1" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].k1" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="k2（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].k2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].k2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="b1（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].b13" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].b13" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="R（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].R3" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].R3" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1937,22 +1951,22 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="SLt（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].SLt" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].SLt" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="SLb（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].SLb" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].SLb" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="R（mm）">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].RSL" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].RSL" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf3">
-                  <el-input v-model.number="zdchlform[zdchlsjselectvalue].hf3SL" style="width:50%"></el-input>
+                  <el-input type="number" v-model="zdchlform[zdchlsjselectvalue].hf3SL" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -1977,42 +1991,42 @@
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="HS（mm）">
-                    <el-input v-model.number="vLSData.HS" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLSData.HS" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="VLt（mm）">
-                    <el-input v-model.number="vLSData.VLt" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLSData.VLt" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="VLb（mm）">
-                    <el-input v-model.number="vLSData.VLb" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLSData.VLb" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="L1（mm）">
-                    <el-input v-model.number="vLSData.L1" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLSData.L1" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="b（mm）">
-                    <el-input v-model.number="vLSData.b" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLSData.b" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="R（mm）">
-                    <el-input v-model.number="vLSData.RVLS" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLSData.RVLS" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="hf1">
-                    <el-input v-model.number="vLSData.hf1VLS" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLSData.hf1VLS" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="hf2">
-                    <el-input v-model.number="vLSData.hf2VLS" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLSData.hf2VLS" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
               </div>
@@ -2039,42 +2053,42 @@
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="HX（mm）">
-                    <el-input v-model.number="vLXData.HX" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLXData.HX" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="VLt（mm）">
-                    <el-input v-model.number="vLXData.VLtX" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLXData.VLtX" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="VLb（mm）">
-                    <el-input v-model.number="vLXData.VLbX" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLXData.VLbX" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="L1（mm）">
-                    <el-input v-model.number="vLXData.L1X" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLXData.L1X" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="b（mm）">
-                    <el-input v-model.number="vLXData.bX" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLXData.bX" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="R（mm）">
-                    <el-input v-model.number="vLXData.RVLX" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLXData.RVLX" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="hf1">
-                    <el-input v-model.number="vLXData.hf1VLX" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLXData.hf1VLX" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="hf2">
-                    <el-input v-model.number="vLXData.hf2VLX" style="width:50%"></el-input>
+                    <el-input type="number" v-model="vLXData.hf2VLX" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
               </div>
@@ -2086,7 +2100,7 @@
               </el-col>
               <el-col :span="6">
                 <el-form-item label="人孔中心线位置">
-                  <el-input v-model.number="rkData.rkzxxwz" style="width:50%"></el-input>
+                  <el-input type="number" v-model="rkData.rkzxxwz" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -2103,27 +2117,27 @@
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="H（mm）">
-                    <el-input v-model.number="rklxData.H" style="width:50%"></el-input>
+                    <el-input type="number" v-model="rklxData.H" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6" v-if="rkData.rklx === 2">
                   <el-form-item label="RKD（mm）">
-                    <el-input v-model.number="rklxData.RKD" style="width:50%"></el-input>
+                    <el-input type="number" v-model="rklxData.RKD" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6" v-if="rkData.rklx === 0 || rkData.rklx === 1 || rkData.rklx === 3">
                   <el-form-item label="RKH（mm）">
-                    <el-input v-model.number="rklxData.RKH" style="width:50%"></el-input>
+                    <el-input type="number" v-model="rklxData.RKH" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6" v-if="rkData.rklx === 0 || rkData.rklx === 1 || rkData.rklx === 3">
                   <el-form-item label="RKB（mm）">
-                    <el-input v-model.number="rklxData.RKB" style="width:50%"></el-input>
+                    <el-input type="number" v-model="rklxData.RKB" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6" v-if="rkData.rklx === 0 || rkData.rklx === 1">
                   <el-form-item label="RKR（mm）">
-                    <el-input v-model.number="rklxData.RKR" style="width:50%"></el-input>
+                    <el-input type="number" v-model="rklxData.RKR" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <div v-if="rkData.rklx === 0 || rkData.rklx === 1">
@@ -2135,52 +2149,52 @@
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="H1（mm）">
-                      <el-input v-model.number="rklxData.H1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.H1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="B1（mm）">
-                      <el-input v-model.number="rklxData.B1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.B1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rkData.rklx === 0">
                     <el-form-item label="B2（mm）">
-                      <el-input v-model.number="rklxData.B2" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.B2" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="W1t（mm）">
-                      <el-input v-model.number="rklxData.W1t" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.W1t" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="W1b（mm）">
-                      <el-input v-model.number="rklxData.W1b" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.W1b" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rkData.rklx === 0">
                     <el-form-item label="W2t（mm）">
-                      <el-input v-model.number="rklxData.W2t" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.W2t" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rkData.rklx === 0">
                     <el-form-item label="W2b（mm）">
-                      <el-input v-model.number="rklxData.W2b" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.W2b" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="R1（mm）">
-                      <el-input v-model.number="rklxData.R1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.R1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="hf1">
-                      <el-input v-model.number="rklxData.hf1W12" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.hf1W12" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rkData.rklx === 0">
                     <el-form-item label="hf2">
-                      <el-input v-model.number="rklxData.hf2W12" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.hf2W12" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
@@ -2199,22 +2213,22 @@
                     </el-col>
                     <el-col :span="6">
                       <el-form-item label="J1t（mm）">
-                        <el-input v-model.number="rklxData.J1t" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxData.J1t" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6">
                       <el-form-item label="J1b（mm）">
-                        <el-input v-model.number="rklxData.J1b" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxData.J1b" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6">
                       <el-form-item label="R2（mm）">
-                        <el-input v-model.number="rklxData.R2" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxData.R2" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6">
                       <el-form-item label="hf2">
-                        <el-input v-model.number="rklxData.hf2" style="width:50%"></el-input>
+                        <el-input type="number" v-model="rklxData.hf2" style="width:50%"></el-input>
                       </el-form-item>
                     </el-col>
                     <el-col :span="6">
@@ -2233,22 +2247,22 @@
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="RKt（mm）">
-                      <el-input v-model.number="rklxData.RKt" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.RKt" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="RKb（mm）">
-                      <el-input v-model.number="rklxData.RKb" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.RKb" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6" v-if="rkData.rklx === 3">
                     <el-form-item label="R1（mm）">
-                      <el-input v-model.number="rklxData.R1W1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.R1W1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                   <el-col :span="6">
                     <el-form-item label="hf1">
-                      <el-input v-model.number="rklxData.hf1w1" style="width:50%"></el-input>
+                      <el-input type="number" v-model="rklxData.hf1w1" style="width:50%"></el-input>
                     </el-form-item>
                   </el-col>
                 </div>
@@ -2267,22 +2281,22 @@
               <h4>端封板的参数设置</h4>
               <el-col :span="6">
                 <el-form-item label="DFt（mm）">
-                  <el-input v-model.number="dfbsjform.DFB_DFt" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.DFB_DFt" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="L（mm）">
-                  <el-input v-model.number="dfbsjform.DFB_L" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.DFB_L" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="DBY（mm）">
-                  <el-input v-model.number="dfbsjform.DFB_DBY" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.DFB_DBY" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="DBt（mm）">
-                  <el-input v-model.number="dfbsjform.DFB_DBt" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.DFB_DBt" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
@@ -2298,42 +2312,42 @@
               <h4>SL加劲板的参数设置</h4>
               <el-col :span="6">
                 <el-form-item label="LZ（mm）">
-                  <el-input v-model.number="dfbsjform.SL_LZ" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.SL_LZ" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="8">
                 <el-form-item label="LY（mm）">
-                  <el-input v-model.number="dfbsjform.SL_LY" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.SL_LY" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="SLt（mm）">
-                  <el-input v-model.number="dfbsjform.SL_SLt" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.SL_SLt" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="SLb（mm）">
-                  <el-input v-model.number="dfbsjform.SL_SLb" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.SL_SLb" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="HY（mm）">
-                  <el-input v-model.number="dfbsjform.SL_HY" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.SL_HY" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="HD（mm）">
-                  <el-input v-model.number="dfbsjform.SL_HD" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.SL_HD" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="b（mm）">
-                  <el-input v-model.number="dfbsjform.SL_b" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.SL_b" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="6">
                 <el-form-item label="hf2">
-                  <el-input v-model.number="dfbsjform.SL_hf2" style="width:50%"></el-input>
+                  <el-input type="number" v-model="dfbsjform.SL_hf2" style="width:50%"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -2350,72 +2364,72 @@
               <div v-if="dfbsjform.dbdbktsz !== 0">
                 <el-col :span="6">
                   <el-form-item label="VH（mm）">
-                    <el-input v-model.number="dfbsjform.VL_VH" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.VL_VH" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="VLt（mm）">
-                    <el-input v-model.number="dfbsjform.VL_VLt" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.VL_VLt" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="VLb（mm）">
-                    <el-input v-model.number="dfbsjform.VL_VLb" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.VL_VLb" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="L1（mm）">
-                    <el-input v-model.number="dfbsjform.VL_L1" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.VL_L1" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="b（mm）">
-                    <el-input v-model.number="dfbsjform.VL_b" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.VL_b" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="R（mm）">
-                    <el-input v-model.number="dfbsjform.VL_R" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.VL_R" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="6">
                   <el-form-item label="hf1">
-                    <el-input v-model.number="dfbsjform.VL_hf1" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.VL_hf1" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="24">
                   <el-form-item label="hf2">
-                    <el-input v-model.number="dfbsjform.VL_hf2" style="width:10%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.VL_hf2" style="width:10%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label="翼缘板和腹板交角处的过焊孔R（mm）">
-                    <el-input v-model.number="dfbsjform.YYB_FB_R" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.YYB_FB_R" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label="翼缘板和腹板交角处的过焊孔D（mm）">
-                    <el-input v-model.number="dfbsjform.YYB_FB_D" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.YYB_FB_D" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label="底板和腹板交角处的过焊孔R（mm）">
-                    <el-input v-model.number="dfbsjform.DB_FB_R" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.DB_FB_R" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label="底板和腹板交角处的过焊孔D（mm）">
-                    <el-input v-model.number="dfbsjform.DB_FB_D" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.DB_FB_D" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label="翼缘板和端封板顶板的过焊孔R（mm）">
-                    <el-input v-model.number="dfbsjform.YYB_DFB_R" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.YYB_DFB_R" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
                   <el-form-item label="翼缘板和端封板顶板的过焊孔h（mm）">
-                    <el-input v-model.number="dfbsjform.YYB_DFB_h" style="width:50%"></el-input>
+                    <el-input type="number" v-model="dfbsjform.YYB_DFB_h" style="width:50%"></el-input>
                   </el-form-item>
                 </el-col>
               </div>

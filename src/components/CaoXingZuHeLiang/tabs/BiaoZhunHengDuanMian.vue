@@ -18,7 +18,7 @@
         </el-table-column>
         <el-table-column label="铺装厚度(mm)">
           <template v-slot="scope">
-            <el-input v-model="scope.row.pzhd" clearable></el-input>
+            <el-input v-model="scope.row.pzhd" clearable type="number"></el-input>
           </template>
         </el-table-column>
         <el-table-column label="操作">
@@ -51,7 +51,7 @@
               </el-select>
             </el-form-item>
             <el-form-item label="宽度[WB]：">
-              <el-input v-model="form.waibao" style="width:210px"></el-input>
+              <el-input type="number" v-model="form.waibao" style="width:210px"></el-input>
             </el-form-item>
             <el-form-item label="护栏类型：">
               <el-select v-model="form.leixing">
@@ -82,10 +82,10 @@
             <div v-if="form.HuLan === '内缩' " style="height:398px;margin-bottom:30px">
               <el-form-item label="滴水槽设计"></el-form-item>
               <el-form-item label="距离梁端SX：">
-                <el-input v-model="QMBform.liangduanSX"></el-input>
+                <el-input type="number" v-model="QMBform.liangduanSX"></el-input>
               </el-form-item>
               <el-form-item label="半径R：">
-                <el-input v-model="QMBform.banjingR"></el-input>
+                <el-input type="number" v-model="QMBform.banjingR"></el-input>
               </el-form-item>
             </div>
             <!-- 悬臂 -->
@@ -94,27 +94,27 @@
                 <el-input v-model="QMBform.DengHou"></el-input>
               </el-form-item>
               <el-form-item label="1丶桥面板标准厚度BKH：">
-                <el-input v-model="QMBform.qmbbzhd"></el-input>
+                <el-input type="number" v-model="QMBform.qmbbzhd"></el-input>
               </el-form-item>
               <el-form-item label="2丶悬臂设计"></el-form-item>
               <el-form-item label="2.1 外悬臂等厚段厚度BD：">
-                <el-input v-model="QMBform.xuanbihd"></el-input>
+                <el-input type="number" v-model="QMBform.xuanbihd"></el-input>
               </el-form-item>
               <el-form-item label="2.2 外悬臂渐变段长度X：">
-                <el-input v-model="QMBform.xuanbijb"></el-input>
+                <el-input type="number" v-model="QMBform.xuanbijb"></el-input>
               </el-form-item>
             </div>
             <!-- 承托 -->
             <div style="height:398px ;margin-top:220px">
               <el-form-item label="3丶承托设计"></el-form-item>
               <el-form-item label="3.1 腹板处桥面板厚度BCH：">
-                <el-input v-model="QMBform.qiaomianbanBCH"></el-input>
+                <el-input type="number" v-model="QMBform.qiaomianbanBCH"></el-input>
               </el-form-item>
               <el-form-item label="3.2 箱内渐变段长度X：">
-                <el-input v-model="QMBform.xiangnei"></el-input>
+                <el-input type="number" v-model="QMBform.xiangnei"></el-input>
               </el-form-item>
               <el-form-item label="3.3 承托宽度：">
-                <el-input v-model="QMBform.chengtuo"></el-input>
+                <el-input type="number" v-model="QMBform.chengtuo"></el-input>
               </el-form-item>
             </div>
           </el-form>
@@ -167,75 +167,75 @@
               <el-table :data="GangZLData[GangLiangform.GLpianshu - 2]" style="width: 100%" border>
                 <el-table-column label="左悬臂">
                   <template v-slot="props">
-                    <el-input v-model="props.row.zxb"></el-input>
+                    <el-input type="number" v-model="props.row.zxb"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="箱室宽度（GL-1）">
                   <template v-slot="props">
-                    <el-input v-model="props.row.gl1"></el-input>
+                    <el-input type="number" v-model="props.row.gl1"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="箱间宽度">
                   <template v-slot="props">
-                    <el-input v-model="props.row.xjkd1"></el-input>
+                    <el-input type="number" v-model="props.row.xjkd1"></el-input>
                   </template>
                 </el-table-column>
                 <el-table-column label="箱室宽度（GL-2）">
                   <template v-slot="props">
-                    <el-input v-model="props.row.gl2"></el-input>
+                    <el-input type="number" v-model="props.row.gl2"></el-input>
                   </template>
                 </el-table-column>
                 <div v-if="GangLiangform.GLpianshu > 2">
                   <el-table-column label="箱间宽度">
                     <template v-slot="props">
-                      <el-input v-model="props.row.xjkd2"></el-input>
+                      <el-input type="number" v-model="props.row.xjkd2"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column label="箱室宽度（GL-3）">
                     <template v-slot="props">
-                      <el-input v-model="props.row.gl3"></el-input>
+                      <el-input type="number" v-model="props.row.gl3"></el-input>
                     </template>
                   </el-table-column>
                 </div>
                 <div v-if="GangLiangform.GLpianshu > 3">
                   <el-table-column label="箱间宽度">
                     <template v-slot="props">
-                      <el-input v-model="props.row.xjkd3"></el-input>
+                      <el-input type="number" v-model="props.row.xjkd3"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column label="箱室宽度（GL-4）">
                     <template v-slot="props">
-                      <el-input v-model="props.row.gl4"></el-input>
+                      <el-input type="number" v-model="props.row.gl4"></el-input>
                     </template>
                   </el-table-column>
                 </div>
                 <div v-if="GangLiangform.GLpianshu > 4">
                   <el-table-column label="箱间宽度">
                     <template v-slot="props">
-                      <el-input v-model="props.row.xjkd4"></el-input>
+                      <el-input type="number" v-model="props.row.xjkd4"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column label="箱室宽度（GL-5）">
                     <template v-slot="props">
-                      <el-input v-model="props.row.gl5"></el-input>
+                      <el-input type="number" v-model="props.row.gl5"></el-input>
                     </template>
                   </el-table-column>
                 </div>
                 <div v-if="GangLiangform.GLpianshu > 5">
                   <el-table-column label="箱间宽度">
                     <template v-slot="props">
-                      <el-input v-model="props.row.xjkd5"></el-input>
+                      <el-input type="number" v-model="props.row.xjkd5"></el-input>
                     </template>
                   </el-table-column>
                   <el-table-column label="箱室宽度（GL-6）" width="150">
                     <template v-slot="props">
-                      <el-input v-model="props.row.gl6"></el-input>
+                      <el-input type="number" v-model="props.row.gl6"></el-input>
                     </template>
                   </el-table-column>
                 </div>
                 <el-table-column label="右悬臂">
                   <template v-slot="props">
-                    <el-input v-model="props.row.yxb"></el-input>
+                    <el-input type="number" v-model="props.row.yxb"></el-input>
                   </template>
                 </el-table-column>
               </el-table>
@@ -244,7 +244,7 @@
             <div class="hulan" style="margin-top:100px">
               <div style="width:30%">
                 <el-form-item label="4.3 翼缘板宽度[YK]">
-                  <el-input v-model="GangLiangform.Yybkd" style="width:100px;"></el-input>
+                  <el-input type="number" v-model="GangLiangform.Yybkd" style="width:100px;"></el-input>
                 </el-form-item>
                 <el-form-item label="4.3 翼缘板厚度变化">
                   <el-select v-model="GangLiangform.Yybhd" style="width:100px;">
@@ -262,7 +262,7 @@
             <!-- 4.4 钢主梁高度[GH] -->
             <div style="width:30%">
               <el-form-item label="4.4 钢主梁高度[GH]">
-                <el-input v-model="GangLiangform.Gzlgd" style="width:100px;"></el-input>
+                <el-input type="number" v-model="GangLiangform.Gzlgd" style="width:100px;"></el-input>
               </el-form-item>
             </div>
             <!-- 4.5 腹板设计 -->
@@ -282,7 +282,7 @@
                     <el-table-column prop="dbkd" label="钢梁编号"></el-table-column>
                     <el-table-column label="值">
                       <template v-slot="scope">
-                        <el-input v-model="scope.row.zhi" :disabled="scope.row.disabled"></el-input>
+                        <el-input type="number" v-model="scope.row.zhi" :disabled="scope.row.disabled"></el-input>
                       </template>
                     </el-table-column>
                     <el-table-column label="是否竖直">
@@ -336,7 +336,7 @@
                   </el-select>
                 </el-form-item>
                 <el-form-item label="底板外伸[DS]">
-                  <el-input v-model="GangLiangform.DBws" style="width:210px"></el-input>
+                  <el-input type="number" v-model="GangLiangform.DBws" style="width:210px"></el-input>
                 </el-form-item>
               </div>
               <div style="width:70%">

@@ -16,7 +16,7 @@
         </el-form-item>
         <el-form-item label="起始桩号：">
           <div style="width:100px">
-            <el-input v-model="form.qishizhuanghao"></el-input>
+            <el-input type="number" v-model="form.qishizhuanghao"></el-input>
           </div>
         </el-form-item>
       </el-form>
@@ -26,17 +26,17 @@
             <el-select v-model="scope.row.bkl" placeholder="请选择">
               <el-option v-for="item in options" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
-            <el-input v-model="scope.row.zh" clearable></el-input>
+            <el-input type="number" v-model="scope.row.zh" clearable></el-input>
           </template>
         </el-table-column>
         <el-table-column label="左横坡%">
           <template v-slot="scope">
-            <el-input v-model="scope.row.zhp" clearable></el-input>
+            <el-input type="number" v-model="scope.row.zhp" clearable></el-input>
           </template>
         </el-table-column>
         <el-table-column label="右横坡%">
           <template v-slot="scope">
-            <el-input v-model="scope.row.yhp" clearable></el-input>
+            <el-input type="number" v-model="scope.row.yhp" clearable></el-input>
           </template>
         </el-table-column>
         <el-table-column label="操作">
