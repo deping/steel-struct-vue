@@ -22,7 +22,7 @@
           </el-table-column>
           <el-table-column label="横向定位">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.hxdw" clearable></el-input>
+              <el-input type="number" v-model="scope.row.hxdw" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="支座类型" width="190px">
@@ -68,7 +68,7 @@
           </el-table-column>
           <el-table-column label="纵向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.zxbz" clearable></el-input>
+              <el-input type="number" v-model="scope.row.zxbz" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="横向索引腹板线" width="190px">
@@ -81,12 +81,12 @@
           </el-table-column>
           <el-table-column label="横向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.hxbz" clearable></el-input>
+              <el-input type="number" v-model="scope.row.hxbz" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="引水板定位">
             <template v-slot="scope">
-              <el-input v-model="scope.row.ysbdw" clearable></el-input>
+              <point-input v-model="scope.row.ysbdw" clearable></point-input>
             </template>
           </el-table-column>
           <el-table-column label="类型" width="190px">
@@ -133,7 +133,7 @@
           </el-table-column>
           <el-table-column label="纵向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.jxkZxbz" clearable></el-input>
+              <el-input type="number" v-model="scope.row.jxkZxbz" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="横向/竖向布置参考线" width="190px">
@@ -146,7 +146,7 @@
           </el-table-column>
           <el-table-column label="横向/竖向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.hxsxbz" clearable></el-input>
+              <el-input type="number" v-model="scope.row.hxsxbz" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="类型" width="190px">
@@ -180,12 +180,12 @@
         <el-table :data="tableDataYgd" stripe style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="纵向定位（mm）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.ygdZxdw" clearable></el-input>
+              <el-input type="number" v-model="scope.row.ygdZxdw" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="矢高（mm）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.sg" clearable></el-input>
+              <el-input type="number" v-model="scope.row.sg" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column>
@@ -210,12 +210,12 @@
         <el-table :data="tableDataYybJld" stripe style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="起始端/终止端距离（mm）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.qsdJl" clearable></el-input>
+              <el-input type="number" v-model="scope.row.qsdJl" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="布置（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.bz" clearable></el-input>
+              <point-input v-model="scope.row.bz" clearable type="size"></point-input>
             </template>
           </el-table-column>
           <el-table-column label="类型" width="190px">
@@ -240,17 +240,17 @@
         <el-table :data="tableDataHgbJld" stripe style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="箱室内调整间距（mm）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.xsjj" clearable></el-input>
+              <el-input type="number" v-model="scope.row.xsjj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="箱梁范围内调整间距（mm）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.xljj" clearable></el-input>
+              <el-input type="number" v-model="scope.row.xljj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="标准间距（mm）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.bzjj" clearable></el-input>
+              <el-input type="number" v-model="scope.row.bzjj" clearable></el-input>
             </template>
           </el-table-column>
         </el-table>

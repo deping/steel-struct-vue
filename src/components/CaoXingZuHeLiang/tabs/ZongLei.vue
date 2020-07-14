@@ -5,81 +5,51 @@
         <h3>腹板纵向加劲肋布置</h3>
       </div>
       <div class="text-item">
-        <el-table
-          :data="tableData"
-          stripe
-          border
-          style="width: 100%"
-          :header-cell-style="{ background: '#eef1f6' }"
-        >
+        <el-table :data="tableData" stripe border style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="位置" width="190px">
             <template v-slot="scope">
               <el-select v-model="scope.row.wz" placeholder="请选择">
-                <el-option
-                  v-for="(item, index) in wzOption"
-                  :key="index"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
+                <el-option v-for="(item, index) in wzOption" :key="index" :label="item.label" :value="item.value">
+                </el-option>
               </el-select>
             </template>
           </el-table-column>
-          <el-table-column label="纵桥向布置">
+          <el-table-column label="纵桥向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.zqxbz" clearable></el-input>
+              <el-input type="number" v-model="scope.row.zqxbz" clearable></el-input>
             </template>
           </el-table-column>
-          <el-table-column label="竖向布置">
+          <el-table-column label="竖向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.sxbz" clearable></el-input>
+              <el-input type="number" v-model="scope.row.sxbz" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="腹板纵肋厚度FZt（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.hd" clearable></el-input>
+              <el-input type="number" v-model="scope.row.hd" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="腹板纵肋高度FZh（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.lh" clearable></el-input>
+              <el-input type="number" v-model="scope.row.lh" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="开孔类型" width="190px">
             <template v-slot="scope">
               <el-select v-model="scope.row.lx" placeholder="请选择">
-                <el-option
-                  v-for="(item, index) in kkOption"
-                  :key="index"
-                  :label="item"
-                  :value="item"
-                ></el-option>
+                <el-option v-for="(item, index) in kkOption" :key="index" :label="item" :value="item"></el-option>
               </el-select>
             </template>
           </el-table-column>
           <el-table-column label="操作">
             <template v-slot="scope">
-              <el-button
-                size="mini"
-                type="primary"
-                @click="addRow(scope.$index, tableData)"
-                >插入</el-button
-              >
-              <el-button
-                size="mini"
-                type="danger"
-                @click="removeRow(scope.$index, tableData)"
-                >删除</el-button
-              >
+              <el-button size="mini" type="primary" @click="addRow(scope.$index, tableData)">插入</el-button>
+              <el-button size="mini" type="danger" @click="removeRow(scope.$index, tableData)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
         <div style="width: 100%;text-align:center; margin:10px 0 0 0">
-          <el-button
-            type="primary"
-            @click="addRow2(tableData)"
-            style="float:left"
-            >增加行</el-button
-          >
+          <el-button type="primary" @click="addRow2(tableData)" style="float:left">增加行</el-button>
         </div>
       </div>
       <p>
@@ -92,81 +62,52 @@
         <h3>底板纵向加劲肋布置</h3>
       </div>
       <div class="text-item">
-        <el-table
-          :data="tableDataD"
-          stripe
-          border
-          style="width: 100%"
-          :header-cell-style="{ background: '#eef1f6' }"
-        >
+        <el-table :data="tableDataD" stripe border style="width: 100%" :header-cell-style="{ background: '#eef1f6' }">
           <el-table-column label="参考线" width="190px">
             <template v-slot="scope">
               <el-select v-model="scope.row.ckx" placeholder="请选择">
-                <el-option
-                  v-for="(item, index) in ckxOption"
-                  :key="index"
-                  :label="item.label"
-                  :value="item.value"
-                ></el-option>
+                <el-option v-for="(item, index) in ckxOption" :key="index" :label="item.label" :value="item.value">
+                </el-option>
               </el-select>
             </template>
           </el-table-column>
-          <el-table-column label="纵桥向布置">
+          <el-table-column label="纵桥向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.zqxbz_d" clearable></el-input>
+              <point-input v-model="scope.row.zqxbz_d" clearable></point-input>
             </template>
           </el-table-column>
-          <el-table-column label="横桥向布置">
+          <el-table-column label="横桥向布置（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.hqxbz" clearable></el-input>
+              <el-input type="number" v-model="scope.row.hqxbz" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="腹板纵肋厚度DZt（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.hd_d" clearable></el-input>
+              <el-input type="number" v-model="scope.row.hd_d" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="腹板纵肋高度DZh（mm）">
             <template v-slot="scope">
-              <el-input v-model="scope.row.lh_d" clearable></el-input>
+              <el-input type="number" v-model="scope.row.lh_d" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="开孔类型" width="190px">
             <template v-slot="scope">
               <el-select v-model="scope.row.lx_d" placeholder="请选择">
-                <el-option
-                  v-for="(item, index) in kkOption"
-                  :key="index"
-                  :label="item"
-                  :value="item"
-                ></el-option>
+                <el-option v-for="(item, index) in kkOption" :key="index" :label="item" :value="item"></el-option>
               </el-select>
             </template>
           </el-table-column>
           <el-table-column label="操作">
             <template v-slot="scope">
-              <el-button
-                size="mini"
-                type="primary"
-                @click="addRowGljd(scope.$index, tableDataD)"
-                >插入</el-button
-              >
-              <el-button
-                size="mini"
-                type="danger"
-                @click="removeRowGljd(scope.$index, tableDataD)"
-                >删除</el-button
-              >
+              <el-button size="mini" type="primary" @click="addRowGljd(scope.$index, tableDataD)">插入</el-button>
+              <el-button size="mini" type="danger" @click="removeRowGljd(scope.$index, tableDataD)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
         <div style="width: 100%;text-align:center; margin:10px 0 0 0">
-          <el-button
-            type="primary"
-            @click="addRow2Gljd(tableDataD)"
-            style="float:left; margin:10px 0 10px 0"
-            >增加行</el-button
-          >
+          <el-button type="primary" @click="addRow2Gljd(tableDataD)" style="float:left; margin:10px 0 10px 0">增加行
+          </el-button>
         </div>
       </div>
 
@@ -201,11 +142,11 @@ export default class ZongLei extends Vue {
   tableData = [
     {
       wz: "",
-      zqxbz: "",
-      sxbz: "",
+      zqxbz: 0,
+      sxbz: 0,
       lx: "",
-      hd: "",
-      lh: ""
+      hd: 0,
+      lh: 0
     }
   ];
 
@@ -214,18 +155,18 @@ export default class ZongLei extends Vue {
     {
       ckx: "XLCen1",
       zqxbz_d: "20,39900",
-      hqxbz: "0",
+      hqxbz: 0,
       lx_d: "ZXKK1",
-      hd_d: "10",
-      lh_d: "200"
+      hd_d: 10,
+      lh_d: 200
     },
     {
       ckx: "XLCen2",
       zqxbz_d: "20,39900",
-      hqxbz: "0",
+      hqxbz: 0,
       lx_d: "ZXKK1",
-      hd_d: "10",
-      lh_d: "200"
+      hd_d: 10,
+      lh_d: 200
     }
   ];
 
@@ -252,11 +193,11 @@ export default class ZongLei extends Vue {
     this.tableData.forEach(value => {
       const tmp: ZXJJL = new ZXJJL();
       tmp.ckx = value.wz;
-      tmp.lay = value.sxbz;
-      tmp.region = value.zqxbz;
+      tmp.lay = String(value.sxbz);
+      tmp.region = String(value.zqxbz);
       tmp.matIndex = value.lx;
-      tmp.hd = value.hd;
-      tmp.lh = value.lh;
+      tmp.hd = String(value.hd);
+      tmp.lh = String(value.lh);
       zxjjls.push(tmp);
     });
     return zxjjls;
@@ -268,11 +209,11 @@ export default class ZongLei extends Vue {
     this.tableDataD.forEach(value => {
       const tmp: ZXJJL = new ZXJJL();
       tmp.ckx = value.ckx;
-      tmp.lay = value.hqxbz;
+      tmp.lay = String(value.hqxbz);
       tmp.region = value.zqxbz_d;
       tmp.matIndex = value.lx_d;
-      tmp.hd = value.hd_d;
-      tmp.lh = value.lh_d;
+      tmp.hd = String(value.hd_d);
+      tmp.lh = String(value.lh_d);
       zxjjlsD.push(tmp);
     });
     return zxjjlsD;
@@ -300,6 +241,7 @@ export default class ZongLei extends Vue {
   // 反序列化
   deserialize() {
     console.log("反序列化 纵肋 开始");
+    this.kkOption = this.jsonDataService.ljkJSON.stiffeningRibAZxjjlkk;
     this.ckxOption = makeLabelValueArray(
       "箱梁中心线",
       "XLCen",
@@ -312,7 +254,7 @@ export default class ZongLei extends Vue {
       1,
       this.jsonDataService.amoutGZL * 2
     );
-    this.kkOption = this.jsonDataService.ljkJSON.stiffeningRibAZxjjlkk;
+
     if (this.jsonDataService.uiJSON.isEmpty === "true") {
       // 腹板数据反序列化
       this.tableData = [];
@@ -320,18 +262,18 @@ export default class ZongLei extends Vue {
         value => {
           const tmp = {
             wz: "",
-            sxbz: "",
-            zqxbz: "",
+            sxbz: 0,
+            zqxbz: 0,
             lx: "",
-            hd: "",
-            lh: ""
+            hd: 0,
+            lh: 0
           };
           tmp.wz = value.ckx;
-          tmp.zqxbz = value.region;
-          tmp.sxbz = value.lay;
+          tmp.zqxbz = Number(value.region);
+          tmp.sxbz = Number(value.lay);
           tmp.lx = value.matIndex;
-          tmp.hd = value.hd;
-          tmp.lh = value.lh;
+          tmp.hd = Number(value.hd);
+          tmp.lh = Number(value.lh);
           this.tableData.push(tmp);
         }
       );
@@ -343,17 +285,17 @@ export default class ZongLei extends Vue {
           const tmp_d = {
             ckx: "",
             zqxbz_d: "",
-            hqxbz: "",
+            hqxbz: 0,
             lx_d: "",
-            hd_d: "",
-            lh_d: ""
+            hd_d: 0,
+            lh_d: 0
           };
           tmp_d.ckx = value.ckx;
           tmp_d.zqxbz_d = value.region;
-          tmp_d.hqxbz = value.lay;
+          tmp_d.hqxbz = Number(value.lay);
           tmp_d.lx_d = value.matIndex;
-          tmp_d.hd_d = value.hd;
-          tmp_d.lh_d = value.lh;
+          tmp_d.hd_d = Number(value.hd);
+          tmp_d.lh_d = Number(value.lh);
           this.tableDataD.push(tmp_d);
         }
       );

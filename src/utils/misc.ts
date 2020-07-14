@@ -18,6 +18,14 @@ export function isPoint(txt: string): boolean {
   return isNumber(a[0]) && isNumber(a[1]);
 }
 
+export function isSize(txt: string): boolean {
+  const a = txt.split("*");
+  if (a.length !== 2) {
+    return false;
+  }
+  return isNumber(a[0]) && isNumber(a[1]);
+}
+
 // 创建一个序列 如 腹板0、腹板1、腹板2、腹板3
 export function makeSequenceStringArray(
   s: string,

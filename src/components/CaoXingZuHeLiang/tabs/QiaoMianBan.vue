@@ -10,7 +10,7 @@
           </el-table-column>
           <el-table-column label="钢筋直径">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.gjzj" clearable></el-input>
+              <el-input type="number" v-model="scope.row.gjzj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="钢种">
@@ -20,32 +20,32 @@
           </el-table-column>
           <el-table-column label="横向间距/间隔">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.hxjj" clearable></el-input>
+              <el-input type="number" v-model="scope.row.hxjj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="横向最小间距">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.hxzxjj" clearable></el-input>
+              <el-input type="number" v-model="scope.row.hxzxjj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="弯钩长度">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.wgcd" clearable></el-input>
+              <el-input type="number" v-model="scope.row.wgcd" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="边距（中心到边）">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.bj" clearable></el-input>
+              <el-input type="number" v-model="scope.row.bj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="纵向间距/间隔">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.zxjj" clearable></el-input>
+              <el-input type="number" v-model="scope.row.zxjj" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="锚固长度">
             <template v-slot="scope">
-              <el-input v-model.number="scope.row.mgcd" clearable></el-input>
+              <el-input type="number" v-model="scope.row.mgcd" clearable></el-input>
             </template>
           </el-table-column>
         </el-table>

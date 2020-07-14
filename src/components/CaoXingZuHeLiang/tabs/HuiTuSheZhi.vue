@@ -17,7 +17,7 @@
           <el-table-column prop="tk" label="图块"> </el-table-column>
           <el-table-column label="比例">
             <template v-slot="scope">
-              <el-input v-model="scope.row.bl" clearable></el-input>
+              <el-input type="number" v-model="scope.row.bl" clearable></el-input>
             </template>
           </el-table-column>
         </el-table>

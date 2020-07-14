@@ -16,17 +16,17 @@
           </el-table-column>
           <el-table-column label="起点距左梁端">
             <template v-slot="scope">
-              <el-input v-model="scope.row.qdjzld" clearable></el-input>
+              <el-input type="number" v-model="scope.row.qdjzld" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="终点距左梁端">
             <template v-slot="scope">
-              <el-input v-model="scope.row.zdjzld" clearable></el-input>
+              <el-input type="number" v-model="scope.row.zdjzld" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="厚度">
             <template v-slot="scope">
-              <el-input v-model="scope.row.hd" clearable></el-input>
+              <el-input type="number" v-model="scope.row.hd" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="操作">
@@ -58,17 +58,17 @@
           </el-table-column>
           <el-table-column label="起点距左梁端">
             <template v-slot="scope">
-              <el-input v-model="scope.row.qdjzld_fb" clearable></el-input>
+              <el-input type="number" v-model="scope.row.qdjzld_fb" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="终点距左梁端">
             <template v-slot="scope">
-              <el-input v-model="scope.row.zdjzld_fb" clearable></el-input>
+              <el-input type="number" v-model="scope.row.zdjzld_fb" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="厚度">
             <template v-slot="scope">
-              <el-input v-model="scope.row.fbhd" clearable></el-input>
+              <el-input type="number" v-model="scope.row.fbhd" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="操作">
@@ -100,17 +100,17 @@
           </el-table-column>
           <el-table-column label="起点距左梁端">
             <template v-slot="scope">
-              <el-input v-model="scope.row.qdjzld_db" clearable></el-input>
+              <el-input type="number" v-model="scope.row.qdjzld_db" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="终点距左梁端">
             <template v-slot="scope">
-              <el-input v-model="scope.row.zdjzld_db" clearable></el-input>
+              <el-input type="number" v-model="scope.row.zdjzld_db" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="厚度">
             <template v-slot="scope">
-              <el-input v-model="scope.row.dbhd" clearable></el-input>
+              <el-input type="number" v-model="scope.row.dbhd" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="操作">
@@ -164,7 +164,7 @@
           </el-table-column>
           <el-table-column label="钢梁阶段划分">
             <template v-slot="scope">
-              <el-input v-model="scope.row.dist" clearable></el-input>
+              <el-input type="number" v-model="scope.row.dist" clearable></el-input>
             </template>
           </el-table-column>
           <el-table-column label="腹板连接">
@@ -197,7 +197,7 @@
         </el-table>
         <el-form ref="form_gl" :model="form_gl" label-width="150px" label-position="left">
           <el-form-item label="纵向接缝宽度:">
-            <el-input v-model="form_gl.zxjfkd"></el-input>
+            <el-input type="number" v-model="form_gl.zxjfkd"></el-input>
           </el-form-item>
         </el-form>
         <div style="width: 100%;">
