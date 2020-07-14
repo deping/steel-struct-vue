@@ -227,10 +227,6 @@ import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataSe
 import { getAjaxUrl } from "@/utils/path";
 import { makeLabelValueArray } from "@/utils/misc";
 import { PreviewData } from "../models/preview-data";
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace rightHand {
-  function loadObjects(ar: any[]): any[]; // fabric.Object[]
-}
 
 declare let fabric: any;
 interface ConstructNode {

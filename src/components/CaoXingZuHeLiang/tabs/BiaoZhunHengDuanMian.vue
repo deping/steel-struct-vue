@@ -372,10 +372,6 @@ import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataSe
 import FabricCanvas from "@/components/FabricCanvas.vue";
 import { PreviewData } from "../models/preview-data";
 // import { Row } from "element-ui";
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace rightHand {
-  function loadObjects(ar: any[]): any[]; // fabric.Object[]
-}
 
 @Component({
   components: {

@@ -78,10 +78,6 @@ import { ElUploadInternalFileDetail } from "element-ui/types/upload";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
 import FabricCanvas from "@/components/FabricCanvas.vue";
 import { PreviewData } from "../models/preview-data";
-// eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace rightHand {
-  function loadObjects(ar: any[]): any[]; // fabric.Object[]
-}
 
 @Component({
   components: {
