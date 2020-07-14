@@ -3,32 +3,15 @@
     <div id="left">
       <div>
         <span style="margin-right: 8px">选中颜色</span>
-        <el-color-picker
-          v-model="hightlightColor"
-          size="mini"
-          color-format="hex"
-        ></el-color-picker>
+        <el-color-picker v-model="hightlightColor" size="mini" color-format="hex"></el-color-picker>
       </div>
       <div style="width:100%;height:100%;overflow:auto">
-        <el-tree
-          ref="tree"
-          :data="object3D"
-          :props="propMap"
-          :render-content="renderContent"
-          height="100%"
-          :expand-on-click-node="false"
-          :highlight-current="false"
-          node-key="id"
-          default-expand-all
-        >
+        <el-tree ref="tree" :data="object3D" :props="propMap" :render-content="renderContent" height="100%"
+                 :expand-on-click-node="false" :highlight-current="false" node-key="id" default-expand-all>
         </el-tree>
       </div>
     </div>
-    <three-js
-      ref="three"
-      @modelChange="onModelChange"
-      :file="'model/sample.fbx'"
-    ></three-js>
+    <three-js ref="three" @modelChange="onModelChange" :file="'model/sample.fbx'"></three-js>
   </div>
 </template>
 
@@ -39,10 +22,8 @@ import { ElTree, TreeNode, TreeStore } from "element-ui/types/tree";
 import { Object3D, Mesh, Material } from "three";
 import { CreateElement, VNode } from "vue";
 import ThreeJs, { ThreeModelFile } from "@/components/ThreeJs.vue";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const onLight = require("../imgs/light-on.png");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const offLight = require("../imgs/light-off.png");
+import onLight from "../imgs/light-on.png";
+import offLight from "../imgs/light-off.png";
 
 interface MeshMaterial {
   material: Material | Material[];
