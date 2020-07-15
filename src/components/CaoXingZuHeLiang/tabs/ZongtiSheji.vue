@@ -107,16 +107,6 @@ import FabricCanvas from "@/components/FabricCanvas.vue";
 import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataService";
 import { PreviewData } from "../models/preview-data";
 
-declare let fabric: any;
-
-interface ConstructNode {
-  id: number;
-  name: string;
-  desc?: string;
-  type: string;
-  needFill?: boolean;
-}
-
 @Component({
   components: {
     "fabric-canvas": FabricCanvas

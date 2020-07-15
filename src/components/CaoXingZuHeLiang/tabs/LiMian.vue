@@ -228,15 +228,6 @@ import { getAjaxUrl } from "@/utils/path";
 import { makeLabelValueArray } from "@/utils/misc";
 import { PreviewData } from "../models/preview-data";
 
-declare let fabric: any;
-interface ConstructNode {
-  id: number;
-  name: string;
-  desc?: string;
-  type: string;
-  needFill?: boolean;
-}
-
 @Component({
   components: {
     "fabric-canvas": FabricCanvas

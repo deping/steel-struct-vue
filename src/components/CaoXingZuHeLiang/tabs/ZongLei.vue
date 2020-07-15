@@ -123,14 +123,6 @@ import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataSe
 import { ZXJJL } from "../models/export-data";
 import { makeLabelValueArray } from "@/utils/misc";
 
-interface ConstructNode {
-  id: number;
-  name: string;
-  desc?: string;
-  type: string;
-  needFill?: boolean;
-}
-
 @Component({
   components: {}
 })
