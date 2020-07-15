@@ -272,14 +272,6 @@ import { JsonDataService } from "@/components/CaoXingZuHeLiang/models/JsonDataSe
 import { ZZ, XSK, JXK } from "../models/export-data";
 import { makeLabelValueArray } from "@/utils/misc";
 
-interface ConstructNode {
-  id: number;
-  name: string;
-  desc?: string;
-  type: string;
-  needFill?: boolean;
-}
-
 interface TableDataBH {
   bh: string;
   zxdw: string;
