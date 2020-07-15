@@ -1,27 +1,12 @@
 <template>
   <div class="content">
-    <splitter
-      split="vertical"
-      :min-percent="10"
-      :max-percent="25"
-      :default-percent="20"
-    >
+    <splitter split="vertical" :min-percent="10" :max-percent="25" :default-percent="20">
       <template v-slot:paneL>
         <div class="flex-container">
-          <el-button
-            type="primary"
-            class="close-button"
-            @click="closeProject"
-            style="flex-grow: 0;"
-          >
+          <el-button type="primary" class="close-button" @click="closeProject" style="flex-grow: 0;">
             关闭工程
           </el-button>
-          <el-table
-            :data="constructs"
-            style="width: 100%"
-            ref="table"
-            row-class-name="construct-row"
-          >
+          <el-table :data="constructs" style="width: 100%" ref="table" row-class-name="construct-row">
             <el-table-column label="构件">
               <template v-slot="scope">
                 <span style="margin-left: 4px">{{ scope.row.name }}</span>
@@ -29,20 +14,10 @@
             </el-table-column>
             <el-table-column label="操作" width="110px">
               <template v-slot="scope">
-                <el-button
-                  class="table-button"
-                  size="mini"
-                  type="primary"
-                  @click="openConstruct(scope.$index, scope.row)"
-                  >打开</el-button
-                >
-                <el-button
-                  class="table-button"
-                  size="mini"
-                  type="danger"
-                  @click="deleteConstruct(scope.$index, scope.row)"
-                  >删除</el-button
-                >
+                <el-button class="table-button" size="mini" type="primary"
+                           @click="openConstruct(scope.$index, scope.row)">打开</el-button>
+                <el-button class="table-button" size="mini" type="danger"
+                           @click="deleteConstruct(scope.$index, scope.row)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -50,45 +25,20 @@
             <fieldset class="scheduler-border" id="create-construct">
               <legend class="scheduler-border">创建构件</legend>
               <div class="flex-container">
-                <el-select
-                  v-model="construct.type"
-                  placeholder="请选择"
-                  class="flex-item"
-                >
-                  <el-option
-                    v-for="(meta, index) of constructMetas.slice(1)"
-                    :label="meta.label"
-                    :value="index + 1"
-                    :key="index"
-                    :disabled="meta.disabled"
-                  >
+                <el-select v-model="construct.type" placeholder="请选择" class="flex-item">
+                  <el-option v-for="(meta, index) of constructMetas.slice(1)" :label="meta.label" :value="index + 1"
+                             :key="index" :disabled="meta.disabled">
                   </el-option>
                 </el-select>
 
-                <el-input
-                  v-model="construct.name"
-                  placeholder="构件名称"
-                  class="flex-item"
-                />
+                <el-input v-model="construct.name" placeholder="构件名称" class="flex-item" />
 
-                <el-input
-                  v-model="construct.desc"
-                  placeholder="构件描述"
-                  class="flex-item"
-                />
+                <el-input v-model="construct.desc" placeholder="构件描述" class="flex-item" />
 
-                <el-button
-                  class="flex-item"
-                  type="primary"
-                  @click="createConstruct(false)"
-                >
+                <el-button class="flex-item" type="primary" @click="createConstruct(false)">
                   创建空白构件
                 </el-button>
-                <el-button
-                  class="flex-item"
-                  type="primary"
-                  @click="createConstruct(true)"
-                >
+                <el-button class="flex-item" type="primary" @click="createConstruct(true)">
                   创建示例构件
                 </el-button>
               </div>
