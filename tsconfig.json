@@ -12,7 +12,9 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "lodash",
+      "mathjs"
     ],
     "paths": {
       "@/*": [
@@ -27,6 +29,7 @@
     ]
   },
   "include": [
+    "src/global.d.ts",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",

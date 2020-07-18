@@ -13,3 +13,13 @@ declare namespace rightHand {
   function makeRect(options: object): any; // fabric.Rect2
   function makeCircle(options: object): any; // fabric.Circle2
 }
+
+declare namespace fabric {
+  class Canvas2 {
+    constructor(canvas: HTMLCanvasElement | null, options: {
+      showCoord: boolean;
+      rightHand: boolean;
+    });
+  }
+}
+

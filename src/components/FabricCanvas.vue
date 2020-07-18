@@ -8,7 +8,6 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { ResizeSensor } = require("css-element-queries");
-declare let fabric: any;
 
 @Component({
   components: {}
