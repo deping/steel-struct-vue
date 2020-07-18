@@ -6,6 +6,7 @@ import "element-ui/lib/theme-chalk/index.css";
 import axios from "axios";
 import PointInput from "@/components/PointInput.vue";
 import { MessageType, ElMessageOptions } from "element-ui/types/message";
+import * as _ from "lodash";
 
 Vue.use(ElementUI);
 Vue.component("point-input", PointInput);
@@ -21,16 +22,23 @@ axios.interceptors.request.use(function(config) {
   return Promise.reject(error);
 });
 
+function logout() {
+  const beforelogout = new CustomEvent("beforelogout", { detail: {} });
+  window.dispatchEvent(beforelogout);
+
+  // logout, so app will show login page
+  setTimeout(() => {
+    store.commit("setUser", { access_token: "" });
+  }, 0);
+}
+
+const throttledLogout = _.throttle(logout, 5 * 60 * 1000, { trailing: false });
+
 axios.interceptors.response.use(function(response) {
   const data = response.data;
   if (data.code === "00191") {
-    const beforelogout = new CustomEvent("beforelogout", { detail: {} });
-    window.dispatchEvent(beforelogout);
-
-    // logout, so app will show login page
-    setTimeout(() => {
-      store.commit("setUser", { access_token: "" });
-    }, 0);
+    // 在用户token过期后，可能会发出多个ajax请求，通过throttle限制只发出一次beforelogout事件。
+    throttledLogout();
   }
   return response;
 }, function(error) {
