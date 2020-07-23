@@ -27,5 +27,5 @@ export function canSerialize(obj: any): obj is Persist0 {
 
 export function canSave(obj: any): obj is Persist {
   if (!_.isObject(obj)) return false;
-  return "serialize" in obj;
+  return "save" in obj;
 }
