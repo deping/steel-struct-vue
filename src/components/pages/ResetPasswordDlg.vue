@@ -28,17 +28,17 @@ interface ValidateFieldCallback {
 }
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class ResetPasswordDlg extends Vue {
   @Prop({ default: false }) visible!: boolean;
 
   user = {
-    email: ""
+    email: "",
   };
 
   rules = {
-    email: [{ type: "email", message: "邮箱格式不对", trigger: "blur" }]
+    email: [{ type: "email", message: "邮箱格式不对", trigger: "blur" }],
   };
 
   $refs!: {
@@ -54,7 +54,7 @@ export default class ResetPasswordDlg extends Vue {
     const formData: FormData = new FormData();
     formData.append("email", this.user.email);
     try {
-      const res = await axios.get(getAjaxUrl("/noticeResetPwd"));
+      const res = await axios.post(getAjaxUrl("/noticeResetPwd"), formData);
       if (res.data.code === "00100") {
         this.$emit("update:visible", false);
       } else {
@@ -63,7 +63,7 @@ export default class ResetPasswordDlg extends Vue {
     } catch (err) {
       this.$message({
         type: "error",
-        message: err.message
+        message: err.message,
       });
     }
   }
