@@ -32,8 +32,8 @@ interface MeshMaterial {
 
 @Component({
   components: {
-    "three-js": ThreeJs
-  }
+    "three-js": ThreeJs,
+  },
 })
 export default class ModelViewer extends Vue {
   name = "model-viewer";
@@ -41,7 +41,7 @@ export default class ModelViewer extends Vue {
   object3D: Object3D[] = [];
   propMap = { label: "id" };
   currentObject3D?: Object3D;
-  MeshMaterial: MeshMaterial[] = [];
+  meshMaterialMap: MeshMaterial[] = [];
   hightlightColor = "#409EFF";
   hightlightMaterial = new THREE.MeshLambertMaterial({ color: "#409EFF" });
 
@@ -91,7 +91,7 @@ export default class ModelViewer extends Vue {
 
   collectMaterial(data: Object3D) {
     if (data instanceof Mesh) {
-      this.MeshMaterial.push({ mesh: data, material: data.material });
+      this.meshMaterialMap.push({ mesh: data, material: data.material });
       data.material = this.hightlightMaterial;
     }
     for (const child of data.children) {
@@ -105,13 +105,13 @@ export default class ModelViewer extends Vue {
     }
     // restore material
     if (this.currentObject3D) {
-      for (const item of this.MeshMaterial) {
+      for (const item of this.meshMaterialMap) {
         item.mesh.material = item.material;
       }
     }
 
     this.currentObject3D = data;
-    this.MeshMaterial = [];
+    this.meshMaterialMap = [];
     this.collectMaterial(data);
     // redraw 3D scene.
     this.$refs.three.render2();
