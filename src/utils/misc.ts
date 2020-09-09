@@ -70,6 +70,23 @@ export function getPos(e: HTMLElement) {
   return { x, y };
 }
 
+export function getOffset(evt: MouseEvent) {
+  let el: HTMLElement | undefined = evt.target as HTMLElement;
+  let x = 0;
+  let y = 0;
+
+  while (el && !isNaN(el.offsetLeft) && !isNaN(el.offsetTop)) {
+    x += el.offsetLeft - el.scrollLeft;
+    y += el.offsetTop - el.scrollTop;
+    el = el.offsetParent as HTMLElement;
+  }
+
+  x = evt.clientX - x;
+  y = evt.clientY - y;
+
+  return { x: x, y: y };
+}
+
 export function getWsUrl(url: string) {
   let host: string;
   if (isDevMode()) {

@@ -1,6 +1,6 @@
 <template>
   <div id="canvas-container">
-    <canvas ref="canvas"> </canvas>
+    <canvas ref="canvas" @click="onClick"> </canvas>
   </div>
 </template>
 
@@ -13,6 +13,7 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { TrackballControls } from "three/examples/jsm/controls/TrackballControls.js";
 import { getFileExt } from "@/utils/path";
+import { getOffset } from "@/utils/misc";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { ResizeSensor } = require("css-element-queries");
 // // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -22,6 +23,13 @@ import Scene = THREE.Scene;
 import Object3D = THREE.Object3D;
 import PerspectiveCamera = THREE.PerspectiveCamera;
 import WebGLRenderer = THREE.WebGLRenderer;
+import Mesh = THREE.Mesh;
+import Material = THREE.Material;
+
+interface MeshMaterial {
+  material: Material | Material[];
+  mesh: Mesh;
+}
 
 export interface ThreeModelFile {
   modelUrl?: string; // *.obj or *.fbx
@@ -30,7 +38,7 @@ export interface ThreeModelFile {
 }
 
 @Component({
-  components: {}
+  components: {},
 })
 export default class ThreeJs extends Vue {
   name = "three-js";
@@ -43,6 +51,11 @@ export default class ThreeJs extends Vue {
   camera!: PerspectiveCamera;
   renderer!: WebGLRenderer;
   controls!: TrackballControls;
+  currentObject3D?: Object3D;
+  meshMaterialMap: MeshMaterial[] = [];
+
+  @Prop()
+  hightlightMaterial!: THREE.MeshLambertMaterial;
 
   $refs!: {
     canvas: HTMLCanvasElement;
@@ -137,7 +150,7 @@ export default class ThreeJs extends Vue {
       //   const picPath = getFilePath(this.modelFile.picUrls[0]) + "/";
       //   mtlLoader.setTexturePath(picPath);
       // }
-      mtlLoader.load(this.modelFile.mtlUrl, materials => {
+      mtlLoader.load(this.modelFile.mtlUrl, (materials) => {
         materials.preload();
         const objLoader = new OBJLoader();
         // objLoader.setMaterials(materials);
@@ -147,7 +160,7 @@ export default class ThreeJs extends Vue {
       });
     } else {
       const objLoader = new OBJLoader();
-      objLoader.load(this.modelFile.modelUrl, object3d => {
+      objLoader.load(this.modelFile.modelUrl, (object3d) => {
         this.replaceModel(object3d);
       });
     }
@@ -236,6 +249,64 @@ export default class ThreeJs extends Vue {
       const div = this.$el as HTMLDivElement;
       this.resizeSensor = new ResizeSensor(div, this.onDivResize.bind(this));
     }, 0);
+  }
+
+  onClick(event: MouseEvent) {
+    event.preventDefault();
+    // console.log(event.layerX, event.layerY);
+    const offset = getOffset(event);
+    // console.log(offset);
+    const intersects = this.getIntersects(offset.x, offset.y);
+    if (intersects.length > 0) {
+      this.highlightObject3D(intersects[0].object);
+    } else {
+      this.highlightObject3D(undefined);
+    }
+  }
+
+  getIntersects(x: number, y: number) {
+    const raycaster = new THREE.Raycaster();
+    const mouseVector = new THREE.Vector3();
+    x = (x / this.renderer.domElement.clientWidth) * 2 - 1;
+    y = -(y / this.renderer.domElement.clientHeight) * 2 + 1;
+    mouseVector.set(x, y, 0.5);
+    raycaster.setFromCamera(mouseVector, this.camera);
+    return raycaster.intersectObject(this.scene, true);
+  }
+
+  collectMaterial(data: Object3D) {
+    if (data instanceof Mesh) {
+      this.meshMaterialMap.push({ mesh: data, material: data.material });
+      data.material = this.hightlightMaterial;
+    }
+    for (const child of data.children) {
+      this.collectMaterial(child);
+    }
+  }
+
+  highlightObject3D(data: Object3D | undefined) {
+    if (data === this.currentObject3D) {
+      return;
+    }
+    // restore material
+    if (this.currentObject3D) {
+      for (const item of this.meshMaterialMap) {
+        item.mesh.material = item.material;
+      }
+    }
+
+    this.currentObject3D = data;
+    this.meshMaterialMap = [];
+    if (data) {
+      this.collectMaterial(data);
+    }
+    // redraw 3D scene.
+    this.render2();
+    if (data) {
+      this.$emit("current-key", data.id);
+    } else {
+      this.$emit("current-key", undefined);
+    }
   }
 }
 </script>

@@ -11,7 +11,8 @@
         </el-tree>
       </div>
     </div>
-    <three-js ref="three" @modelChange="onModelChange" :file="'model/sample.fbx'"></three-js>
+    <three-js ref="three" :hightlightMaterial="hightlightMaterial" @current-key="onCurrentKeyChange"
+              @modelChange="onModelChange" :file="'model/sample.fbx'"></three-js>
   </div>
 </template>
 
@@ -40,8 +41,6 @@ export default class ModelViewer extends Vue {
 
   object3D: Object3D[] = [];
   propMap = { label: "id" };
-  currentObject3D?: Object3D;
-  meshMaterialMap: MeshMaterial[] = [];
   hightlightColor = "#409EFF";
   hightlightMaterial = new THREE.MeshLambertMaterial({ color: "#409EFF" });
 
@@ -89,33 +88,12 @@ export default class ModelViewer extends Vue {
     );
   }
 
-  collectMaterial(data: Object3D) {
-    if (data instanceof Mesh) {
-      this.meshMaterialMap.push({ mesh: data, material: data.material });
-      data.material = this.hightlightMaterial;
-    }
-    for (const child of data.children) {
-      this.collectMaterial(child);
-    }
+  onCurrentKeyChange(id: number) {
+    this.$refs.tree.setCurrentKey(id);
   }
 
   highlightObject3D(data: Object3D) {
-    if (data === this.currentObject3D) {
-      return;
-    }
-    // restore material
-    if (this.currentObject3D) {
-      for (const item of this.meshMaterialMap) {
-        item.mesh.material = item.material;
-      }
-    }
-
-    this.currentObject3D = data;
-    this.meshMaterialMap = [];
-    this.collectMaterial(data);
-    // redraw 3D scene.
-    this.$refs.three.render2();
-    this.$refs.tree.setCurrentKey(data.id);
+    this.$refs.three.highlightObject3D(data);
   }
 
   onModelChange(obj: Object3D) {
