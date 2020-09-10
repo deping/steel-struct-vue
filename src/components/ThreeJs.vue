@@ -13,7 +13,7 @@ import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader.js";
 // import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { TrackballControls } from "three/examples/jsm/controls/TrackballControls.js";
 import { getFileExt } from "@/utils/path";
-import { getOffset } from "@/utils/misc";
+import { getClientPosition } from "@/utils/misc";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { ResizeSensor } = require("css-element-queries");
 // // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -251,11 +251,10 @@ export default class ThreeJs extends Vue {
     }, 0);
   }
 
-  onClick(event: MouseEvent) {
+  onClick(event: any) {
     event.preventDefault();
-    // console.log(event.layerX, event.layerY);
-    const offset = getOffset(event);
-    // console.log(offset);
+    // == (event.layerX, event.layerY);
+    const offset = getClientPosition(event);
     const intersects = this.getIntersects(offset.x, offset.y);
     if (intersects.length > 0) {
       this.highlightObject3D(intersects[0].object);
